@@ -1,58 +1,115 @@
-%-----------------------------------------------------------------------
-% Beginning of chap1.tex
-%-----------------------------------------------------------------------
-%
-%  AMS-LaTeX sample file for a chapter of a monograph, to be used with
-%  an AMS monograph document class.  This is a data file input by
-%  chapter.tex.
-%
-%  Use this file as a model for a chapter; DO NOT START BY removing its
-%  contents and filling in your own text.
-% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\part{This is a Part Title Sample}
-
 \chapter{What is Combinatorics?}
+\section{Introduction}
+This course aims to delve into the study of discrete mathematical structures, a field which traces its roots back to the 1700s with the work of Leonhard Euler and has gained much attention between the 1960s and 1970s with the advent of computer science. Notably, Euler answered the following question posed by Philip Naude in the year 1741: “In how many ways can the number $50$ be written as a sum of seven different positive integers?”. We shall understand the outline of Euler’s solution to the problem later in this course. A few important personalities (some of whose work we will study eventually) in the subject include Gian Carlo Rota, Donald Knuth, Richard Stanley, Srinivasa Ramanujan, and Pinagala. 
 
+Combinatorics is the science of patterns and arrangements. More concretely, it deals with the study of the existence and the number of arrangements possible for a given mathematical structure. We start our discussion with a few motivating questions which will make our statement clearer.
 
+\begin{question}
+	In how many ways can you arrange the elements of the set $[n]:=\{1,2,3,\ldots,n\}$ such that the first entry in the arrangement is an even number?
+\end{question}
 
-%\specialsection*{This is a Special Section Head}
-%This is an example of a special section head%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Notice how when $n$ is an even number we have $n/2$ choices of even numbers to make for the first entry in our arrangement. Once a choice for the said even number is made the remaining $n-1$ choices can be made in $\left( n-1 \right)!$ ways. Hence, in the case where $n$ is an even number we have $n/2 \cdot \left(n-1 \right)!$ possible arrangements. Can you see why we will have $\left( n-1 \right)/2 \cdot \left( n-1 \right)!$ arrangements for the case where $n$ is an odd number?
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{question}
+    In how many ways can you arrange elements from the set $[n]:=\{1,2,3,\ldots,n\}$ on a grid with $n$ columns and $n$ rows?
+\end{question}
 
-%\begin{xca}
-%This is an example of the \texttt{xca} environment. This environment is
-%used for exercises which occur within a section.
-%\end{xca}
+Notice how for each one of the $n^2$ spaces we have $n$ choices to make. Hence, there are a total of $\underbrace{n \ \cdots \ n}_{n^2 \text{ times}} = n^{n^2}$ possible arrangements.
 
+\begin{question}
+In how many ways can you arrange elements from the set $[n]$ (as defined in the previous two examples) on a grid with $n$ columns and $n$ rows such that each element appears atleast(/exactly) once in each row?
+\end{question}
 
+    Since for each row in the grid we have $n!$ possible arrangements and the grid has $n$ rows there are a total of $n\cdot n!$ possible arrangements.
 
-%\begin{xcb}{Exercises}
-%\begin{enumerate}
-%\item First item.
-%\end{enumerate}
-%\end{xcb}
+\begin{question}
+    How many matrices of order $n\times n$ exist given that the entries must be from the set $\{0,1\}$? 
+\end{question}
+	Since we have $2$ choices for each one of the $n^2$ entries there are a total of $2^{n^2}$ such matrices.
 
+\begin{question}
+\label{q:1.5}
+	How many matrices of order $n \times n$ exist given that the entries must be from the set $\{0,1\}$ and each row and column must have exactly one $1$.
+\end{question}
 
+Notice how in the first row of our matrix we have $n$ ways to fix the occurrence of $1$. This forces $n-1$ ways to fix the occurrence of $1$ in the second row and so on. Hence, in all there are a total of $n\cdot \left( n-1 \right) \cdots 1 = n!$ such matrices.
 
+\begin{remark}
+\cref{q:1.5} can also be re-stated as counting the number of order $n\times n$ matrices which have row-sum and column-sum equal to $1$.    
+\end{remark}
+
+With the following definition we shall now look at a generalization of sorts of the kind of matrices we were dealing with in \cref{q:1.5}.
+
+\begin{definition}[Alternating Sign Matrix (ASM)]
+	A matrix of order $n\times n$ is called an alternating sign matrix if the following conditions hold:
+	\begin{enumerate}
+		\item All the entries of the matrix come from the set $\{-1,0,1\}$.
+		\item Each row-sum and column-sum is $1$.
+		\item The non-zero entries (both row-wise and column-wise) alternate in sign.
+	\end{enumerate}
+\end{definition}
+
+A result first proved by Doron Zeilberger in the year 1992 states that there are precisely  \[
+\prod_{k=0}^{n-1} \frac{\left( 3k+1 \right)!}{\left( n+k \right)!}
+\] 
+number of ASMs of order $n\times n$. A proof of this result is beyond the scope of these lectures and is mentioned only for the sake of completeness. We shall, however, count ASMs of order $3$ now.
+
+\begin{question}
+    How many ASMs of order $3$ exist?
+\end{question}
+Notice how the set of matrices we counted in \cref{q:1.5} are a subset of the set of ASMs of order $n$ (verify each one of the three defining properties of an ASM). Next, we notice a pattern; an ASM (of any order) can't have a $-1$ in the first row. Why? To the contrary, assume there is an ASM with a $-1$ in the first row. Since the immediate non-zero entry below it must be a $1$, the column sum cannot be $1$ without violating the alternativity condition. A similar argument shows that ASMs cannot have a 
+$-1$ in the last row, the first column, or the last column either. This pattern allows us to easily list all ASMs of order $3$.
+
+\[
+\underbrace{
+\begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+\end{pmatrix},
+\quad
+\begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & 0 & 1 \\
+    0 & 1 & 0
+\end{pmatrix},
+\quad
+\begin{pmatrix}
+    0 & 1 & 0 \\
+    1 & 0 & 0 \\
+    0 & 0 & 1
+\end{pmatrix},
+\quad
+\begin{pmatrix}
+    0 & 1 & 0 \\
+    0 & 0 & 1 \\
+    1 & 0 & 0
+\end{pmatrix},
+\quad
+\begin{pmatrix}
+    0 & 0 & 1 \\
+    1 & 0 & 0 \\
+    0 & 1 & 0
+\end{pmatrix},
+\quad
+\begin{pmatrix}
+    0 & 0 & 1 \\
+    0 & 1 & 0 \\
+    1 & 0 & 0
+\end{pmatrix}
+}_{\text{All the ASMs counted in \cref{q:1.5}.}}
+\]
+
+\[
+\underbrace{
+\begin{pmatrix}
+    0 & 1 & 0 \\
+    1 & \textcolor{red}{-1} & 1 \\
+    0 & 1 & 0
+\end{pmatrix}
+}_{\text{The only ASM of order $3$ with a negative entry.}}
+\]
 
 \section{Counting Principles}
-
-
-
 \section{The Pigeon-hole Principle}
-
-
-
 \section{The Principle of Inclusion-Exclusion}
-
-
-
-\endinput
-
-%-----------------------------------------------------------------------
-% End of chap1.tex
-%-----------------------------------------------------------------------
