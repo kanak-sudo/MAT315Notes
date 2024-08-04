@@ -1,51 +1,41 @@
-%-----------------------------------------------------------------------
-% Beginning of chapter.tex
-%-----------------------------------------------------------------------
-%
-%  This is a sample file for use with AMS-LaTeX.  It provides an example
-%  of how to set up a file for a book to be typeset with AMS-LaTeX.
-%
-%  This is the driver file.  Separate chapters should be included at
-%  the end of this file.
-%
-%  ***** DO NOT USE THIS FILE AS A STARTER FOR YOUR BOOK. *****
-%  Follow the guidelines in the file chapter.template.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \documentclass{amsbook}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{cleveref}
 
 \includeonly{preface,chap1,chap2,chap3,chap4,chap5,chap6,biblio,index}
 
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{lemma}[theorem]{Lemma}
-
-\theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{xca}[theorem]{Exercise}
-
-\theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
-
-\numberwithin{section}{chapter}
-\numberwithin{equation}{chapter}
-
-%    Absolute value notation
 \newcommand{\abs}[1]{\lvert#1\rvert}
-
-%    Blank box placeholder for figures (to avoid requiring any
-%    particular graphics capabilities for printing this document).
 \newcommand{\blankbox}[2]{%
   \parbox{\columnwidth}{\centering
-%    Set fboxsep to 0 so that the actual size of the box will match the
-%    given measurements more closely.
     \setlength{\fboxsep}{0pt}%
     \fbox{\raisebox{0pt}[#2]{\hspace{#1}}}%
   }%
 }
 
+% Define theorem styles
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{question}{Question}[section]
+\newtheorem{solution}{Solution}[section]
+
+% Proof environment is already defined by amsthm
+% Define a common label format
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{example}{Example}{Examples}
+\crefname{definition}{Definition}{Definitions}
+\crefname{remark}{Remark}{Remarks}
+\crefname{question}{Question}{Questions}
+\crefname{solution}{Solution}{Solutions}
+
+
 \begin{document}
+
 \frontmatter
 \title{MAT315 Combinatorial Enumeration\\Monsoon 2024}
 
@@ -55,12 +45,8 @@
 \address{Mathematical and Physical Sciences division, School of Arts and Sciences, Ahmedabad University, Ahmedabad 380009, Gujarat, India}
 
 \email{manjil.saikia@ahduni.edu.in}
-%    \thanks will become a 1st page footnote.
-%\thanks{The first author was supported in part by NSF Grant \#000000.}
-
 
 \author{TA: Kanak Dhotre}
-%\email{kanak.d@ahduni.edu.in}
 
 \date{July 22, 2024}
 \subjclass[2020]{Primary 05-01}
@@ -74,6 +60,8 @@
 \include{preface}
 
 \mainmatter
+
+
 \include{chap1}
 \include{chap2}
 \include{chap3}
@@ -83,9 +71,4 @@
 
 \backmatter
 \include{biblio}
-%\include{index}
 \end{document}
-
-%-----------------------------------------------------------------------
-% End of chapter.tex
-%-----------------------------------------------------------------------
