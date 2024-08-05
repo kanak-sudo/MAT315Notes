@@ -60,54 +60,46 @@ number of ASMs of order $n\times n$. A proof of this result is beyond the scope 
 Notice how the set of matrices we counted in \cref{q:1.5} are a subset of the set of ASMs of order $n$ (verify each one of the three defining properties of an ASM). Next, we notice a pattern; an ASM (of any order) can't have a $-1$ in the first row. Why? To the contrary, assume there is an ASM with a $-1$ in the first row. Since the immediate non-zero entry below it must be a $1$, the column sum cannot be $1$ without violating the alternativity condition. A similar argument shows that ASMs cannot have a 
 $-1$ in the last row, the first column, or the last column either. This pattern allows us to easily list all ASMs of order $3$.
 
+First we list all the ASMs counted in \cref{q:1.5}:
 \[
-\underbrace{
 \begin{pmatrix}
     1 & 0 & 0 \\
     0 & 1 & 0 \\
     0 & 0 & 1
 \end{pmatrix},
-\quad
 \begin{pmatrix}
     1 & 0 & 0 \\
     0 & 0 & 1 \\
     0 & 1 & 0
 \end{pmatrix},
-\quad
 \begin{pmatrix}
     0 & 1 & 0 \\
     1 & 0 & 0 \\
     0 & 0 & 1
 \end{pmatrix},
-\quad
 \begin{pmatrix}
     0 & 1 & 0 \\
     0 & 0 & 1 \\
     1 & 0 & 0
 \end{pmatrix},
-\quad
 \begin{pmatrix}
     0 & 0 & 1 \\
     1 & 0 & 0 \\
     0 & 1 & 0
 \end{pmatrix},
-\quad
 \begin{pmatrix}
     0 & 0 & 1 \\
     0 & 1 & 0 \\
     1 & 0 & 0
-\end{pmatrix}
-}_{\text{All the ASMs counted in \cref{q:1.5}.}}
+\end{pmatrix}.
 \]
-
+Now, the only ASM of order $3$ with a negative entry is
 \[
-\underbrace{
 \begin{pmatrix}
     0 & 1 & 0 \\
     1 & \textcolor{red}{-1} & 1 \\
     0 & 1 & 0
-\end{pmatrix}
-}_{\text{The only ASM of order $3$ with a negative entry.}}
+\end{pmatrix}.
 \]
 
 \section{Counting Principles}
