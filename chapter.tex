@@ -4,7 +4,11 @@
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{cleveref}
-
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage[skip=4pt]{caption}
 \includeonly{preface,chap1,chap2,chap3,chap4,chap5,chap6,biblio,index}
 
 \newcommand{\abs}[1]{\lvert#1\rvert}
@@ -15,6 +19,8 @@
   }%
 }
 
+\renewcommand{\binom}[2]{\left(\begin{array}{c}#1 \\ #2\end{array}\right)}
+
 % Define theorem styles
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
@@ -23,6 +29,7 @@
 \newtheorem{remark}{Remark}[section]
 \newtheorem{question}{Question}[section]
 \newtheorem{solution}{Solution}[section]
+\newtheorem{claim}{Claim}[section]
 
 % Proof environment is already defined by amsthm
 % Define a common label format
@@ -32,7 +39,7 @@
 \crefname{remark}{Remark}{Remarks}
 \crefname{question}{Question}{Questions}
 \crefname{solution}{Solution}{Solutions}
-
+\crefname{figure}{Figure}{Figures}
 
 \begin{document}
 

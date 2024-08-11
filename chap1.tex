@@ -6,6 +6,7 @@ Combinatorics is the science of patterns and arrangements. More concretely, it d
 
 \begin{question}
 	In how many ways can you arrange the elements of the set $[n]:=\{1,2,3,\ldots,n\}$ such that the first entry in the arrangement is an even number?
+	\label{q:1.1}
 \end{question}
 
 Notice how when $n$ is an even number we have $n/2$ choices of even numbers to make for the first entry in our arrangement. Once a choice for the said even number is made the remaining $n-1$ choices can be made in $\left( n-1 \right)!$ ways. Hence, in the case where $n$ is an even number we have $n/2 \cdot \left(n-1 \right)!$ possible arrangements. Can you see why we will have $\left( n-1 \right)/2 \cdot \left( n-1 \right)!$ arrangements for the case where $n$ is an odd number?
@@ -56,6 +57,7 @@ number of ASMs of order $n\times n$. A proof of this result is beyond the scope 
 
 \begin{question}
     How many ASMs of order $3$ exist?
+    \label{q:1.6}
 \end{question}
 Notice how the set of matrices we counted in \cref{q:1.5} are a subset of the set of ASMs of order $n$ (verify each one of the three defining properties of an ASM). Next, we notice a pattern; an ASM (of any order) can't have a $-1$ in the first row. Why? To the contrary, assume there is an ASM with a $-1$ in the first row. Since the immediate non-zero entry below it must be a $1$, the column sum cannot be $1$ without violating the alternativity condition. A similar argument shows that ASMs cannot have a 
 $-1$ in the last row, the first column, or the last column either. This pattern allows us to easily list all ASMs of order $3$.
@@ -102,6 +104,241 @@ Now, the only ASM of order $3$ with a negative entry is
 \end{pmatrix}.
 \]
 
+We shall now explore a combinatorial problem which involves counting the number of checkerboard tilings (also known as dimer models) which is of great interest to physicists. 
+
+\begin{question}
+	\label{q:1.7}
+Consider an $m\times n$ board. In how many ways can you cover all the squares of the said board with no overlaps, no diagonal placements, and no protrusions off the board, using dominoes (blocks of order $2\times 1$)?
+\end{question}
+
+It is clear that the existence of atleast one tiling is guaranteed if and only if $m$ and $n$ are not simultaneously odd. However, to count the number of such tilings is not a trivial task. A result due to the famous Dutch physicist Pieter Kasteleyn in the 1960s states that the number of such tilings is
+\[
+	\prod_{v=1}^{m}\prod_{h=1}^{n}\left( 4\cos^2\left( \frac{v\pi}{m+1} \right) +4\cos^2\left( \frac{h\pi}{n+1} \right)  \right)^{\frac{1}{4}}.
+	\label{KFormula}
+\]
+Once again, a proof of the result is beyond the scope of these lectures and is stated only for the sake of completeness.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{Images/Figure1.jpg}
+    \caption{$4$ out of the $36$ possible domino-tilings of a $4\times 4$ board.}
+\end{figure}
+
+Next, we state an equivalent formulation of \cref{q:1.7}.
+
+\begin{definition}[Graph]
+	A graph is a pair $G=\left( V,E \right)$ where $V$ is a set whose elements are called vertices and $E$ is a set of unordered pairs of vertices whose elements are called edges.
+\end{definition}
+
+\begin{definition}[Perfect Matching]
+Let $G=\left( V,E \right)$ be a graph. An $M\subseteq E$ is called a perfect matching of $G$ if no two edeges in $M$ share a common vertex and every vertex of $G$ is incident to atleast one edge in $M$.
+\end{definition}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{Images/Figure2.jpg}
+	\caption{The only possible perfect matchings of the grid graph of order $2$}
+\end{figure}
+Now consider the following construction. To each square in a given a board of order $m\times n$, we assign a vertex. Additionally, there is an edge between the said vertices if and only if the corresponding squares are adjacent to one another. \cref{f:1.3} is an example of this construction. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{Images/Figure3.jpg}
+	\caption{A board of order $4\times 4$ and it's corresponding graph}
+	\label{f:1.3}
+\end{figure}
+
+It is clear that our construction gives a one-to-one correspondence between the set of possible domino-tilings of a board and the set of perfect matchings of it's corresponding graph.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{Images/Figure4.png}
+	\caption{A domino tiling of a board of order $4\times 4$ and the perfect matching that it admits}
+\end{figure}
+
+We shall revisit this formulation of the problem much later in the course. For now, restrict ourselves to a boards of order $2\times n$ and count the number of possible domino tilings, say $t_{n}$ as $n$ varies over the set of natural numbers. It is not too difficult to convince yourself of the fact that $t_{0}=1$, $t_{1}=1$, $t_{2}=2, t_{3}=3$, and $t_{4}=5$. Since the first five terms in the sequence $t_{n}$ are the same as the five terms of the Fibonacci sequence (say $F_{n}$), one might guess that $t_{n} = F_{n}$. This is indeed true, and we shall now give a proof of our claim using a counting argument.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{Images/Figure5.png}
+	\caption{Two ways to tile the first column of board of order $2\times n$}
+	\label{f:1.4}
+\end{figure}
+\begin{proof}
+	Notice how there are exactly two ways to tile the first column of any board of order $2\times n$ (refer to \cref{f:1.4}). It can either be tiled using a single vertical domino, in which case it remains to tile the sub-board of order $2\times \left( n-1 \right)$, or using two horizontal dominos, in which case it remains to tile the sub-board of order $2\times \left( n-2 \right)$. Since both of these cases are valid, it follows that \[
+t_{n}=t_{n-1}+t_{n-2}
+.\] Which is the same as the Fibonacci reccurence.
+\end{proof}
+
+Now that we have $F_{n}=t_{n}$, we prove two standard Fibonacci identities using counting arguments similar to the ones used in the above proof.
+
+\begin{claim}
+$F_{m+n}=F_{m}F_{n} + F_{m-1}F_{n-1}$
+\label{c:1.1}
+\end{claim}
+
+\begin{proof}
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.6]{Images/Figure6_1.png}
+		\caption{}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.6]{Images/Figure6_2.png}
+		\caption{}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering
+		\includegraphics[scale=0.6]{Images/Figure6_3.png}
+		\caption{}
+	\end{subfigure}
+	\caption{The only $3$ ways to tile the $m$-th row of a $2\times \left( m+n \right)$ board.}
+	\label{f:1.6}
+\end{figure}
+
+Notice how we have exactly $3$ ways to tile the $m$-th row of a $2\times \left( m+n \right)$ board (refer to \cref{f:1.6}). Cases (a) and (b) account for when we have $F_{m}$ ways to tile the sub-block of order $2\times m$ \textbf{and} $F_{n}$ ways to tile the sub-board which occurs immediately after. Case (c), on the other hand, accounts for when we have $F_{m-1}$ ways to tile the sub-board of order $2\times \left( m-1 \right)$ which occurs before the already tiled $m$-th row  \textbf{and} $F_{n-1}$ ways to tile the sub-board of order $2\times \left( n-1 \right)$ which occurs after the already tiled $m$-th row. This proves the required identity.
+\end{proof}
+
+\begin{claim}
+	$F_{0}+\cdots+F_{n} = F_{n+2}-1$
+\end{claim}
+
+\begin{proof}	
+Notice how every board of order $2\times k$ has a trivial tiling; the one which only uses vertical dominos and no horizontal ones. On a board of order $2\times \left( n+2 \right)$ if this trivial tiling is ignored, every other possible tiling must have the occurence of atleast one pair of horizontal dominos. If the last such pair occurs at the $n+1$-th column, the sub-board of order  $2\times n$ preceeding it can be tiled in $F_{n}$ ways. If the last such pair occurs at the $n$-th column, the sub-board of order $2\times \left( n-1 \right)$ can be tiled in $F_{n-1}$ ways, and so on. This gives us the required identity. 
+\end{proof}
+\begin{figure}[H]
+		\centering
+		\begin{subfigure}[b]{0.3\textwidth}
+			\centering
+			\includegraphics[scale=0.6]{Images/Figure7_1.png}
+			\caption{}
+		\end{subfigure}
+		\vfill
+		\begin{subfigure}[b]{0.3\textwidth}
+			\centering
+			\includegraphics[scale=0.6]{Images/Figure7_2.png}
+			\caption{}
+		\end{subfigure}
+		\vfill
+		\begin{subfigure}[b]{0.3\textwidth}
+			\centering
+			\includegraphics[scale=0.6]{Images/Figure7_3.png}
+			\caption{}
+		\end{subfigure}
+\caption{Examples of occurences of the last pair of horizontal dominos in $3$ non-trivial tilings of a board of order $2\times \left( n+2 \right)$}
+\label{f:1.7}
+\end{figure}
+
+Recall how $\binom{n}{k}$ counts the number of ways one can choose $k$ elements from a set of $n$ elements. We shall now state a rather interesting re-interpretation of binomial coefficients. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{Images/Figure8.png}
+	\caption{$3$ examples of lattice paths from $\left( 0,0 \right)$ to $\left( 4,3 \right) $}
+	\label{f:1.8}
+\end{figure}
+\begin{question}
+	Given that the only moves allowed are North (N), corresponding to $\left( i,j \right) \to \left( i,j+1 \right)$, or East (E), corresponding to $\left( i,j \right)\to \left( i+1,j \right)$, count the number of paths from $\left( 0,0 \right)$ to $\left( m,n \right)$ on a grid of order $m\times n$ (refer to \cref{f:1.8} for examples of such paths).
+\end{question}
+Notice how we require exactly $m$ E-moves and $n$ N-moves to reach $\left( m,n \right)$ from $\left( 0,0 \right)$. However, every lattice path is determined completely by a choice of $m$ E-moves (or equivalently $n$ N-moves) which can be made in $\binom{m+n}{m}$ ways (or equivalently $\binom{m+n}{n}$ ways). As a consequence of this counting exercise we have not only given a re-interpretation of binomial coefficients, but have also proved that they are symmetric, i.e, $\binom{n}{k}=\binom{n}{n-k}$.
+
+Per usual, we are now interested in giving a counting argument for a standard identity concerning binomial coefficients called Pascal's identity.
+\begin{claim}
+	$\binom{n}{k} + \binom{n}{k+1} = \binom{n+1}{k+1}$
+\end{claim}
+\begin{proof}
+	Notice how there are $\binom{n+1}{k+1}$ choices of a lattice paths from $\left( 0,0 \right)$ to $\left( n-k,k+1 \right)$. The last step in each one of these paths is either an N-move or an E-move. If it is an N-move then it suffices to choose one lattice path from $\left( 0,0 \right)$ to $\left( n-k-1,k+1 \right)$ out of the \[
+		\binom{\left( n-k-1 \right) + \left( k+1 \right)}{k+1} = \binom{n}{k+1}
+	\] choices. Alternatively, if it is an E-move then it suffices to choose one lattice path from $\left( 0,0 \right)$ to $\left( n-k,k \right)$ out of the \[
+	\binom{\left( n-k \right) + k}{k} = \binom{n}{k}
+	\] choices.
+\end{proof}
+
+Let's remind ourselves that the central objective of this course is to count. From \cref{q:1.1} through \cref{q:1.6}, we encountered examples where we derived exact closed-form expressions for counting. During our discussion of the dimer model, we first stated a closed-form expression and then constructed a bijection between the tiling configuration and the perfect matchings configuration. By restricting ourselves to boards of size $2 \times n$, we demonstrated that finding a recurrence relation is also a valid counting technique. However, as we will see, the methods we have discussed so far are not always applicable. In such cases, we turn to the idea of generating functions, which we will introduce next.
+
+\begin{definition}[Generating Function]
+	Given a sequence $\{a_{n}\}_{n \ge 0}$ the formal power series, $\sum_{k=0}^{\infty}a_{k}x^k$, in an indeterminate $x$ is called the generating function of $\{a_{n}\}_{n \ge 0}$.
+\end{definition}
+
+Since our definition works with a \textit{formal} power series we need not worry about the divergence of the involved infinite sum. That being said, we can always be cautious and assume $|x|<1$ to guarantee convergence. 
+
+\begin{question}
+	Find the generating function for the sequence of Fibonacci numbers 
+\end{question}
+Let $\{f_{n}\}_{n \ge 0}$ denote the sequence of Fibonacci numbers and let $F\left( x \right)$ be the corresponding generating function. Notice how 
+\begin{align*}
+	F\left( x \right) &= \sum_{k=0}^{\infty} f_{k}x^k \\
+	&= f_{0}+f_{1}x+\sum_{k=2}^{\infty}f_{k}x^k \\
+	&= 1+x+\sum_{k=2}^{\infty}f_{k}x^k \\
+	&= 1+x+\sum_{k=2}^\infty \left( f_{k-1}+f_{k-2} \right) x^k \\
+	&= 1+x+\sum_{k=2}^{\infty} f_{k-1}x^k + \sum_{k=2}^{\infty} f_{k-2}x^k \\
+	&= 1+x+x\left( F\left( x \right) -1 \right) + x^2F\left( x \right)  \\
+	&= 1+xF\left( x \right)+x^2F\left( x \right)
+\end{align*}
+Solving which we obtain \[
+F\left( x \right) = \frac{1}{1-x-x^2}
+\].
+
+Throughout this course, we will explore how and why generating functions are extensively used in combinatorics. We introduce one such instance now, which will be discussed in greater depth later.
+
+\begin{definition}
+An integer partition of a natural number $n$ is a non-increasing sequence of natural numbers, $\{\lambda_i\}_{i \ge 1}$, whose sum is $n$.
+\end{definition}
+
+\begin{question}
+In how many ways can a natural number $n$ be partitioned?
+\end{question}
+
+Let $p(n)$ denote the number of partitions of $n$. Interestingly, no "nice" closed-form expression for $p(n)$ has been found. However, we will derive the generating function \[
+	\prod_{n=1}^\infty\left( 1+x^n +x^{2n}+x^{3n}+\cdots\right) =  \sum_{n=0}^{\infty}p\left( n \right) x^n
+\] which was given by Euler, later in the course.
+
+\begin{remark}
+	In the year 1918, G.H Hardy and Srinivasa Ramanujan obtained an asymptotic expression (an expression which describes the limiting behaviour) for $p\left( n \right)$ which is given by \[
+	p\left( n \right) ~ \frac{1}{4n\sqrt{3}}\exp\left( \pi \sqrt{\frac{2n}{3}}  \right) 
+	.\] Oftentimes stating an asymptotic expression is also a valid counting technique.
+\end{remark}
+
 \section{Counting Principles}
+We state the fundamental counting principles now.
+\begin{enumerate}
+\item (Addition Principle): If $\{A_{k}\}_{k\geq 1}$ is a family of finite and pairwise disjoint sets then $\abs{\bigcup_{k\geq 1} A_{k}} = \sum_{k\geq 1}\abs{A_{k}}$.
+\item (Substraction Principle): If $A$ and $B$ are finite sets such that $B\subseteq A$ then $\abs{A\backslash B} = \abs{A}-\abs{B}$.
+\item (Product Rule): If $A$ and $B$ are finite sets, then $\abs{A\times B} = \abs{A}\cdot\abs{B}$.
+\item (Division Rule): For finite sets $A$ and $B$ if there exists a $d$-to-many function $f:A\to B$ then $\abs{B}=\abs{A}/d$.
+\end{enumerate}
+In some sense we've already been using these principles in disguise thus far. For instance;
+
+\begin{question}
+	How many $k$-digit positive numbers are there?
+\end{question}
+Since we have $10$ choices for the first $\left(k-1\right)$ digits and $9$ choices for the last digit, by the product rule there are $9\cdot 10^{k-1}$ $k$ digit numbers.
+
+This is a good point to recall the binomial theorem and prove it using a counting argument instead of the standard induction argument.
+
+\begin{theorem}[Binomial Theorem]
+	\[
+		\left( x+y \right)^n = \sum_{k=0}^{n}\binom{n}{k}x^{n-k}y^k
+	.\] 
+\end{theorem}
+\begin{proof}
+	Consider the expansion of
+	\[
+		\left( x+y \right)^n = \underbrace{\left( x+y \right) \cdots \left( x+y \right) }_{n \text{ factors}}.
+	\]
+	In this expansion, there are $\binom{n}{k}$ ways to choose $x$ from exactly $k$ of the $n$ factors (which forces the choice of $y$ from the remaining $(n-k)$ factors). Since $k$ can range from $0$ to $n$, applying the addition principle gives us the binomial theorem.
+\end{proof}
+
+\begin{comment}
+-------
+Challenge problems:
+-----
+$t_{n} = \binom{n}{0}+\binom{n-1}{1}+\binom{n-2}{2} + \cdots$
+$\binom{2n}{n} = \sum_{k=0}^{n}\binom{n}{k}^2$
+\end{comment}
+
+
 \section{The Pigeon-hole Principle}
 \section{The Principle of Inclusion-Exclusion}
