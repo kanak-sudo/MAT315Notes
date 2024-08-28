@@ -28,7 +28,7 @@ In how many ways can you arrange elements from the set $[n]$ (as defined in the 
 \end{question}
 	Since we have $2$ choices for each one of the $n^2$ entries there are a total of $2^{n^2}$ such matrices.
 
-\begin{question}
+	\begin{question}[Permutation Matrices]
 \label{q:1.5}
 	How many matrices of order $n \times n$ exist given that the entries must be from the set $\{0,1\}$ and each row and column must have exactly one $1$.
 \end{question}
@@ -246,6 +246,7 @@ Notice how we require exactly $m$ E-moves and $n$ N-moves to reach $\left( m,n \
 
 Per usual, we are now interested in giving a counting argument for a standard identity concerning binomial coefficients called Pascal's identity.
 \begin{claim}
+	\label{c:1.3}
 	$\binom{n}{k} + \binom{n}{k+1} = \binom{n+1}{k+1}$
 \end{claim}
 \begin{proof}
@@ -316,6 +317,7 @@ In some sense we've already been using these principles in disguise thus far. Fo
 \end{question}
 Since we have $10$ choices for the first $\left(k-1\right)$ digits and $9$ choices for the last digit, by the product rule there are $9\cdot 10^{k-1}$ $k$ digit numbers.
 
+
 This is a good point to recall the binomial theorem and prove it using a counting argument instead of the standard induction argument.
 
 \begin{theorem}[Binomial Theorem]
@@ -330,6 +332,149 @@ This is a good point to recall the binomial theorem and prove it using a countin
 	\]
 	In this expansion, there are $\binom{n}{k}$ ways to choose $x$ from exactly $k$ of the $n$ factors (which forces the choice of $y$ from the remaining $(n-k)$ factors). Since $k$ can range from $0$ to $n$, applying the addition principle gives us the binomial theorem.
 \end{proof}
+Now we state a the multinomial theorem which generalizes the binomial theorem to expressions with more than two terms, allowing us to expand any power of a sum of multiple terms as a sum of products of those terms, each multiplied by a what is called a multinomial coefficient which is denoted and defined as
+\[\binom{n}{k_1,\cdots,k_m} := \frac{n}{k_1!\cdots k_m!}.\]
+We would expect the multinomial coefficient to count something. That is indeed the case, it counts the number of ways to arrange $n$ distinct objects into $m$ distinct bins such that the $i$-th bin contains $k_i$ elements. With this interepretation of multinomial coefficients, mimicing the steps involved in the proof of the binomial theorem we get the multinomial theorem which is stated below. 
+\begin{theorem}[Multinomial Theorem]
+	\[
+	(x_{1}+\cdots+x_{r})^n = \sum_{k_{1}+\cdots+k_{r}=n}\binom{n}{k_{1},\cdots,k_{r}}x_{1}^{k_{1}}\cdots x_{r}^{k_{r}}
+	.\] 
+\end{theorem}
+It is natural to expect a Pascal-like identity for multinomial coefficients as well. In this spirit consider the following claim.
+\begin{claim}
+	\[
+		\binom{n}{k_{1},\cdots,k_{r}} = \binom{n-1}{k_1-1,k_2,\cdots,k_r} + \cdots + \binom{n-1}{k_1,k_2,\cdots,k_r-1}
+	.\]
+\end{claim}
+\begin{proof}
+\end{proof}
+Notice how when $k_1=k$, $k_2=n-k$ and all the other $k_i$s are $0$, we retrieve the Pascal's identity (\cref{c:1.3})
+\begin{comment}
+	
+Generalization of the binomial theorem to the binomial theorem which is the multinomial theorem. Explain the multinomial coefficient here first.
+	Then show that 
+	\begin{claim}
+		\binom{n}{k_{1},\cdots,k_{r}} = \binom{n}{k_{1}}\binom{n-k_{1}}{k_{2}}\binom{n-k_{1}-k_{2}}{k_{3}} \cdots \binom{n-k_{1}-\cdots-k_{m-1}}{k_{r}}
+	\end{claim}
+	and finally give a proof of
+Proof is similar to the proof of the binomial theorem.
+
+Proof involves rewrriting $(x_{1}+\cdots+x_{r})^n$ as $(x_{1}+\cdots+x_{r})(x_{1}+\cdots+x_{r})^{n-1}$ and then swapping the two sums. Change of variables. And we're done.
+\end{comment}
+
+In addition to the fundamental counting principles, there are a few more principles/techiniques which we will use quite often in this course. One of them is the bijection principle. We state the principle formally and then given an example.
+
+\begin{theorem}[Bijection Principle]
+If $S$ and $T$ are finite sets then $|S|=|T|$ if and only if there exists a bijection $f:S\to T$.
+\end{theorem}
+ 
+\begin{question}
+	Let $S$ be a finite set. A \textbf{permutation} of $S$ is a bijection from and to $S$. How many permutations of $[n]=\{1,2,3,\ldots,n\}$ exist?
+\end{question}
+
+We introduce the cycle notation before outlining a solution. In the case where $n=1$, it is clear that there is only possible bijection, namely, $f_1:\{1\}\to\{1\}$ such that $f_1 \left(1 \right) =1$. We shall write $f_1$ as \[
+\begin{pmatrix}
+	1 \\ 1
+\end{pmatrix}
+.\] In the case where $n=2$, it is clear that there are two possible bijections. These are $g_1:\{1,2\}\to \{1,2\}$ such that $g_1\left(1 \right) =1$, $g_1\left( 2 \right)=2$, and $g_{2}:\{1,2\}\to\{1,2\}$ such that $g_{2}\left(1  \right) =2$, $g_{2}\left( 2 \right) =1$. We shall write $g_{1}$ and $g_{2}$ as \[
+\begin{pmatrix} 1 & 2 \\ 1 & 2 \end{pmatrix}, \quad \begin{pmatrix} 1 & 2 \\ 2 & 1 \end{pmatrix} 
+\] respectively. In essence, the first row in our notation lists the elements of the domain, and the second row lists where the bijection sends these elements. Do you see why in the case where $n=3$ the bijections can be written as 
+ \[
+	 \begin{pmatrix} 1 & 2 & 3 \\ 1 & 2 & 3 \end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 \\ 1 & 3 & 2 \end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 \\ 3 & 1 & 2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 \\ 3 & 2 & 1 \end{pmatrix} 
+.\]
+Since the first row of any bijection in our notation is fixed and we have \[ n\cdot\left( n-1 \right) \cdots 1 = n!\] ways to fill out the second row, it clear that there are $n!$ permutations of $[n]$. Recall from \cref{q:1.5} that we also have exactly $n!$ permutation matrices. By the bijection principle we must have a bijection between the set of permutation matrices of order $n\times n$ and the set of permuations of $[n]$. The bijection is as follows. Corresponding to every permutation \[
+\begin{pmatrix} 
+	1 & 2 & \cdots & n \\
+	f\left(1\right) & f\left( 2 \right) & \cdots & f\left( n \right)
+\end{pmatrix} 
+\] of $[n]$ we assign an $n\times n$ matrix where the entry at $\left( i,f\left(i  \right)  \right)$ for $1\leq i\leq n$ is $1$, and all other entries are $0$. More explicity,
+\begin{align*}
+    &\begin{pmatrix}
+    1 & 2 & 3 \\
+    1 & 2 & 3 
+\end{pmatrix}
+\longleftrightarrow
+\begin{pmatrix}
+    1&& \\
+    &1& \\
+    &&1
+\end{pmatrix}, \\
+&\begin{pmatrix}
+    1 & 2 & 3 \\
+    1 & 3 & 2 
+\end{pmatrix}
+\longleftrightarrow
+\begin{pmatrix}
+    1&& \\
+    &&1 \\
+    &1&
+\end{pmatrix}, \\
+&\hspace*{6em}\vdots \\
+&\begin{pmatrix}
+    1 & 2 & 3 \\
+    3 & 2 & 1
+\end{pmatrix}
+\longleftrightarrow
+\begin{pmatrix}
+    &&1\\
+    &1&\\
+    1&&
+\end{pmatrix}.
+\end{align*}
+We outline a proof of an identity involving binomial coefficients using the bijection principle now.
+\begin{claim}
+\begin{align*}
+\sum_{i=0}^{n}\binom{n}{i} = 2^n
+\end{align*}
+\label{c:2.1}
+\end{claim}
+\begin{proof}
+	Let \( S = \{a_1, \ldots, a_n\} \) be a set with \( n \) elements. For each of the \( 2^n \) possible subsets \( T = \{a'_1, \ldots, a'_k\} \) of \( S \) (where \( k \) can be any value from 0 to \( n \)), there is a corresponding binary string of length \( n \). In this string, the \( i \)th bit is \( 1 \) if the element \( a_i \) is in the subset \( T \), and \( 0 \) if it is not. For instance in the case where $S=\{0,1\}$ we have the following correspondence
+	 \begin{align*}
+		&\emptyset \longleftrightarrow 00 \\
+		&\{0\} \longleftrightarrow 10 \\
+		&\{1\} \longleftrightarrow 01 \\
+		&\{0,1\} \longleftrightarrow 11
+	\end{align*}
+\end{proof}
+Another counting technique which we've seen before in the proof of Pascal's identity (\cref{c:1.3}) is called double counting. The broad idea is to count the same combinatorial object in two different ways. As an example, we give a proof of \cref{c:2.1} using the double counting technique.
+\begin{proof}
+It is clear that $2^n$ counts the number of $n$-bit binary strings. To prove the claimed identity, we count the number of $n$-bit binary strings once again in a different way. Notice how an arbitrary$n$-bit binary string has $0\leq i\leq n$ number of $0$s. Since there are $\binom{n}{0}$ choices when $i=0$, $\binom{n}{1}$ choices when $i=1$, and so on, by the addition principle we have proved the required identity.
+\end{proof}
+
+We have all seen a proof by induction of the following identity. Now we give a proof using a double counting argument.
+\begin{claim}
+	$1+2+3+\cdots+n=\dfrac{n\left( n+1 \right)}{2}=\binom{n+1}{2}$
+	\label{c:2.2}
+\end{claim}
+\begin{proof}
+	Consider the problem of counting the number of handshakes in a group of $n+1$ people, where each person shakes hands with every other person. The first person in the group shakes hands with everyone except themselves; this gives $n$ handshakes. The second person in the group shakes hands with everyone else; this gives $\left( n-1 \right)$ handshakes (not $n$ because we've already counted the handshake between the first and second person). The third person in the group shakes hands with everyone; this gives $\left( n-2 \right)$, and so on. In all we have $n+\left( n-1 \right)+\left( n-2 \right)+\cdots+1$ handshakes. Let's count again in a different way now. Notice how for each pair of people there is one handshake. Hence, there are $\binom{n+1}{2}$ handshakes in total. Putting the two observations together proves the claim.
+\end{proof}
+
+Next, we introduce the ``stars and bars'' method. We shall outline how this method works with the help of a few standard examples.
+\begin{question}
+	For a given $n\in \mathbb{N}$ how many $x_{1},\cdots,x_{r}\geq 0$ exist which add upto $n$?
+\end{question}
+
+\begin{comment}
+https://math.stackexchange.com/questions/2018957/number-of-solutions-to-x-1x-2-x-m-n
+||||+||+| and so on. So we're just making a choice of the number of +s
+
+\end{comment}
+
+We conclude this section by stating an informal technique called proof by pictures (or proof without words). This technique involves the use of visual representations to demonstrate the validity of a mathematical statement. Although in the strictest sense of things a proof by pictures is not a counting principle, it often helps develop intution. For instance, we state such a proof for \cref{c:2.2}. 
+\begin{proof} 
+	\begin{figure}[H]
+		\includegraphics[scale=0.65]{Images/Figure9.png}
+		\caption{}
+		\label{f:1.9}
+	\end{figure}
+In \cref{f:1.9} notice how there are $1+2+3+\cdots+n$ dots colored in red, $1+2+3+\cdots+n$ dots colored in blue, and hence $2\left( 1+2+3+\cdots+n \right)$ total. It is also true that in our arrangement there are $n\left( n+1 \right)$ dots in total. Now the identity follows.
+\end{proof}
+Yet another fundamental counting principle is the pigeonhole principle. Given its importance, we will dedicate the upcoming section to explore it in detail.
+\begin{remark}
+We have seen how the principles we’ve discussed so far can be useful in proving combinatorial identities. Determining how to derive these identities is not always straightforward. However, a common technique involves running computer simulations to generate a sequence of values corresponding to the first few natural numbers. Tools like OEIS, RATE (in Mathematica), and Guess (in SageMath and Maple) can then be used to conjecture a closed form for the sequence.
+\end{remark}
 
 \begin{comment}
 -------
@@ -337,8 +482,84 @@ Challenge problems:
 -----
 $t_{n} = \binom{n}{0}+\binom{n-1}{1}+\binom{n-2}{2} + \cdots$
 $\binom{2n}{n} = \sum_{k=0}^{n}\binom{n}{k}^2$
+
+Consdier a $4 x 4$ chessboard. We want to place as many queens as possible such that they don't attack each other. What are the possible number of such configurations. What are the maximum number of queens you can place? Show that it has to be less than $5$. Give two examples of configurations with $4$ queens. This works only for chessboard greater than $4$ (i.e order n and n queens).
+
+We want to find the number of solutions to the equation $x_{1}+\cdots+x_{k}=n$ where $n\in\mathbb{N}$ and  $x_{i}\in\mathbb{Z}$. We have the following cases:
+	\begin{enumerate}
+		\item All $x_{i}>0$: How many compositions of $n$ into $k$ parts
+		\item All $x_{i}\geq 0$ : What are the monomials of degree $n$ in  $k$ variables
+	\end{enumerate}
+
+	Compositions are partitions where the order matters.
+	Weak compositions are compositions in which $0$ is allowed.
+
+	We are given  $n$ balls which we want to arrange into  $k$ compartments. In the first case we are not allowed to have empty compartmenets, in the other case it's allowed. 
+	We just want to choose $k-1$ boundaries out of the  $n+k=1$ objects which is just  $\binom{n+k-1}{k-1}$ (CASE B)
+
+	$\binom{n-1}{k-1}$ (CASE A)
+
+	There is also a proof using generating functions which we shall discuss in the upcoming sections
 \end{comment}
 
-
 \section{The Pigeon-hole Principle}
+We state what is known as the pigeon-hole principle.
+\begin{theorem}
+Let $A_{1},\cdots,A_{k}$ be pair-wise disjoint finite sets. If \[|A_{1}\cup A_{2}\cup \cdots \cup A_{k}|>kr\] then there exists an $1\leq i\leq k$ such that $|A_{i}|>r$.
+\end{theorem}
+Even though the statement sounds trivial, it has immense applications. We state a few examples now. 
+\begin{claim}
+Given $b\in \mathbb{Z}$, the decimal expansion of $1/b$ is either finite or eventually periodic.
+\end{claim}
+\begin{proof}
+Each step in the long division of $1$ by $b$ involves subtracting multiples of $b$ from powers of $10$ until the remainder is $0$ or repeats itself. Since each one of these remainders must be strictly less than $b$, we have $b$ possible remainders, namely, $0, 1, 2, \cdots, b-1$. If the remainder becomes $0$ at some step, the division terminates, in which case the decimal expansion is finite. Next, consider the case where the division does not terminate. By the pigeon-hole principle, since there are only $b$ possible remainders and more than $b$ steps, at least one of the remainders must repeat. This proves our claim because when a remainder repeats, the sequence of digits that follow in the decimal expansion must repeat as well.
+\end{proof}
+\begin{claim}
+Let $S=\{1,2,\cdots,2n\}$. Any $n+1$ element subset $K$ of $S$ has two numbers $a$ and $b$ such that
+\begin{enumerate}
+	\item $\gcd(a,b) = 1$
+	\item $a=nb$ for some $n\in\mathbb{N}$
+\end{enumerate}
+\end{claim}
+\begin{proof}
+\begin{enumerate}
+\item Consider the $n$-element subset \[\{\left( 1,2 \right), \left( 3,4 \right), \cdots \left( 2n-1,2 \right)\}\] of $S\times S$ and notice how if we choose $n+1$ numbers from $\{0,\cdots,2n\}$ then by the pigeonhole principle we are guaranteed to pick two numbers from the same pair in $S\times S$. Since each element in the said subset is a pair of consecutive numbers, their $\gcd$ is necessarily $1$.
+\item Notice how every element in the set $\{1,2,\cdots,2n\}$ can be written in the form $2^ab$ where $b$ is odd by factoring out as many $2$s as possible. Since there are only $n$ odd numbers in these set $\{1,2,\cdots,2n\}$, we are left with $n$ choices of $b$. Next, we construct $b$ subsets of $S$, say $S_k\subseteq S$ such that $i\in S_k$ if and only if $i=2^kb$. Finally, by the pigeonhole principle, if one were to pick $n+1$ elements from $S$ atleast $2$ of them would be in the same $S_k$, i.e, there always exists a pair of numbers such that one divides the other.
+\end{enumerate}
+\end{proof}
+\begin{claim}
+If $S$ be an $n+1$-element set of natural numbers, then there exists a pair of numbers in $S$ whose difference is divisible by $n$.
+\end{claim}
+\begin{claim}
+Given $m$ integers say  $a_{1},\cdots,a_{m}$ prove that there exists $k$ and $l$ with  $0\leq k\leq l\leq m$ such that $m$ divides  $a_{k+1}+a_{k+2}+\cdots+a_{l}$
+\end{claim}
+\begin{claim}
+In a party of $n$ people, where some (maybe all, maybe none) shake hands with one another, show that there are atleast two people who shake the same number of hands.
+\end{claim}
+\begin{claim}
+In a group of $6$ people where each pair of people are either friends or enemies, show that there are  $3$ people who are either all friends or all enemies. 
+\end{claim}
+\begin{comment}
+Give a normal explanation. and the graph theoritic approach. 
+\[
+	\sum_{v\in V}degree(v) = 2|E|
+.\] 
+Introduce Ramsey's theorem
+\end{comment}
+We conclude this section by stating a few definition which will turn out to be useful in the upcoming sections.
+\begin{definition}[$k$-Permutation]
+A $k$-permutation on $[n]=\{1,2,\cdots,n\}$ is a bijection between two $k$-element subsets of $[n]$. 
+\end{definition}
+\begin{definition}[Circular $k$-Permutation]
+	$k$-permutations  $\pi$ and $\sigma$ are called circular equivalents if there exists a shift  $s\in [k]$ such that  $i+s\equiv j(\text{mod} \ k)$.
+\end{definition}
 \section{The Principle of Inclusion-Exclusion}
+Recall that for finite sets $A$ and $B$, the cardinality of their union is given by $|A \cup B| = |A| + |B| - |A \cap B|
+$. This formula, which adds (includes) the sizes of $A$ and $B$ while subtracting (excluding) the overcount in $|A \cap B|$ encapsulates the essence of the inclusion-exclusion principle. We start with a useful generalization of the motivating formula we just discussed.
+\begin{theorem}
+	Given finite sets $A_{1},\cdots,A_{k}$, 
+	\[
+		|\bigcup_{i=1}^k A_i| = \sum_{n=1}^{k}\left(-1  \right)^{n+1}\left( \sum_{1\leq i_{1}<\ldots<i_{n}\leq k+1}|A_{i_{1}}\cap \cdots A_{i_{n}}| \right) 
+	.\] 
+\end{theorem}
+

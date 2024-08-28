@@ -1,13 +1,63 @@
-\chapter{The Art of Bijections}
-
-
-
+\chapter{The Art of Combinatorial Thinking}
 \section{Binomial Coefficients}
+\begin{comment}
+\begin{question}
+3a
+\end{question}
+You have $2n$ objects
+Divide the objects into two classes
+Each class has  $n$ objects
+Choose  $k$ objetcs from class  $A$
+Choose  $n-k$ objects from class  $B$
+Choose a distinguished element from the k choices of objects from class  $A$
+==
+Choose the distinguished element from $A$ first <=> n
+Choose the rest of the elements from  $A\cup B \backslash \{x\}$ where  $x$ is the distinguised elements <=> \binom{2n-1}{n-1}
 
+\begin{question}
+3b
+\end{question}
+Think along subsets
 
+\begin{question}
+	\sum_{i=1}^{n}i(n-1) = \\sum_{i=1}^{n}\binom{i}{2} = \sum_{i=0}^{n-2}\binom{n-i}{2} = \binom{n+1}{3} 
+\end{question}
+Three numbers out of the $n+1$ choices say $a_{1}<a_{2}<a_{3}$. Now argue for the first three sums based on which one of these is chosen first. 
 
+The first sum corresponds to choosing $a_2$. The second sum corresponds to choosing  $a_{3}$. The third sum corresponds to choosing $a_{1}$.
+
+\begin{question}
+	For all $n\geq r\geq 0$ we have 
+	 \[
+		 \binom{r}{r}+\binom{r+1}{r}+\cdots+\binom{n}{r} = \binom{n+1}{r+1}
+	.\] 
+\end{question}
+Give a proof using lattice paths. 
+RHS is the number of lattice paths from $(0,0)\to (r+1,n-r)$. For the LHS what happens before the last E step.
+
+The idea is not always to prove equalities. Infact more often than not we will be interested in proving inequalities
+ \begin{question}
+	 \binom{2n}{n}<4^n
+\end{question}
+Convert binary to lattice: 0 to N, 1 to E and so on.
+
+Next we prove the Chu-Vandermonde identity.
+\begin{question}
+	\binom{2n}{n} = \sum_{k=0}^{n} \binom{n}{k}^2
+\end{question}
+
+\begin{question}
+	For all $n>0$. \[
+		\sum_{k=0}^{n} 2^k\binom{n}{k} = 3^n
+	\]
+\end{question}
+
+\begin{question}
+	For $n>0$  \[
+		2\binom{2n-1}{n} = \binom{2n}{n}
+	.\] 
+\end{question}
+Give two proofs. One using Pascals identity. The other by choosing sets.
+\end{comment}
 \section{Catalan Numbers}
-
-
-
 \endinput

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.23)  11 AUG 2024 17:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.23)  28 AUG 2024 15:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -375,37 +375,37 @@ File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 (./chap4.aux) (./chap5.aux) (./chap6.aux) (./biblio.aux))
 \openout1 = `chapter.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 44.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 45.
 
 
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 44.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 45.
 
 
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Package hyperref Info: Link coloring OFF on input line 44.
+Package hyperref Info: Link coloring OFF on input line 45.
  (./chapter.out) (./chapter.out)
 \@outlinefile=\write4
 \openout4 = `chapter.out'.
@@ -570,21 +570,38 @@ Package pdftex.def Info: Images/Figure8.png  used on input line 238.
 (pdftex.def)             Requested size: 245.2682pt x 55.10628pt.
 [5 <./Images/Figure6_1.png> <./Images/Figure6_2.png> <./Images/Figure6_3.png> <
 ./Images/Figure7_1.png> <./Images/Figure7_2.png> <./Images/Figure7_3.png>]
-[6 <./Images/Figure8.png>] [7] Excluding 'comment' comment.) [8]
+[6 <./Images/Figure8.png>] [7] [8] Excluding 'comment' comment.
+Overfull \hbox (29.16699pt too wide) detected at line 384
+[] \OML/cmm/m/it/10 ; [] ; [] ; [] ; [] ; [] ; [] :
+ []
+
+[9] [10] Excluding 'comment' comment.
+<Images/Figure9.png, id=299, 557.83406pt x 260.975pt>
+File: Images/Figure9.png Graphic file (type png)
+<use Images/Figure9.png>
+Package pdftex.def Info: Images/Figure9.png  used on input line 468.
+(pdftex.def)             Requested size: 362.58783pt x 169.63174pt.
+
+Overfull \hbox (2.58783pt too wide) in paragraph at lines 468--469
+ [][] 
+ []
+
+[11 <./Images/Figure9.png>] Excluding 'comment' comment. [12]
+Excluding 'comment' comment.) [13]
 \openout2 = `chap2.aux'.
 
- (./chap2.tex
-Chapter 2
-) [9
+ (./chap2.tex [14
 
 
 
 
 
 ]
+Chapter 2
+Excluding 'comment' comment.) [15]
 \openout2 = `chap3.aux'.
 
- (./chap3.tex [10
+ (./chap3.tex [16
 
 
 
@@ -592,10 +609,10 @@ Chapter 2
 
 ]
 Chapter 3
-) [11]
+) [17]
 \openout2 = `chap4.aux'.
 
- (./chap4.tex [12
+ (./chap4.tex [18
 
 
 
@@ -603,10 +620,10 @@ Chapter 3
 
 ]
 Chapter 4
-) [13]
+) [19]
 \openout2 = `chap5.aux'.
 
- (./chap5.tex [14
+ (./chap5.tex [20
 
 
 
@@ -622,10 +639,10 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 13.
 
-) [15]
+) [21]
 \openout2 = `chap6.aux'.
 
- (./chap6.tex [16
+ (./chap6.tex [22
 
 
 
@@ -633,7 +650,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 ]
 Chapter 6
-) [17] [18
+) [23] [24
 
 
 
@@ -646,42 +663,45 @@ Bibliography
 
 LaTeX Warning: Empty `thebibliography' environment on input line 13.
 
-) [19
+) [25
 
 
 
 ] (./chapter.aux (./preface.aux) (./chap1.aux) (./chap2.aux) (./chap3.aux) (./c
 hap4.aux) (./chap5.aux) (./chap6.aux) (./biblio.aux))
 Package rerunfilecheck Info: File `chapter.out' has not changed.
-(rerunfilecheck)             Checksum: C50A0ADA51FD1503C7B8F30B41844AF4;4788.
+(rerunfilecheck)             Checksum: E6B30AD8515F573F530D294AFD0063BC;4851.
  ) 
 Here is how much of TeX's memory you used:
- 13577 strings out of 476025
- 230167 string characters out of 5790017
- 1868388 words of memory out of 5000000
- 33567 multiletter control sequences out of 15000+600000
- 519414 words of font info for 60 fonts, out of 8000000 for 9000
+ 13642 strings out of 476025
+ 231152 string characters out of 5790017
+ 1869388 words of memory out of 5000000
+ 33600 multiletter control sequences out of 15000+600000
+ 520471 words of font info for 63 fonts, out of 8000000 for 9000
  1302 hyphenation exceptions out of 8191
- 75i,9n,77p,767b,635s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,14n,77p,897b,635s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></us
-r/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
-local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/lo
-cal/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local
-/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/te
-xlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/tex
-live/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texli
-ve/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texliv
-e/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive
-/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on chapter.pdf (25 pages, 661965 bytes).
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
+></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
+></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></u
+sr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr
+/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
+ocal/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loc
+al/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/
+texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/tex
+live/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texl
+ive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texliv
+e/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive
+/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/
+2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texl
+ive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on chapter.pdf (31 pages, 747875 bytes).
 PDF statistics:
- 411 PDF objects out of 1000 (max. 8388607)
- 329 compressed objects within 4 object streams
- 89 named destinations out of 1000 (max. 500000)
- 269 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 488 PDF objects out of 1000 (max. 8388607)
+ 392 compressed objects within 4 object streams
+ 118 named destinations out of 1000 (max. 500000)
+ 274 words of extra memory for PDF output out of 10000 (max. 10000000)
 
