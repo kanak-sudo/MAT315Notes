@@ -1,5 +1,7 @@
 \chapter{The Art of Combinatorial Thinking}
 \section{Binomial Coefficients}
+This sections aims to push-forward our familiarity with binomial coefficients which we have gained from the previous chapter. We do so by outlining proofs of a few standard combinatorial identities. 
+
 \begin{comment}
 \begin{question}
 3a
@@ -20,7 +22,7 @@ Choose the rest of the elements from  $A\cup B \backslash \{x\}$ where  $x$ is t
 Think along subsets
 
 \begin{question}
-	\sum_{i=1}^{n}i(n-1) = \\sum_{i=1}^{n}\binom{i}{2} = \sum_{i=0}^{n-2}\binom{n-i}{2} = \binom{n+1}{3} 
+\sum_{i=1}^{n}i(n-1) = \\sum_{i=1}^{n}\binom{i}{2} = \sum_{i=0}^{n-2}\binom{n-i}{2} = \binom{n+1}{3} 
 \end{question}
 Three numbers out of the $n+1$ choices say $a_{1}<a_{2}<a_{3}$. Now argue for the first three sums based on which one of these is chosen first. 
 
@@ -59,5 +61,77 @@ Next we prove the Chu-Vandermonde identity.
 \end{question}
 Give two proofs. One using Pascals identity. The other by choosing sets.
 \end{comment}
+
+\begin{claim}
+\[
+\sum_{k=1}^{n}k\binom{n}{k}^2 = n\binom{2n-1}{n-1}
+\]
+\end{claim}
+\begin{proof}
+Let $J$ be a collection of $2n$ objects which is partitioned into $2$ equal sub-collections $J_1$ and $J_2$. Now, we want to make a choice of $n$ elements from $J$ which includes a distinguished element, say $x$ from $J_1$ (or equivalently $J_2$). Since there are $n$ ways to choose the said distinguished element, and $\binom{2n-1}{n-1}$ ways to choose the rest of the $n-1$ elements, in all we have \[
+n\binom{2n-1}{n-1}
+\] ways to make the said choice. Alternatively, we can also choose $k$ elements from $J_1$ in $\binom{n}{k}$ ways, $n-k$ elements from $J_2$ in $\binom{n}{n-k}$ ways, and then choose the distinguished element from $J_1$ (or equivalently $J_2$) in $1\leq k\leq n$ ways. Thus far, we have proved
+\[
+\sum_{k=1}^{n}k\binom{n}{k}\binom{n}{n-k} = n\binom{2n-1}{n-1}.
+\]
+Since by \cref{r:1.2} \[
+\binom{n}{k} = \binom{n}{n-k},
+\]
+we are done. 
+\end{proof}
+\begin{claim}
+\[
+\sum_{k=1}^{n}k\binom{n}{k} = n2^{n-1}
+\]
+\end{claim}
+\begin{proof}
+\end{proof}
+
+\begin{claim}
+\[
+\sum_{i=1}^{n}i(n-1) = \sum_{i=1}^{n}\binom{i}{2} = \sum_{i=0}^{n-2}\binom{n-i}{2} = \binom{n+1}{3} 
+\]
+\end{claim}
+\begin{proof}
+\end{proof}
+
+\begin{claim}
+For all $n\geq r\geq 0$ we have 
+\[
+		 \binom{r}{r}+\binom{r+1}{r}+\cdots+\binom{n}{r} = \binom{n+1}{r+1}
+.\] 
+\end{claim}
+\begin{proof}
+\end{proof}
+
+\begin{claim}
+$\binom{2n}{n}<4^n$
+\end{claim}
+\begin{proof}
+    
+\end{proof}
+
+\begin{claim}[Chu-Vandermonde Identity]
+\[\binom{2n}{n} = \sum_{k=0}^{n} \binom{n}{k}^2\]
+\end{claim}
+\begin{proof}
+Once again, by \cref{r:1.2}, notice how \[
+\sum_{k=1}^n\binom{n}{k}^2 = \sum_{k=1}^{n}\binom{n}{k}\binom{n}{n-k}.
+\] Now we argue combinatorially. Let $J$ be a collection of $2n$ objects which is partitioned into $2$ equal sub-collections $J_1$ and $J_2$. Any choice of $n$ elements from $J$ involves choosing $k$ elements from $J_1$ and $n-k$ elements from $J_2$ where $0\leq k\leq n$. 
+\end{proof}
+\begin{claim}
+	For all $n>0$. \[
+		\sum_{k=0}^{n} 2^k\binom{n}{k} = 3^n
+	\]
+\end{claim}
+\begin{proof}
+\end{proof}
+\begin{claim}
+For all $n>0$  \[
+2\binom{2n-1}{n} = \binom{2n}{n}
+.\] 
+\end{claim}
+\begin{proof}
+\end{proof}
 \section{Catalan Numbers}
 \endinput

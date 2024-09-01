@@ -8,39 +8,38 @@ Combinatorics is the science of patterns and arrangements. More concretely, it d
 	In how many ways can you arrange the elements of the set $[n]:=\{1,2,3,\ldots,n\}$ such that the first entry in the arrangement is an even number?
 	\label{q:1.1}
 \end{question}
-
+\begin{solution}
 Notice how when $n$ is an even number we have $n/2$ choices of even numbers to make for the first entry in our arrangement. Once a choice for the said even number is made the remaining $n-1$ choices can be made in $\left( n-1 \right)!$ ways. Hence, in the case where $n$ is an even number we have $n/2 \cdot \left(n-1 \right)!$ possible arrangements. Can you see why we will have $\left( n-1 \right)/2 \cdot \left( n-1 \right)!$ arrangements for the case where $n$ is an odd number?
-
+\end{solution}
 \begin{question}
     In how many ways can you arrange elements from the set $[n]:=\{1,2,3,\ldots,n\}$ on a grid with $n$ columns and $n$ rows?
 \end{question}
-
+\begin{solution}
 Notice how for each one of the $n^2$ spaces we have $n$ choices to make. Hence, there are a total of $\underbrace{n \ \cdots \ n}_{n^2 \text{ times}} = n^{n^2}$ possible arrangements.
-
+\end{solution}
 \begin{question}
 In how many ways can you arrange elements from the set $[n]$ (as defined in the previous two examples) on a grid with $n$ columns and $n$ rows such that each element appears atleast(/exactly) once in each row?
 \end{question}
-
-    Since for each row in the grid we have $n!$ possible arrangements and the grid has $n$ rows there are a total of $n\cdot n!$ possible arrangements.
-
+\begin{solution}
+Since for each row in the grid we have $n!$ possible arrangements and the grid has $n$ rows there are a total of $n\cdot n!$ possible arrangements.
+\end{solution}
 \begin{question}
-    How many matrices of order $n\times n$ exist given that the entries must be from the set $\{0,1\}$? 
+How many matrices of order $n\times n$ exist given that the entries must be from the set $\{0,1\}$? 
 \end{question}
-	Since we have $2$ choices for each one of the $n^2$ entries there are a total of $2^{n^2}$ such matrices.
-
+\begin{solution}
+Since we have $2$ choices for each one of the $n^2$ entries there are a total of $2^{n^2}$ such matrices.
+\end{solution}
 	\begin{question}[Permutation Matrices]
 \label{q:1.5}
 	How many matrices of order $n \times n$ exist given that the entries must be from the set $\{0,1\}$ and each row and column must have exactly one $1$.
 \end{question}
-
+\begin{solution}
 Notice how in the first row of our matrix we have $n$ ways to fix the occurrence of $1$. This forces $n-1$ ways to fix the occurrence of $1$ in the second row and so on. Hence, in all there are a total of $n\cdot \left( n-1 \right) \cdots 1 = n!$ such matrices.
-
+\end{solution}
 \begin{remark}
 \cref{q:1.5} can also be re-stated as counting the number of order $n\times n$ matrices which have row-sum and column-sum equal to $1$.    
 \end{remark}
-
 With the following definition we shall now look at a generalization of sorts of the kind of matrices we were dealing with in \cref{q:1.5}.
-
 \begin{definition}[Alternating Sign Matrix (ASM)]
 	A matrix of order $n\times n$ is called an alternating sign matrix if the following conditions hold:
 	\begin{enumerate}
@@ -49,19 +48,17 @@ With the following definition we shall now look at a generalization of sorts of 
 		\item The non-zero entries (both row-wise and column-wise) alternate in sign.
 	\end{enumerate}
 \end{definition}
-
 A result first proved by Doron Zeilberger in the year 1992 states that there are precisely  \[
 \prod_{k=0}^{n-1} \frac{\left( 3k+1 \right)!}{\left( n+k \right)!}
 \] 
 number of ASMs of order $n\times n$. A proof of this result is beyond the scope of these lectures and is mentioned only for the sake of completeness. We shall, however, count ASMs of order $3$ now.
-
 \begin{question}
     How many ASMs of order $3$ exist?
     \label{q:1.6}
 \end{question}
+\begin{solution}
 Notice how the set of matrices we counted in \cref{q:1.5} are a subset of the set of ASMs of order $n$ (verify each one of the three defining properties of an ASM). Next, we notice a pattern; an ASM (of any order) can't have a $-1$ in the first row. Why? To the contrary, assume there is an ASM with a $-1$ in the first row. Since the immediate non-zero entry below it must be a $1$, the column sum cannot be $1$ without violating the alternativity condition. A similar argument shows that ASMs cannot have a 
 $-1$ in the last row, the first column, or the last column either. This pattern allows us to easily list all ASMs of order $3$.
-
 First we list all the ASMs counted in \cref{q:1.5}:
 \[
 \begin{pmatrix}
@@ -103,7 +100,7 @@ Now, the only ASM of order $3$ with a negative entry is
     0 & 1 & 0
 \end{pmatrix}.
 \]
-
+\end{solution}
 We shall now explore a combinatorial problem which involves counting the number of checkerboard tilings (also known as dimer models) which is of great interest to physicists. 
 
 \begin{question}
@@ -126,35 +123,31 @@ Once again, a proof of the result is beyond the scope of these lectures and is s
 Next, we state an equivalent formulation of \cref{q:1.7}.
 
 \begin{definition}[Graph]
-	A graph is a pair $G=\left( V,E \right)$ where $V$ is a set whose elements are called vertices and $E$ is a set of unordered pairs of vertices whose elements are called edges.
+A graph is a pair $G=\left( V,E \right)$ where $V$ is a set whose elements are called vertices and $E$ is a set of unordered pairs of vertices whose elements are called edges.
+\label{d:1.2}
 \end{definition}
 
 \begin{definition}[Perfect Matching]
 Let $G=\left( V,E \right)$ be a graph. An $M\subseteq E$ is called a perfect matching of $G$ if no two edeges in $M$ share a common vertex and every vertex of $G$ is incident to atleast one edge in $M$.
 \end{definition}
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.6]{Images/Figure2.jpg}
 	\caption{The only possible perfect matchings of the grid graph of order $2$}
 \end{figure}
 Now consider the following construction. To each square in a given a board of order $m\times n$, we assign a vertex. Additionally, there is an edge between the said vertices if and only if the corresponding squares are adjacent to one another. \cref{f:1.3} is an example of this construction. 
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.6]{Images/Figure3.jpg}
 	\caption{A board of order $4\times 4$ and it's corresponding graph}
 	\label{f:1.3}
 \end{figure}
-
 It is clear that our construction gives a one-to-one correspondence between the set of possible domino-tilings of a board and the set of perfect matchings of it's corresponding graph.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.6]{Images/Figure4.png}
 	\caption{A domino tiling of a board of order $4\times 4$ and the perfect matching that it admits}
 \end{figure}
-
 We shall revisit this formulation of the problem much later in the course. For now, restrict ourselves to a boards of order $2\times n$ and count the number of possible domino tilings, say $t_{n}$ as $n$ varies over the set of natural numbers. It is not too difficult to convince yourself of the fact that $t_{0}=1$, $t_{1}=1$, $t_{2}=2, t_{3}=3$, and $t_{4}=5$. Since the first five terms in the sequence $t_{n}$ are the same as the five terms of the Fibonacci sequence (say $F_{n}$), one might guess that $t_{n} = F_{n}$. This is indeed true, and we shall now give a proof of our claim using a counting argument.
 \begin{figure}[H]
 	\centering
@@ -240,23 +233,26 @@ Recall how $\binom{n}{k}$ counts the number of ways one can choose $k$ elements 
 	\label{f:1.8}
 \end{figure}
 \begin{question}
-	Given that the only moves allowed are North (N), corresponding to $\left( i,j \right) \to \left( i,j+1 \right)$, or East (E), corresponding to $\left( i,j \right)\to \left( i+1,j \right)$, count the number of paths from $\left( 0,0 \right)$ to $\left( m,n \right)$ on a grid of order $m\times n$ (refer to \cref{f:1.8} for examples of such paths).
+Given that the only moves allowed are North (N), corresponding to $\left( i,j \right) \to \left( i,j+1 \right)$, or East (E), corresponding to $\left( i,j \right)\to \left( i+1,j \right)$, count the number of paths from $\left( 0,0 \right)$ to $\left( m,n \right)$ on a grid of order $m\times n$ (refer to \cref{f:1.8} for examples of such paths).
 \end{question}
-Notice how we require exactly $m$ E-moves and $n$ N-moves to reach $\left( m,n \right)$ from $\left( 0,0 \right)$. However, every lattice path is determined completely by a choice of $m$ E-moves (or equivalently $n$ N-moves) which can be made in $\binom{m+n}{m}$ ways (or equivalently $\binom{m+n}{n}$ ways). As a consequence of this counting exercise we have not only given a re-interpretation of binomial coefficients, but have also proved that they are symmetric, i.e, $\binom{n}{k}=\binom{n}{n-k}$.
-
+\begin{solution}
+Notice how we require exactly $m$ E-moves and $n$ N-moves to reach $\left( m,n \right)$ from $\left( 0,0 \right)$. However, every lattice path is determined completely by a choice of $m$ E-moves (or equivalently $n$ N-moves) which can be made in $\binom{m+n}{m}$ ways (or equivalently $\binom{m+n}{n}$ ways).
+\end{solution}
+\begin{remark}
+As a consequence of this counting exercise we have not only given a re-interpretation of binomial coefficients, but have also proved that they are symmetric, i.e, $\binom{n}{k}=\binom{n}{n-k}$.
+\label{r:1.2}
+\end{remark}
 Per usual, we are now interested in giving a counting argument for a standard identity concerning binomial coefficients called Pascal's identity.
 \begin{claim}
-	\label{c:1.3}
-	$\binom{n}{k} + \binom{n}{k+1} = \binom{n+1}{k+1}$
+$\binom{n}{k} + \binom{n}{k+1} = \binom{n+1}{k+1}$
+\label{c:1.3}
 \end{claim}
 \begin{proof}
-	Notice how there are $\binom{n+1}{k+1}$ choices of a lattice paths from $\left( 0,0 \right)$ to $\left( n-k,k+1 \right)$. The last step in each one of these paths is either an N-move or an E-move. If it is an N-move then it suffices to choose one lattice path from $\left( 0,0 \right)$ to $\left( n-k-1,k+1 \right)$ out of the \[
-		\binom{\left( n-k-1 \right) + \left( k+1 \right)}{k+1} = \binom{n}{k+1}
-	\] choices. Alternatively, if it is an E-move then it suffices to choose one lattice path from $\left( 0,0 \right)$ to $\left( n-k,k \right)$ out of the \[
-	\binom{\left( n-k \right) + k}{k} = \binom{n}{k}
-	\] choices.
+Notice how there are $\binom{n+1}{k+1}$ choices of a lattice paths from $\left( 0,0 \right)$ to $\left( n-k,k+1 \right)$. The last step in each one of these paths is either an N-move or an E-move. If it is an N-move then it suffices to choose one lattice path from $\left( 0,0 \right)$ to $\left( n-k-1,k+1 \right)$ out of the \[
+\binom{\left( n-k-1 \right) + \left( k+1 \right)}{k+1} = \binom{n}{k+1}
+\] choices. Alternatively, if it is an E-move then it suffices to choose one lattice path from $\left( 0,0 \right)$ to $\left( n-k,k \right)$ out of the \[
+\binom{\left( n-k \right) + k}{k} = \binom{n}{k}\] choices.
 \end{proof}
-
 Let's remind ourselves that the central objective of this course is to count. From \cref{q:1.1} through \cref{q:1.6}, we encountered examples where we derived exact closed-form expressions for counting. During our discussion of the dimer model, we first stated a closed-form expression and then constructed a bijection between the tiling configuration and the perfect matchings configuration. By restricting ourselves to boards of size $2 \times n$, we demonstrated that finding a recurrence relation is also a valid counting technique. However, as we will see, the methods we have discussed so far are not always applicable. In such cases, we turn to the idea of generating functions, which we will introduce next.
 
 \begin{definition}[Generating Function]
@@ -268,6 +264,7 @@ Since our definition works with a \textit{formal} power series we need not worry
 \begin{question}
 	Find the generating function for the sequence of Fibonacci numbers 
 \end{question}
+\begin{solution}
 Let $\{f_{n}\}_{n \ge 0}$ denote the sequence of Fibonacci numbers and let $F\left( x \right)$ be the corresponding generating function. Notice how 
 \begin{align*}
 	F\left( x \right) &= \sum_{k=0}^{\infty} f_{k}x^k \\
@@ -281,27 +278,22 @@ Let $\{f_{n}\}_{n \ge 0}$ denote the sequence of Fibonacci numbers and let $F\le
 Solving which we obtain \[
 F\left( x \right) = \frac{1}{1-x-x^2}
 \].
-
+\end{solution}
 Throughout this course, we will explore how and why generating functions are extensively used in combinatorics. We introduce one such instance now, which will be discussed in greater depth later.
-
 \begin{definition}
 An integer partition of a natural number $n$ is a non-increasing sequence of natural numbers, $\{\lambda_i\}_{i \ge 1}$, whose sum is $n$.
+\label{d:1.5}
 \end{definition}
-
 \begin{question}
 In how many ways can a natural number $n$ be partitioned?
 \end{question}
-
 Let $p(n)$ denote the number of partitions of $n$. Interestingly, no "nice" closed-form expression for $p(n)$ has been found. However, we will derive the generating function \[
 	\prod_{n=1}^\infty\left( 1+x^n +x^{2n}+x^{3n}+\cdots\right) =  \sum_{n=0}^{\infty}p\left( n \right) x^n
 \] which was given by Euler, later in the course.
-
 \begin{remark}
-	In the year 1918, G.H Hardy and Srinivasa Ramanujan obtained an asymptotic expression (an expression which describes the limiting behaviour) for $p\left( n \right)$ which is given by \[
-	p\left( n \right) ~ \frac{1}{4n\sqrt{3}}\exp\left( \pi \sqrt{\frac{2n}{3}}  \right) 
-	.\] Oftentimes stating an asymptotic expression is also a valid counting technique.
+In the year 1918, G.H Hardy and Srinivasa Ramanujan obtained an asymptotic expression (an expression which describes the limiting behaviour) for $p\left( n \right)$ which is given by \[
+p\left( n \right) ~ \frac{1}{4n\sqrt{3}}\exp\left( \pi \sqrt{\frac{2n}{3}}  \right) .\] Oftentimes stating an asymptotic expression is also a valid counting technique.
 \end{remark}
-
 \section{Counting Principles}
 We state the fundamental counting principles now.
 \begin{enumerate}
@@ -311,15 +303,13 @@ We state the fundamental counting principles now.
 \item (Division Rule): For finite sets $A$ and $B$ if there exists a $d$-to-many function $f:A\to B$ then $\abs{B}=\abs{A}/d$.
 \end{enumerate}
 In some sense we've already been using these principles in disguise thus far. For instance;
-
 \begin{question}
-	How many $k$-digit positive numbers are there?
+How many $k$-digit positive numbers are there?
 \end{question}
+\begin{solution}
 Since we have $10$ choices for the first $\left(k-1\right)$ digits and $9$ choices for the last digit, by the product rule there are $9\cdot 10^{k-1}$ $k$ digit numbers.
-
-
+\end{solution}
 This is a good point to recall the binomial theorem and prove it using a counting argument instead of the standard induction argument.
-
 \begin{theorem}[Binomial Theorem]
 	\[
 		\left( x+y \right)^n = \sum_{k=0}^{n}\binom{n}{k}x^{n-k}y^k
@@ -332,46 +322,46 @@ This is a good point to recall the binomial theorem and prove it using a countin
 	\]
 	In this expansion, there are $\binom{n}{k}$ ways to choose $x$ from exactly $k$ of the $n$ factors (which forces the choice of $y$ from the remaining $(n-k)$ factors). Since $k$ can range from $0$ to $n$, applying the addition principle gives us the binomial theorem.
 \end{proof}
-Now we state a the multinomial theorem which generalizes the binomial theorem to expressions with more than two terms, allowing us to expand any power of a sum of multiple terms as a sum of products of those terms, each multiplied by a what is called a multinomial coefficient which is denoted and defined as
+Now we state the multinomial theorem which generalizes the binomial theorem to expressions with more than two terms, allowing us to expand any power of a sum of multiple terms as a sum of products of those terms, each multiplied by a what is called a multinomial coefficient which is denoted and defined as
 \[\binom{n}{k_1,\cdots,k_m} := \frac{n}{k_1!\cdots k_m!}.\]
-We would expect the multinomial coefficient to count something. That is indeed the case, it counts the number of ways to arrange $n$ distinct objects into $m$ distinct bins such that the $i$-th bin contains $k_i$ elements. With this interepretation of multinomial coefficients, mimicing the steps involved in the proof of the binomial theorem we get the multinomial theorem which is stated below. 
+Next, we state an identity concerning multinomial coefficients which would help us prove the multinomial theorem. 
+\begin{claim}
+\[
+\binom{n}{k_{1},\cdots,k_{r}} = \binom{n}{k_{1}}\binom{n-k_{1}}{k_{2}} \cdots \binom{n-k_{1}-\cdots-k_{r-1}}{k_{r}}
+\]
+\label{c:2.1rev}
+\end{claim}
+\begin{proof}
+The proof follows simply by expanding the R.H.S out.
+\begin{align*}
+\binom{n}{k_{1}}\cdots \binom{n-k_{1}-\cdots-k_{r-1}}{k_{r}} &= \dfrac{n!}{(n-k_1)!k_1!}\dfrac{(n-k_1)!}{(n-k_1-k_2)!k_2!} \cdots \dfrac{(n-k_1-\cdots-k_{r-1})!}{(n-k_1-\cdots-k_{r})!k_r!} \\
+&= \dfrac{n!}{k_1!\cdots k_r!}\dfrac{(n-k_1)!\cdots (n-k_1-\cdots-k_{r-1})!}{(n-k_1)!\cdots (n-k_1-\cdots-k_{r-1})!} \\
+&=\dfrac{n!}{k_1!\cdots k_r!} \\
+&=\binom{n}{k_1,\cdots,k_r}
+\end{align*}
+\end{proof}
+We would expect the multinomial coefficient to count something. That is indeed the case, it counts the number of ways to arrange $n$ distinct objects into $m$ distinct bins such that the $i$-th bin contains $k_i$ elements. With this interepretation of multinomial coefficients, and \cref{c:2.1rev}, mimicing the steps involved in the proof of the binomial theorem we get the multinomial theorem which is stated below. 
 \begin{theorem}[Multinomial Theorem]
 	\[
 	(x_{1}+\cdots+x_{r})^n = \sum_{k_{1}+\cdots+k_{r}=n}\binom{n}{k_{1},\cdots,k_{r}}x_{1}^{k_{1}}\cdots x_{r}^{k_{r}}
 	.\] 
 \end{theorem}
-It is natural to expect a Pascal-like identity for multinomial coefficients as well. In this spirit consider the following claim.
+It is natural to expect a Pascal-like identity for multinomial coefficients as well. In this spirit, we state the following claim.
 \begin{claim}
 	\[
 		\binom{n}{k_{1},\cdots,k_{r}} = \binom{n-1}{k_1-1,k_2,\cdots,k_r} + \cdots + \binom{n-1}{k_1,k_2,\cdots,k_r-1}
 	.\]
 \end{claim}
-\begin{proof}
-\end{proof}
-Notice how when $k_1=k$, $k_2=n-k$ and all the other $k_i$s are $0$, we retrieve the Pascal's identity (\cref{c:1.3})
-\begin{comment}
-	
-Generalization of the binomial theorem to the binomial theorem which is the multinomial theorem. Explain the multinomial coefficient here first.
-	Then show that 
-	\begin{claim}
-		\binom{n}{k_{1},\cdots,k_{r}} = \binom{n}{k_{1}}\binom{n-k_{1}}{k_{2}}\binom{n-k_{1}-k_{2}}{k_{3}} \cdots \binom{n-k_{1}-\cdots-k_{m-1}}{k_{r}}
-	\end{claim}
-	and finally give a proof of
-Proof is similar to the proof of the binomial theorem.
-
-Proof involves rewrriting $(x_{1}+\cdots+x_{r})^n$ as $(x_{1}+\cdots+x_{r})(x_{1}+\cdots+x_{r})^{n-1}$ and then swapping the two sums. Change of variables. And we're done.
-\end{comment}
-
-In addition to the fundamental counting principles, there are a few more principles/techiniques which we will use quite often in this course. One of them is the bijection principle. We state the principle formally and then given an example.
-
+\begin{remark}
+Notice how when $k_1=k$, $k_2=n-k$ and all the other $k_i$s are $0$, we retrieve the Pascal's identity (\cref{c:1.3})    
+\end{remark}
+In addition to the fundamental counting principles, there are a few more principles/techniques which we will use quite often in this course. One of them is the bijection principle. We state the principle formally and then given an example.
 \begin{theorem}[Bijection Principle]
 If $S$ and $T$ are finite sets then $|S|=|T|$ if and only if there exists a bijection $f:S\to T$.
 \end{theorem}
- 
 \begin{question}
-	Let $S$ be a finite set. A \textbf{permutation} of $S$ is a bijection from and to $S$. How many permutations of $[n]=\{1,2,3,\ldots,n\}$ exist?
+Let $S$ be a finite set. A \textbf{permutation} of $S$ is a bijection from and to $S$. How many permutations of $[n]=\{1,2,3,\ldots,n\}$ exist?
 \end{question}
-
 We introduce the cycle notation before outlining a solution. In the case where $n=1$, it is clear that there is only possible bijection, namely, $f_1:\{1\}\to\{1\}$ such that $f_1 \left(1 \right) =1$. We shall write $f_1$ as \[
 \begin{pmatrix}
 	1 \\ 1
@@ -448,30 +438,39 @@ We have all seen a proof by induction of the following identity. Now we give a p
 	\label{c:2.2}
 \end{claim}
 \begin{proof}
-	Consider the problem of counting the number of handshakes in a group of $n+1$ people, where each person shakes hands with every other person. The first person in the group shakes hands with everyone except themselves; this gives $n$ handshakes. The second person in the group shakes hands with everyone else; this gives $\left( n-1 \right)$ handshakes (not $n$ because we've already counted the handshake between the first and second person). The third person in the group shakes hands with everyone; this gives $\left( n-2 \right)$, and so on. In all we have $n+\left( n-1 \right)+\left( n-2 \right)+\cdots+1$ handshakes. Let's count again in a different way now. Notice how for each pair of people there is one handshake. Hence, there are $\binom{n+1}{2}$ handshakes in total. Putting the two observations together proves the claim.
+Consider the problem of counting the number of handshakes in a group of $n+1$ people, where each person shakes hands with every other person. The first person in the group shakes hands with everyone except themselves; this gives $n$ handshakes. The second person in the group shakes hands with everyone else; this gives $\left( n-1 \right)$ handshakes (not $n$ because we've already counted the handshake between the first and second person). The third person in the group shakes hands with everyone; this gives $\left( n-2 \right)$, and so on. In all we have $n+\left( n-1 \right)+\left( n-2 \right)+\cdots+1$ handshakes. Let's count again in a different way now. Notice how for each pair of people there is one handshake. Hence, there are $\binom{n+1}{2}$ handshakes in total. Putting the two observations together proves the claim.
 \end{proof}
-
-Next, we introduce the ``stars and bars'' method. We shall outline how this method works with the help of a few standard examples.
+Next, we introduce the ``Stars-and-Bars'' method. We shall outline how this method works with the help of a standard example.
 \begin{question}
-	For a given $n\in \mathbb{N}$ how many $x_{1},\cdots,x_{r}\geq 0$ exist which add upto $n$?
+For a given $n\in \mathbb{N}$ find the number of solutions to the equation  $x_{1}+\cdots+x_{k}=n$ where $n\in\mathbb{N}$ and  $x_{i}\in\mathbb{Z}$?
+\label{q:2.3}
 \end{question}
-
-\begin{comment}
-https://math.stackexchange.com/questions/2018957/number-of-solutions-to-x-1x-2-x-m-n
-||||+||+| and so on. So we're just making a choice of the number of +s
-
-\end{comment}
-
+\begin{solution}
+Recall how in the definition of partition (\cref{d:1.5}), the order of the parts did not matter, i.e, the partitions $2+1$ an $1+2$ of $3$ are the same to us. Partitions where the order does matter are called compositions. Compositions where $0$s are allowed to be a part are called weak compositions. With these two definitions at hand, notice how there are two cases to deal with in $\cref{q:2.3}$.
+\begin{enumerate}
+    \item All $x_{i}>0$; which is equivalent to counting the number of compositions of $n$ into $k$ parts.
+    \item All $x_{i}\geq 0$; which is equivalent to counting the number of weak compositions of $n$ into $k$ parts.
+\end{enumerate}
+Let $x_1+\cdots+x_k=n$ be a composition (may or may not be weak) of $n$ into $k$ parts. Now we replace each $x_i$ with $x_i$ consecutive stars, and each $+$ with a bar. For instance, the composition $5+3+1$ would be written as \[
+***** \ | \ *** \ | \ *
+\] and the (weak) composition $5+3+1+0$ would be written as 
+\[
+***** \ | \ *** \ | \ * \ | \ |.
+\]
+Since every composition (may or may not be weak) of $n$ into $k$ parts is completely determined by an arrangement of $n$ stars and $k-1$ bars, it is clear that we have $\binom{n+k-1}{k-1}$ weak compositions and $\binom{n-1}{k-1}$ compositions.
+\end{solution}
+\begin{remark}
+Notice how every weak composition $n=d_1+\cdots+d_k$ of $n$ into $k$ parts naturally corresponds to the monomial degree $n$ in $k$ variables given by $x_1^{d_1}\cdots x_k^{d_k}$.
+\end{remark}
 We conclude this section by stating an informal technique called proof by pictures (or proof without words). This technique involves the use of visual representations to demonstrate the validity of a mathematical statement. Although in the strictest sense of things a proof by pictures is not a counting principle, it often helps develop intution. For instance, we state such a proof for \cref{c:2.2}. 
 \begin{proof} 
-	\begin{figure}[H]
-		\includegraphics[scale=0.65]{Images/Figure9.png}
+	\begin{figure}[H]	\includegraphics[scale=0.65]{Images/Figure9.png}
 		\caption{}
 		\label{f:1.9}
 	\end{figure}
 In \cref{f:1.9} notice how there are $1+2+3+\cdots+n$ dots colored in red, $1+2+3+\cdots+n$ dots colored in blue, and hence $2\left( 1+2+3+\cdots+n \right)$ total. It is also true that in our arrangement there are $n\left( n+1 \right)$ dots in total. Now the identity follows.
 \end{proof}
-Yet another fundamental counting principle is the pigeonhole principle. Given its importance, we will dedicate the upcoming section to explore it in detail.
+Yet another fundamental counting principle is the pigeon-hole principle. Given its importance, we will dedicate the upcoming section to explore it in detail.
 \begin{remark}
 We have seen how the principles we’ve discussed so far can be useful in proving combinatorial identities. Determining how to derive these identities is not always straightforward. However, a common technique involves running computer simulations to generate a sequence of values corresponding to the first few natural numbers. Tools like OEIS, RATE (in Mathematica), and Guess (in SageMath and Maple) can then be used to conjecture a closed form for the sequence.
 \end{remark}
@@ -484,27 +483,11 @@ $t_{n} = \binom{n}{0}+\binom{n-1}{1}+\binom{n-2}{2} + \cdots$
 $\binom{2n}{n} = \sum_{k=0}^{n}\binom{n}{k}^2$
 
 Consdier a $4 x 4$ chessboard. We want to place as many queens as possible such that they don't attack each other. What are the possible number of such configurations. What are the maximum number of queens you can place? Show that it has to be less than $5$. Give two examples of configurations with $4$ queens. This works only for chessboard greater than $4$ (i.e order n and n queens).
-
-We want to find the number of solutions to the equation $x_{1}+\cdots+x_{k}=n$ where $n\in\mathbb{N}$ and  $x_{i}\in\mathbb{Z}$. We have the following cases:
-	\begin{enumerate}
-		\item All $x_{i}>0$: How many compositions of $n$ into $k$ parts
-		\item All $x_{i}\geq 0$ : What are the monomials of degree $n$ in  $k$ variables
-	\end{enumerate}
-
-	Compositions are partitions where the order matters.
-	Weak compositions are compositions in which $0$ is allowed.
-
-	We are given  $n$ balls which we want to arrange into  $k$ compartments. In the first case we are not allowed to have empty compartmenets, in the other case it's allowed. 
-	We just want to choose $k-1$ boundaries out of the  $n+k=1$ objects which is just  $\binom{n+k-1}{k-1}$ (CASE B)
-
-	$\binom{n-1}{k-1}$ (CASE A)
-
-	There is also a proof using generating functions which we shall discuss in the upcoming sections
 \end{comment}
 
 \section{The Pigeon-hole Principle}
 We state what is known as the pigeon-hole principle.
-\begin{theorem}
+\begin{theorem}[Pigeon-hole Principle]
 Let $A_{1},\cdots,A_{k}$ be pair-wise disjoint finite sets. If \[|A_{1}\cup A_{2}\cup \cdots \cup A_{k}|>kr\] then there exists an $1\leq i\leq k$ such that $|A_{i}|>r$.
 \end{theorem}
 Even though the statement sounds trivial, it has immense applications. We state a few examples now. 
@@ -515,38 +498,53 @@ Given $b\in \mathbb{Z}$, the decimal expansion of $1/b$ is either finite or even
 Each step in the long division of $1$ by $b$ involves subtracting multiples of $b$ from powers of $10$ until the remainder is $0$ or repeats itself. Since each one of these remainders must be strictly less than $b$, we have $b$ possible remainders, namely, $0, 1, 2, \cdots, b-1$. If the remainder becomes $0$ at some step, the division terminates, in which case the decimal expansion is finite. Next, consider the case where the division does not terminate. By the pigeon-hole principle, since there are only $b$ possible remainders and more than $b$ steps, at least one of the remainders must repeat. This proves our claim because when a remainder repeats, the sequence of digits that follow in the decimal expansion must repeat as well.
 \end{proof}
 \begin{claim}
-Let $S=\{1,2,\cdots,2n\}$. Any $n+1$ element subset $K$ of $S$ has two numbers $a$ and $b$ such that
-\begin{enumerate}
-	\item $\gcd(a,b) = 1$
-	\item $a=nb$ for some $n\in\mathbb{N}$
-\end{enumerate}
+Let $S=\{1,2,\cdots,2n\}$. Any $n+1$ element subset $K$ of $S$ has two co-prime numbers, and two numbers such that one is an integer multiple of the other. 
 \end{claim}
 \begin{proof}
-\begin{enumerate}
-\item Consider the $n$-element subset \[\{\left( 1,2 \right), \left( 3,4 \right), \cdots \left( 2n-1,2 \right)\}\] of $S\times S$ and notice how if we choose $n+1$ numbers from $\{0,\cdots,2n\}$ then by the pigeonhole principle we are guaranteed to pick two numbers from the same pair in $S\times S$. Since each element in the said subset is a pair of consecutive numbers, their $\gcd$ is necessarily $1$.
-\item Notice how every element in the set $\{1,2,\cdots,2n\}$ can be written in the form $2^ab$ where $b$ is odd by factoring out as many $2$s as possible. Since there are only $n$ odd numbers in these set $\{1,2,\cdots,2n\}$, we are left with $n$ choices of $b$. Next, we construct $b$ subsets of $S$, say $S_k\subseteq S$ such that $i\in S_k$ if and only if $i=2^kb$. Finally, by the pigeonhole principle, if one were to pick $n+1$ elements from $S$ atleast $2$ of them would be in the same $S_k$, i.e, there always exists a pair of numbers such that one divides the other.
-\end{enumerate}
+Consider the $n$-element subset $\{\left( 1,2 \right), \left( 3,4 \right), \cdots \left( 2n-1,2 \right)\}$ of $S\times S$ and notice how if we choose $n+1$ numbers from $\{0,\cdots,2n\}$ then by the pigeon-hole principle we are guaranteed to pick two numbers from the same pair in $S\times S$. Since each element in the said subset is a pair of consecutive numbers, their $\gcd$ is necessarily $1$. Next, notice how every element in the set $\{1,2,\cdots,2n\}$ can be written in the form $2^ab$ where $b$ is odd by factoring out as many $2$s as possible. Since there are only $n$ odd numbers in these set $\{1,2,\cdots,2n\}$, we are left with $n$ choices of $b$. Next, we construct $b$ subsets of $S$, say $S_k\subseteq S$ such that $i\in S_k$ if and only if $i=2^kb$. Finally, by the pigeon-hole principle, if one were to pick $n+1$ elements from $S$ atleast $2$ of them would be in the same $S_k$, i.e, there always exists a pair of numbers such that one divides the other.
 \end{proof}
 \begin{claim}
 If $S$ be an $n+1$-element set of natural numbers, then there exists a pair of numbers in $S$ whose difference is divisible by $n$.
 \end{claim}
+\begin{proof}
+Notice how the remainder obtained upon dividing any element $a_i\in S=\{a_1,\cdots,a_{n+1}\}$ by $n$ must be one of $0,1,\cdots,n-1$. Since there are $n+1$ $a_i$s but only $n$ possible remainders, by the pigeon-hole principle, atleast two members (say $a_i$ and $a_j$)in $S$ must have the same remainder, i.e, $a_i = nq_1 + r$ and $a_j = nq_2 + r$ for some natural numbers $q_1$ and $q_2$ and $0\leq r\leq n-1$. Clearly, $a_i-a_j = n(q_1-q_2)$ is divisible by $n$.
+\end{proof}
 \begin{claim}
-Given $m$ integers say  $a_{1},\cdots,a_{m}$ prove that there exists $k$ and $l$ with  $0\leq k\leq l\leq m$ such that $m$ divides  $a_{k+1}+a_{k+2}+\cdots+a_{l}$
+Given $m$ integers say $a_{1},\cdots,a_{m}$ there exists $k$ and $l$ with  $0\leq k\leq l\leq m$ such that $m$ divides $a_{k+1}+a_{k+2}+\cdots+a_{l}$
 \end{claim}
-\begin{claim}
+\begin{proof}
+Consider sums of the form $\sum_{i=1}^{k}a_i$ for $1\leq k\leq m$. If one of these sums is divisible by $m$, i.e, their remainder upon division by $m$ is $0$ then we are done. If not, we have $m-1$ possible remainders for the said sums, namely, $1,2,\cdots m-1$. Since there are $m$ possible sums and only $m-1$ possible remainders atleast two of these sums share the same remainder. More specifically, for some $1\leq r<s\leq m$ and integers $q_1,q_2$ we have $\sum_{i=1}^{r}a_i = nq_1 + r$ and $\sum_{i=1}^{s}a_i = nq_2 + r$. But then clearly, $\sum_{i=r+1}^{s}a_j = n(q_1-q_2)$ is divisible by $n$ and we are done.
+\end{proof}
+\begin{question}
 In a party of $n$ people, where some (maybe all, maybe none) shake hands with one another, show that there are atleast two people who shake the same number of hands.
-\end{claim}
-\begin{claim}
-In a group of $6$ people where each pair of people are either friends or enemies, show that there are  $3$ people who are either all friends or all enemies. 
-\end{claim}
+\end{question}
+\begin{solution}
+Consider the case where each one of the $n$ people shake hands at least once. The number of handshakes possible for everybody then is $n-1$. Since there are $n$ people in the party, by the pigeon-hole principle our claim holds true. If we don't assume that everyone shakes at least one hand then we can separate the $n$ people between $k$ people who don't shake any hands and $m$ people who do, and the problem is reduced to the last case with $n=m$.
+\end{solution}
+\begin{question}
+In a group of $6$ people where each pair of people are either friends or enemies, show that there are $3$ people who are either all friends or all enemies. 
+\label{q:3.2}
+\end{question}
+\begin{solution}
+Let $A,B,C,D,E$ and $F$ be a group of $6$ friends. Pick $A$, and notice how each one of the remaining $5$ people is either a friend of $A$ or an enemy of $A$. Now, by the pigeon-hole at least three of them (say $B,C$ and $D$) are either friends of $A$, or enemies of $A$. We consider the case where they are friends of $A$ and the other case will follow similarly. If any one of the pairs $B$-and-$C$, $C$-and-$D$, or, $B$-and-$D$ are friends, then we have found a group of $3$ people who are all friends. If neither one of the pairs $B$-and-$C$, $C$-and-$D$, or, $B$-and-$D$ are friends, then we have found a group of $3$ people who are all enemies.
+\end{solution}
+We state an interesting graph-theoretic (recall \cref{d:1.2}) restatement of \cref{q:3.2} now. Let the group of $6$ be represented as vertices in a graph. For each pair of these vertices, let there be an edge connecting them, which is colored red if the two represented people are enemies and blue if they are friends. Now \cref{q:3.2} asserts that now matter how you color the (edges of the) graph, there is always a ``triangle'' of the same color in the graph. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\linewidth]{Images/Figure10.png}
+    \caption{3 randomly colored examples, each of which has either a red triangle or a blue triangle.}
+    \label{f:10}
+\end{figure}
+\begin{remark}
+\cref{f:10} makes it clear that in some sense we are looking for appearance of a uniformly colored triangle sitting inside the (bigger) graph. Ramsey theory, a branch in the field of combinatorics, focuses precisely on questions of these kind.
+\end{remark}
 \begin{comment}
-Give a normal explanation. and the graph theoritic approach. 
 \[
 	\sum_{v\in V}degree(v) = 2|E|
 .\] 
 Introduce Ramsey's theorem
 \end{comment}
-We conclude this section by stating a few definition which will turn out to be useful in the upcoming sections.
+We conclude this section by stating two definitions which will turn out to be useful in the upcoming sections.
 \begin{definition}[$k$-Permutation]
 A $k$-permutation on $[n]=\{1,2,\cdots,n\}$ is a bijection between two $k$-element subsets of $[n]$. 
 \end{definition}
@@ -556,10 +554,79 @@ A $k$-permutation on $[n]=\{1,2,\cdots,n\}$ is a bijection between two $k$-eleme
 \section{The Principle of Inclusion-Exclusion}
 Recall that for finite sets $A$ and $B$, the cardinality of their union is given by $|A \cup B| = |A| + |B| - |A \cap B|
 $. This formula, which adds (includes) the sizes of $A$ and $B$ while subtracting (excluding) the overcount in $|A \cap B|$ encapsulates the essence of the inclusion-exclusion principle. We start with a useful generalization of the motivating formula we just discussed.
-\begin{theorem}
+\begin{theorem}[Inclusion-Exclusion Principle]
 	Given finite sets $A_{1},\cdots,A_{k}$, 
 	\[
 		|\bigcup_{i=1}^k A_i| = \sum_{n=1}^{k}\left(-1  \right)^{n+1}\left( \sum_{1\leq i_{1}<\ldots<i_{n}\leq k+1}|A_{i_{1}}\cap \cdots A_{i_{n}}| \right) 
 	.\] 
+ \label{t:4.1}
 \end{theorem}
+To see how useful this result is, we state two examples.
+\begin{question}
+How many of the first $1000$ natural numbers are not divisible by $2,3$ or $6$? \label{q:4.1}
+\end{question}
+\begin{solution}
+Out of the first $1000$ natural numbers, notice how, there are $\left \lfloor{1000/n}\right \rfloor$ numbers which are divisible by $n$. Now, by the inclusion exclusion principle we have 
+\[
+1000-500-333-200+\left \lfloor{1000/6}\right \rfloor+\left \lfloor{1000/15}\right \rfloor+\left \lfloor{1000/10}\right \rfloor-\left \lfloor{1000/30}\right \rfloor=266
+\]
+natural numbers which are not divisible by $2,3$ or $6$. 
+\end{solution}
+\cref{q:4.1} motivates an equivalent version of \cref{t:4.1} which we shall now state and prove.
+\begin{theorem}[Inclusion-Exclusion Principle]
+For $1\leq i\leq$, let $A_i$ be subsets of a set $X$. Then the number of elements of $X$ which do not lie in any of the $A_i$s is given by
+\[
+\sum_{I\subseteq \{1,\cdots,n\}}(-1)^{|I|}|A_I|
+\] where $A_I = A_{i_1}\cap A_{i_2}\cap \cdots \cap A_{i_k}$ for $I=\{i_1,\cdots,i_k\}$. 
+\label{t:4.2}
+\end{theorem}
+\begin{proof}
+\end{proof}
+\begin{comment}
+\begin{proof}
+Notice how for every $x\in X$ one of the following is true.
+\begin{enumerate}
+    \item $x\not\in A_i$ for all $i$
+    \item $x\in A_i$ for some $i$, i.e, for some $I$ we have $x\in A_I = A_{i_1}\cap A_{i_2}\cap \cdots \cap A_{i_k}$. Since the said $I$ can be chosen in $\binom{n}{k}$ ways. 
+\end{enumerate}
+\end{proof}    
+\end{comment}
+Now we state a corollary of \cref{t:4.2}.
+\begin{claim}
+The number of surjective mappings from $[n]=\{1,2,3,\cdots,n\}$ to $[k]=\{1,2,3,\cdots,k\}$ is given by \[
+    \sum_{i=0}^{k}(-1)^i\binom{k}{i}(k-i)^n
+    \]
+\end{claim}
+\begin{proof}
+We mimic the setting of \cref{t:4.2}. Choose $X$ to be the set of all mappings from $[n]$ to $[k]$, and $A_i$ to be the set of all maps from $[n]$ to $[k]$ such that $i$ is not in the range. Notice how $|X|=k^n$, $|A_i|=(k-1)^n$, and $|A_I| = |A_{i_1}\cap A_{i_2}\cap \cdots \cap A_{i_j}|=(k-j)^n$. Now the claim follows. 
+\end{proof}
+\begin{comment}
+    Explain the cardinalities of $A_i$ and $X$ better.
+\end{comment}
+\begin{remark}
+Since every surjection from $[n]$ to $[n]$ is necessarily a bijection, and by \cref{q:1.5} we know that there are $n!$ bijections from $[n]$ to $[n]$, we've proved a combinatorial identity, namely that
+\[
+\sum_{i=0}^{n}\binom{n}{i}(n-i)^n=n!.
+\]
+\end{remark}
+We now give an application of the inclusion-exclusion principle in number theory. More specifically, consider the Euler's $\varphi$ function which is defined as
+\begin{align*}
+    \varphi: &\mathbb{N}\to \mathbb{N} \\
+    &n\rightsquigarrow |\{x\in\mathbb{N}: x< n, \text{gcd}(x,n)=1\}|.
+\end{align*}
+For instance, $\varphi(1)=|\{1\}|=1$, $\varphi(2)=|\{1\}|=1$, $\varphi(3)=|\{1,2\}|=3$, and so on. In essence, $\varphi(n)$ counts the positive integers which are less $n$ and are co-prime to $n$. It is clear that for a prime $p$, $\varphi(p) = p-1$. More generally for a natural number $r>0$ we also have
+\[
+\varphi(p^r) = p^r-\left\lfloor \dfrac{p^r}{p}\right\rfloor = p^r-p^{r-1}.
+\]
+\begin{comment}
+State the fundamental theorem of arithmetic. 
+\end{comment}
 
+\begin{theorem}
+For $n=p_1^{a_1}\cdots p_k^{a_k}$ we have 
+\begin{align*}
+\varphi(n) &= n\left(1-\dfrac{1}{p_1}\right)\cdots\left(1-\dfrac{1}{p_k}\right) \\
+\end{align*}
+\end{theorem}
+\begin{proof}
+\end{proof}

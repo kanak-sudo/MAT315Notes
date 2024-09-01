@@ -28,8 +28,10 @@
 \newtheorem{definition}{Definition}[section]
 \newtheorem{remark}{Remark}[section]
 \newtheorem{question}{Question}[section]
-\newtheorem{solution}{Solution}[section]
 \newtheorem{claim}{Claim}[section]
+\theoremstyle{definition} % This changes the style to normal text
+\newtheorem*{solution}{Solution}%[section]
+
 
 % Proof environment is already defined by amsthm
 % Define a common label format
@@ -78,5 +80,5 @@
 \include{chap6}
 
 \backmatter
-\include{biblio}
+%\include{biblio}
 \end{document}
