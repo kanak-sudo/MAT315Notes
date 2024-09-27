@@ -1,14 +1,49 @@
-
 \chapter{Generating Functions}
-
-
-
-
+This chapter builds on our earlier discussion of generating functions from Chapter 1 (see \cref{d:1.4}). Among the various types used in combinatorics and other fields like number theory, we will focus on two: ordinary generating functions and exponential generating functions
 \section{Ordinary Generating Functions}
-
-
+We start with a few examples.
+\begin{example}
+Corresponding to the constant sequence of $1$s, the generating function is $1+x+x^2+x^3+\cdots = \dfrac{1}{1-x}$
+\end{example}
+\begin{example}
+Corresponding to the sequence $1,2,3,\cdots$, the generating function is $1+2x+3x^2+4x^3+\cdots = 1/(1-x)^2$. Notice how equality follows from the fact that $1+2x+3x^2+4x^3+\cdots$ is the formal derivative of the generating function we obtained in the previous example.
+\end{example}
+More often than not generating functions are used to solve recurrences. For instance consider the following question.
+\begin{question}
+Find a closed form expression for the recurrence given by $a_{n+1}=2a_n+1$ where $a_0=0$. 
+\end{question}
+\begin{solution}
+Let $A(x)=a_0+a_1x+a_2x^2+\cdots$ be the generating function corresponding to the sequence. Notice how 
+\begin{align*}
+    &\sum_{n\geq 0}a_{n+1}x^n = 2\sum_{n\geq 0}a_nx^n+ \sum_{n\geq 0}x^n \\
+    &\implies \dfrac{A(x)}{x} = 2A(x) + \dfrac{1}{1-x} \\
+    &\implies A(x) = \dfrac{x}{(1-x)(1-2x)} \\
+    &\implies A(x) = \dfrac{1}{1-2x}-\dfrac{1}{1-x} \\
+    &\implies A(x) = (1+2x+4x^2+8x^3+\cdots)-(1+x+x^2+x^3+\cdots) \\
+    &\implies A(x) = x+3x^2+7x^3+\cdots
+\end{align*}
+Now $a_n$ is just the coefficient of $x^n$ in $A(x)$. 
+\end{solution}
+We state one more example. Recall how with \cref{q:1.9}, we found the generating function for the sequence of Fibonacci numbers. We are now interested in finding a closed form of numbers in this sequence. 
+\begin{solution}
+Let $r_1,r_2 = (-1\pm\sqrt{5})/2$ be the roots of the polynomial $1-x-x^2$ and notice how
+\begin{align*}
+    F(x) &= \dfrac{1}{1-x-x^2} \\
+    &= \dfrac{1}{(r_1-x)(r_2-x)} \\
+    &= \dfrac{1}{(r_1-x)(r_2-r_1)}+\dfrac{1}{(r_2-x)(r_1-r_2)} \\
+    &= \dfrac{1}{\sqrt{5}}\left(\dfrac{1}{r_2-x}-\dfrac{1}{r_1-x}\right) \\
+    &= \dfrac{1}{\sqrt{5}} \left(\dfrac{1/r_2}{1-(x/r_2)}-\dfrac{1/r_1}{1-(x/r_1)}\right) \\
+    &= \dfrac{1}{\sqrt{5}} \left(\dfrac{1}{r_2}\left(1+\dfrac{x}{r_2}+\dfrac{x^2}{r_2^2}+\cdots\right)-\dfrac{1}{r_1}\left(1+\dfrac{x}{r_1}+\dfrac{x^2}{r_1^2}+\cdots\right)\right) \\
+    &= \dfrac{1}{\sqrt{5}}\left(\dfrac{1}{r_2}+\dfrac{x}{r_2^2}+\dfrac{x^2}{r_2^3}+\cdots - \dfrac{1}{r_1}-\dfrac{x}{r_1^2}-\dfrac{x^2}{r_1^3}-\cdots\right) \\
+    &= \dfrac{1}{\sqrt{5}}\left(\left(\dfrac{1}{r_2}-\dfrac{1}{r_1}\right)+\left(\dfrac{1}{r_2^2}-\dfrac{1}{r_1^2}\right)x+\left(\dfrac{1}{r_2^3}-\dfrac{1}{r_1^3}\right)x^2+\cdots\right)
+\end{align*}
+Now, the $n$-th Fibbonaci number is just the coefficient of $x^n$ in $F(x)$. 
+\end{solution}
+Often-times we are interested in computing the product of two generating functions. To this end,consider the following result due to Cauchy. 
+\begin{claim}[Cauchy Product]
+Let $A(x) = \sum_{n\geq 0}a_nx^n$ and $B(x)=\sum_{n\geq 0}b_nx^n$ be two ordinary generating functions. Their product $C(x)$, is then given by $A(x)B(x)=\sum_{n\geq 0}c_nx^n$ where \[
+c_n = \sum_{k=0}^{n}a_kb_{n-k}
+\]
+\end{claim}
 \section{Exponential Generating Functions}
-
-
-
 \endinput

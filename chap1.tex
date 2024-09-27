@@ -234,6 +234,7 @@ Recall how $\binom{n}{k}$ counts the number of ways one can choose $k$ elements 
 \end{figure}
 \begin{question}
 Given that the only moves allowed are North (N), corresponding to $\left( i,j \right) \to \left( i,j+1 \right)$, or East (E), corresponding to $\left( i,j \right)\to \left( i+1,j \right)$, count the number of paths from $\left( 0,0 \right)$ to $\left( m,n \right)$ on a grid of order $m\times n$ (refer to \cref{f:1.8} for examples of such paths).
+\label{q:1.8}
 \end{question}
 \begin{solution}
 Notice how we require exactly $m$ E-moves and $n$ N-moves to reach $\left( m,n \right)$ from $\left( 0,0 \right)$. However, every lattice path is determined completely by a choice of $m$ E-moves (or equivalently $n$ N-moves) which can be made in $\binom{m+n}{m}$ ways (or equivalently $\binom{m+n}{n}$ ways).
@@ -255,14 +256,16 @@ Notice how there are $\binom{n+1}{k+1}$ choices of a lattice paths from $\left( 
 \end{proof}
 Let's remind ourselves that the central objective of this course is to count. From \cref{q:1.1} through \cref{q:1.6}, we encountered examples where we derived exact closed-form expressions for counting. During our discussion of the dimer model, we first stated a closed-form expression and then constructed a bijection between the tiling configuration and the perfect matchings configuration. By restricting ourselves to boards of size $2 \times n$, we demonstrated that finding a recurrence relation is also a valid counting technique. However, as we will see, the methods we have discussed so far are not always applicable. In such cases, we turn to the idea of generating functions, which we will introduce next.
 
-\begin{definition}[Generating Function]
+\begin{definition}[Ordinary Generating Function]
 	Given a sequence $\{a_{n}\}_{n \ge 0}$ the formal power series, $\sum_{k=0}^{\infty}a_{k}x^k$, in an indeterminate $x$ is called the generating function of $\{a_{n}\}_{n \ge 0}$.
+ \label{d:1.4}
 \end{definition}
 
 Since our definition works with a \textit{formal} power series we need not worry about the divergence of the involved infinite sum. That being said, we can always be cautious and assume $|x|<1$ to guarantee convergence. 
 
 \begin{question}
-	Find the generating function for the sequence of Fibonacci numbers 
+	Find the generating function for the sequence of Fibonacci numbers. 
+ \label{q:1.9}
 \end{question}
 \begin{solution}
 Let $\{f_{n}\}_{n \ge 0}$ denote the sequence of Fibonacci numbers and let $F\left( x \right)$ be the corresponding generating function. Notice how 
@@ -293,6 +296,7 @@ Let $p(n)$ denote the number of partitions of $n$. Interestingly, no "nice" clos
 \begin{remark}
 In the year 1918, G.H Hardy and Srinivasa Ramanujan obtained an asymptotic expression (an expression which describes the limiting behaviour) for $p\left( n \right)$ which is given by \[
 p\left( n \right) ~ \frac{1}{4n\sqrt{3}}\exp\left( \pi \sqrt{\frac{2n}{3}}  \right) .\] Oftentimes stating an asymptotic expression is also a valid counting technique.
+\label{r:1.3}
 \end{remark}
 \section{Counting Principles}
 We state the fundamental counting principles now.
@@ -354,6 +358,17 @@ It is natural to expect a Pascal-like identity for multinomial coefficients as w
 \end{claim}
 \begin{remark}
 Notice how when $k_1=k$, $k_2=n-k$ and all the other $k_i$s are $0$, we retrieve the Pascal's identity (\cref{c:1.3})    
+\end{remark}
+This is a good point to introduce ourselves to yet another generalization of the binomial theorem which deals with the expansion of $(x+y)^n$ where $n$ is allowed to take complex values. 
+\begin{theorem}[Generalized Binomial Theorem]
+For all $n\in\mathbb{C}$ we have
+\[
+(1+x)^n = \sum_{k\geq 0}\binom{n}{k}x^k
+\]
+\label{t:2.3rev}
+\end{theorem}
+\begin{remark}
+There are two well-known proofs of \cref{t:2.3rev}. One uses the idea of Taylor's series expansion, and the other uses the solution to a differential equation called the Legendre's equation. We state neither one of them here.  
 \end{remark}
 In addition to the fundamental counting principles, there are a few more principles/techniques which we will use quite often in this course. One of them is the bijection principle. We state the principle formally and then given an example.
 \begin{theorem}[Bijection Principle]
@@ -431,7 +446,6 @@ Another counting technique which we've seen before in the proof of Pascal's iden
 \begin{proof}
 It is clear that $2^n$ counts the number of $n$-bit binary strings. To prove the claimed identity, we count the number of $n$-bit binary strings once again in a different way. Notice how an arbitrary$n$-bit binary string has $0\leq i\leq n$ number of $0$s. Since there are $\binom{n}{0}$ choices when $i=0$, $\binom{n}{1}$ choices when $i=1$, and so on, by the addition principle we have proved the required identity.
 \end{proof}
-
 We have all seen a proof by induction of the following identity. Now we give a proof using a double counting argument.
 \begin{claim}
 	$1+2+3+\cdots+n=\dfrac{n\left( n+1 \right)}{2}=\binom{n+1}{2}$
@@ -552,6 +566,14 @@ A $k$-permutation on $[n]=\{1,2,\cdots,n\}$ is a bijection between two $k$-eleme
 	$k$-permutations  $\pi$ and $\sigma$ are called circular equivalents if there exists a shift  $s\in [k]$ such that  $i+s\equiv j(\text{mod} \ k)$.
 \end{definition}
 \section{The Principle of Inclusion-Exclusion}
+\textcolor{red}{
+[This section is a work in progress!!!] Note to scribe:
+\begin{enumerate}
+    \item Finish the proof of Theorem 4.2
+    \item Rewrite the proof of Claim 4.1
+    \item Write and prove Claim 4.2
+\end{enumerate}
+}
 Recall that for finite sets $A$ and $B$, the cardinality of their union is given by $|A \cup B| = |A| + |B| - |A \cap B|
 $. This formula, which adds (includes) the sizes of $A$ and $B$ while subtracting (excluding) the overcount in $|A \cap B|$ encapsulates the essence of the inclusion-exclusion principle. We start with a useful generalization of the motivating formula we just discussed.
 \begin{theorem}[Inclusion-Exclusion Principle]
@@ -629,4 +651,44 @@ For $n=p_1^{a_1}\cdots p_k^{a_k}$ we have
 \end{align*}
 \end{theorem}
 \begin{proof}
+We are interested in counting all the numbers $a$ in the set $[n]=\{1,2,3,\cdots,n\}$ is relatively prime to $n$. This happens if and only if $a$ is not divisible by any of the primes $p_1,\cdots,p_k$. Now, let $A_i$ be the subset of $[n]$ that contains all numbers which are divisible $p_i$. By our setup it is clear that 
+\begin{align*}
+\varphi(n) &= |[n]\backslash \bigcup_{i=1}^{n}A_i| \\
+&= n - |\bigcup_{i=1}^{n}A_i| \\
+&= n - \sum_{I_{\neq \emptyset}\subseteq [m]}(-1)^{|I|+1}|\bigcap_{i\in I}A_i| \quad \text{(By \cref{t:4.2})}
+\end{align*}
+Notice how $\cap_{i\in I}A_i$ contains elements of $[n]$ which are not divisible by any $p_i$ where $i\in I$, and hence also not divisible by $\prod_{i\in I}p_i$. It follows that
+\begin{align*}
+&|\cap_{i\in I}A_i| = \dfrac{n}{\prod_{i\in I}p_i} \\
+&\implies \varphi(n) = n - \sum_{I_{\neq \emptyset}\subseteq [m]}(-1)^{|I|+1}\dfrac{n}{\prod_{i\in I}p_i} \\
+&\implies \varphi(n) = n\left(1+\sum_{I_{\neq\emptyset}\subseteq [m]}(-1)^{|I|}\dfrac{1}{\prod_{i\in I}p_i}\right) \\
+&\implies \varphi(n) = n\left(1+\sum_{I_{\neq\emptyset}\subseteq [m]}\prod_{i\in I}\dfrac{-1}{p_i}\right) \\
+&\implies \varphi(n) = n\prod_{i=1}^{m}\left(1-\dfrac{1}{p_i}\right)
+\end{align*}
+\begin{comment}
+Fill the details in the proof out.
+\end{comment}
 \end{proof}
+Now that we have counted the number of elements which are co-prime to $n$, we are interested in finding their sum. In this spirit consider the following claim.
+\begin{claim}
+\end{claim}
+We conclude this section by introducing derangements. 
+\begin{question}
+Suppose $n$ people go a party and each person is wearing a different hat. In how many ways can the $n$ people return from the party such that nobody is wearing their original hat?    
+\end{question}
+\begin{solution}
+It is clear that we are counting the number of permutations on $[n]$ with no fixed points. Let $A_j$ be the set of permutations which consist of all permutations such that $j$ is fixed point. Now the inclusion-exclusion principle the number of permutations with no fixed points are
+\begin{align*}
+D_n:=|\underbrace{A_1^c}_{1 \text{ is not fixed}} \cup \underbrace{A_2^c}_{2 \text{ is not fixed}} \cup \underbrace{A_3^c}_{3 \text{ is not fixed}} \cup \quad \cdots \quad \underbrace{\cup A_n^c}_{n \text{ is not fixed}}|.
+\end{align*}
+Since it is clear that $|A_j|=(n-1)!$, we have
+\[
+|A_{i_1}\cup A_{i_2}\cup \cdots \cup A_{i_k}| = (n-k)!.
+\]
+Once again by the inclusion-exclusion principle
+\begin{align*}
+    D_n &= n! - \binom{n}{1}(n-1)! + \binom{n}{2}(n-2)! -  \cdots + (-1)^n\binom{n}{n}0! \\
+    &= n! - \dfrac{n!}{1!} + \dfrac{n!}{2!} - \cdots + (-1)^n\dfrac{n!}{n!}
+\end{align*}
+\end{solution}
+
