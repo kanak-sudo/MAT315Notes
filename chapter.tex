@@ -8,6 +8,7 @@
 \usepackage{comment}
 \usepackage{subcaption}
 \usepackage{float}
+\usepackage{nth}
 \usepackage[skip=4pt]{caption}
 \includeonly{preface,chap1,chap2,chap3,chap4,chap5,chap6,biblio,index}
 
@@ -24,6 +25,7 @@
 % Define theorem styles
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
 \newtheorem{example}{Example}[section]
 \newtheorem{definition}{Definition}[section]
 \newtheorem{remark}{Remark}[section]
@@ -36,6 +38,7 @@
 % Proof environment is already defined by amsthm
 % Define a common label format
 \crefname{theorem}{Theorem}{Theorems}
+\crefname{corollary}{Corollary}{Corollaries}
 \crefname{example}{Example}{Examples}
 \crefname{definition}{Definition}{Definitions}
 \crefname{remark}{Remark}{Remarks}
@@ -73,8 +76,8 @@
 
 
 \include{chap1}
-\include{chap2}
 \include{chap3}
+\include{chap2}
 \include{chap4}
 \include{chap5}
 \include{chap6}
