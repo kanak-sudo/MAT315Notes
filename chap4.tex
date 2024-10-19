@@ -67,13 +67,10 @@ We are interested in coming up with a recurrence of $B(n)$ which is independent 
 \textcolor{red}{
 [This section is a work in progress!!!] Note to scribe: Add the following topics
 \begin{enumerate}
-    \item Theorem 2.2 and it's relation to the existence of binary repns.
-    \item Guessing (and then proving) a Ramanujan congruence.
-    \item Three proofs of the EPT.
-    \item JTP. 
-    \item EPT as a consequence of JTP.
-    \item A reccurence for partitions from EPT. 
-    \item $q$-Pochammer symbols and a few  re-statements. 
+    \item Finish details of the proof of EPT
+    \item JTP
+    \item EPT as a consequence of JTP
+    \item $q$-Pochammer symbols and a few re-statements
 \end{enumerate}
 }
 Recall how with \cref{d:1.5} we defined integer partitions. The study of these partitions dates back to the work of Leonard Euler in the \nth{18} century, who introduced generating functions to analyze them. Their study was then developed further through the work of mathematicians like Srinivasa Ramanujan and Major MacMachon, who revealed deep arithmetic and combinatorial properties. For instance, if $p(n)$ denotes the number of partitions of $n$, then the celebrated Ramanujan congruences state that
@@ -139,7 +136,7 @@ The number of partitions where no part appears $d$ or more times is the same as 
 \end{theorem}
 \begin{proof}
 Let $p_1(n)$ denote the number of partitions of $n$ with no parts divisible by $d$. Let $p_2(n)$ denote the number of partitions of $n$ where no part appears $d$ or more times. Notice how the generating function for $p_1(n)$ is given by \[
-\sum_{n=0}^{\infty}p_1(n)q^n = \prod_{n=1, d\nmid}^{\infty}\dfrac{1}{1-q^n}
+\sum_{n=0}^{\infty}p_1(n)q^n = \prod_{n=1, d\nmid n}^{\infty}\dfrac{1}{1-q^n}
 \]
 and that of $p_2(n)$ is given by 
 \begin{align*}
@@ -151,6 +148,41 @@ Finally, each term in the numerator cancels with the corresponding multiple of $
 \begin{remark}
 One might ask in what sense is \cref{t:glashier} a generalization of \cref{t:Euler'sGem} To see this, notice how setting $d=2$ returns the Euler's gem.  
 \end{remark}
+A rather interesting corollary of \cref{t:glashier} can be used to see why the binary representation of a number is unique. Consider the set of all partitions of $n$ which has parts only of size $1$. Clearly, the only such partition is $\underbrace{1+\cdots+1}_{n\text{ times}}$. Next, we are interested in merging the said parts to the point where the resultant partition has all parts distinct. It is also clear that any such sequence of merges will result in a partition where the parts occur as powers of $2$. On the other hand, any partition which only has powers of $2$ as it's parts can be repeatedly split repeatedly to the point where the resultant partition has only $1$s in it. This completes a neat proof of the uniqueness of a binary representation. 
+\par
+Although the proof of Euler's Gem is fairly straightforward, it is not clear how one might come up with such an identity. To this end, we shall try and guess an identity due to Leonard Rogers and Srinivasa Ramanujan. Consider those partitions of $1\leq n\leq 10$ which have parts differing by atleast $2$. We list these in a table below.
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|l|}
+\hline
+$n$ & \# & Admissible partitions of $n$ \\
+\hline
+1 & 1 & 1 \\
+2 & 1 & 2 \\
+3 & 1 & 3 \\
+4 & 2 & 4, 3+1 \\
+5 & 2 & 5, 4+1 \\
+6 & 3 & 6, 5+1, 4+2 \\
+7 & 3 & 7, 6+1, 5+2 \\
+8 & 4 & 8, 7+1, 6+2, 5+3 \\
+9 & 5 & 9, 8+1, 7+2, 6+3, 5+3+1 \\
+10 & 6 & 10, 9+1, 8+2, 7+3, 6+4, 6+3+1 \\
+\hline
+\end{tabular}
+\caption{Partitions of $n$ into what are called $2$-distinct parts.}
+\label{table:1}
+\end{table}
+\raggedbottom
+Next, we attempt to construct a set $X$ such that the number of partitions of $n$ with parts in $X$ are the same as the one we have counted in \cref{table:1}. To this end, we make a series of observations.
+\begin{enumerate}
+    \item Since there should be one partition of $1$ with parts in $X$, $1$ must necessarily be a part of $X$.
+    \item Since there should be one partition of $2$ with parts in $X$, $1$ is already in $X$, and $2=1+1$, we need not add $2$ to $X$. Similarly, we have no additions to $X$ corresponding to $3$ either.
+    \item Since there should be two partitions of $4$ with parts in $X$, $1$ is in $X$, and $4=1+1+1+1$, we need one more partition. Hence, we add $4$ to $X$ to take care of the partition $4=4$. 
+    \item Since there should be two partitions of $5$ with parts in $X$, $1$ and $4$ are in $X$, and $5=1+1+1+1+1=1+4$, we need not add $5$ to $X$.
+    \item $\cdots$
+\end{enumerate}
+Doing this exercise for the remaining numbers ($6\leq n\leq 10$) makes it clear that we must also add $6$ and $9$ must also be added to $X$. A pattern presents itself, namely, that all the members have admit $1$ or $4$ as a remainder upon division by $5$. In summary, we have guessed (not proved) that the number of partitions of $n$ into $2$-distinct parts is the same as the number of partitions of $n$ into parts which are congruent to $1,4\mod{5}$.  
+\par
 As it turns out many partition identities are best explained using pictures. To this end we introduce a tool called Ferrer's diagrams. In the said diagram the parts of a partition are shown as rows of dots/squares. 
 \begin{figure}[H]
     \centering
@@ -183,19 +215,61 @@ Another useful pictorial construct is that of a Durfee square. We define the sai
     \item Partitions corresponding to the triangle below the Durfee square are the ones where number of parts are atmost $k$. 
 \end{enumerate}
 With these three observations at hand, an identity presents itself almost immediately. Namely,
-\begin{claim}
+\begin{claim}[Jacobi's Identity]
     \[
     \prod_{i=1}^{\infty}\dfrac{1}{1-q^i} = \sum_{i=0}^{\infty}\dfrac{q^{i^2}}{(1-q)^2(1-q^2)^2\cdots(1-q^i)^2}
     \]
 \end{claim}
+Next, we state a remarkable result first proved by Euler in the year 1785.
 \begin{theorem}[Euler's Pentagonal Number Theorem]
 \begin{align*}
-\prod_{i=1}^{n}(1-q^i) &= \sum_{k=-\infty}^{\infty}(-1)^k q^{\dfrac{k(3k-1)}{2}} \\
+\prod_{i=1}^{\infty}(1-q^i) &= \sum_{k=-\infty}^{\infty}(-1)^k q^{\dfrac{k(3k-1)}{2}} \\
 &= 1+\sum_{k=1}^{\infty}(-1)^kq^{\dfrac{k(3k-1)}{2}}+\sum_{k=-\infty}^{-1}(-1)^kq^{\dfrac{k(3k-1)}{2}} \\
 &= 1+\sum_{k=1}^{\infty}(-1)^kq^{\dfrac{k(3k-1)}{2}}+\sum_{k=1}^{\infty}(-1)^kq^{\dfrac{k(3k+1)}{2}} \\
 &= 1+\sum_{k=1}^{\infty}(-1)^k \left(q^{\dfrac{k(3k-1)}{2}}+q^{\dfrac{k(3k+1)}{2}}\right) \\
 \end{align*}
+\label{t:EPT}
 \end{theorem}
-%Give a proof using the bi-variate generating 
+We are interested in stating three different proofs of the theorem. Before moving on to them, it would help to understand what pentagonal numbers are. Simply put, these are numbers of the form $n(3n-1)/2$. Why they are called pentagonal is clear from the following figure.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Images/Figure20.png}
+    \caption{Counting the number of vertices (marked in red) at each iteration gives the sequence of pentagonal numbers, i.e, $1,5,12,\ldots$}
+    \label{f:PNT}
+\end{figure}
+Notice how the vertices (marked in red) in \cref{f:PNT} admits a natural partition and hence a Ferrer's diagram. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Images/Figure21.png}
+    \caption{The first $3$ pentagonal numbers and the natural partitions they admit, i.e, $1=1, 5=3+2$ and $12=5+4+3$.}
+\end{figure}
+It is clear that these partitions of pentagonal numbers we have obtained are partitions into distinct parts. To this end, we will try and set up a bijection between partitions of $n$ into an odd number of distinct parts and the partitions of $n$ into an even number of distinct parts. To this end, it suffices to set-up a bijection which changes the number of partitions by exactly $1$ whilst keeping the distinctness intact. \textcolor{red}{[ADD THE MAP (Franklin's Bijection) HERE.]} In summary, if $p_{ED}(n)$ and $p_{OD}(n)$ denote
+the number of partitions into an even number of distinct parts and an odd number of distinct parts respectively, then we have shown that
+\begin{align*}
+    p_{ED}(n)-p_{OD}(n) &= 
+    \begin{cases}
+        (-1)^j & \quad \text{if } n \text{ is a pentagonal number} \\
+        0 & \quad \text{otherwise}
+    \end{cases}.
+\end{align*}
+This proves \cref{t:EPT} (\textcolor{red}{[EXPLAIN HOW]}). 
 
+\par
+To see the usefulness of \cref{t:EPT} consider the following remark.
+\begin{remark}
+Putting \cref{t:EPT} and \cref{c:2.1P} together gives us \[
+\left(\sum_{n\geq 0}p(n)q^n\right)\left(\prod_{i\geq 1}(1-q^i)\right) = 1.
+\] A recurrence of sorts presents itself. Namely,
+\[
+p(n) = p(n-1)+p(n-2)-p(n-5)-p(n-7)+p(n-12)+p(n-15)+\cdots. 
+\] The reason this recurrence is useful is two-pronged. One, the sum on the right is not infinite because $p(k)=0$ for all choices of $k<0$. Two, to compute $p(n)$ we need not compute $p(n-i)$ for all choices of $1\leq i\leq n-1$.
+\end{remark}
+Next, we present a result known as Jacobi's triple product identity. Interestingly, this identity is easier to prove than Euler's pentagonal number theorem. Not only that, but, Euler's theorem emerges as a corollary of Jacobi's identity. Before stating the identity, we introduce some useful notation. For formal variables $x,q$ and a natural number $n>0$ we define
+\[
+(x;q)_n := (1-x)(1-xq)(1-xq^2)\cdots(1-xq^{n-1}) = \prod_{i=0}^{n-1}(1-xq^i).
+\]
+The symbol $(x;q)_n$ is referred to as the $q$-shifted factorial. We extend our notation to allow for $n$ to be $\infty$ by defining
+\[
+(x;q)_\infty := \lim_{n\to \infty}\left(\prod_{i=0}^{n-1}(1-xq^i)\right) = \prod_{i=0}^{\infty}(1-xq^i) = (1-x)(1-xq)(1-xq^2)\cdots.
+\]
 \endinput
