@@ -566,14 +566,6 @@ A $k$-permutation on $[n]=\{1,2,\cdots,n\}$ is a bijection between two $k$-eleme
 	$k$-permutations  $\pi$ and $\sigma$ are called circular equivalents if there exists a shift  $s\in [k]$ such that  $i+s\equiv j(\text{mod} \ k)$.
 \end{definition}
 \section{The Principle of Inclusion-Exclusion}
-\textcolor{red}{
-[This section is a work in progress!!!] Note to scribe:
-\begin{enumerate}
-    \item Finish the proof of Theorem 4.2
-    \item Rewrite the proof of Claim 4.1
-    \item Write and prove Claim 4.2
-\end{enumerate}
-}
 Recall that for finite sets $A$ and $B$, the cardinality of their union is given by $|A \cup B| = |A| + |B| - |A \cap B|
 $. This formula, which adds (includes) the sizes of $A$ and $B$ while subtracting (excluding) the overcount in $|A \cap B|$ encapsulates the essence of the inclusion-exclusion principle. We start with a useful generalization of the motivating formula we just discussed.
 \begin{theorem}[Inclusion-Exclusion Principle]
@@ -603,21 +595,28 @@ For $1\leq i\leq$, let $A_i$ be subsets of a set $X$. Then the number of element
 \label{t:4.2}
 \end{theorem}
 \begin{proof}
+We argue combinatorially. Let $S$ be a finite set. Let $P_1,P_2,\ldots,P_n$ be $n$ properties of objects in $S$. Additionally, let $A_i$ denote that subset of $S$ whose elements satisfy the $P_i$-th property. Consider \[
+|A_1^c \cap \cdots \cap A_n^c|,
+\] i.e, the number of objects in $S$ with none of the properties. Let $x$ be an object satisfying none of the properties. The net contribution of such an $x$ to 
+\[
+|S| - \sum_{I\subseteq \{1,\ldots,n\}} (-1)^{|I|}|A_I|
+\] is $1$. Similarly, the contribution of an element satisfying exactly $0<k\leq n$ properties is $0$. More precisely,
+\[
+|A_1^c\cap \cdots \cap A_n^c| = |S| - \sum_{I\subseteq \{1,\ldots,n\}}(-1)^{|I|}|A_I|.
+\]
+Now the proof boils down to applying De-Morgan's laws. Notice how 
+\begin{align*}
+|A_1\cup \cdots \cup A_n| &= |S|-|(A_1\cup \cdots A_n)^c| \\
+&= |S| - |A_1^c\cap \cdots A_n^c|.
+\end{align*}
+Putting both of our observations together proves our claim. 
 \end{proof}
-\begin{comment}
-\begin{proof}
-Notice how for every $x\in X$ one of the following is true.
-\begin{enumerate}
-    \item $x\not\in A_i$ for all $i$
-    \item $x\in A_i$ for some $i$, i.e, for some $I$ we have $x\in A_I = A_{i_1}\cap A_{i_2}\cap \cdots \cap A_{i_k}$. Since the said $I$ can be chosen in $\binom{n}{k}$ ways. 
-\end{enumerate}
-\end{proof}    
-\end{comment}
 Now we state a corollary of \cref{t:4.2}.
 \begin{claim}
 The number of surjective mappings from $[n]=\{1,2,3,\cdots,n\}$ to $[k]=\{1,2,3,\cdots,k\}$ is given by \[
     \sum_{i=0}^{k}(-1)^i\binom{k}{i}(k-i)^n
-    \]
+\]
+\label{c:SurjMap}
 \end{claim}
 \begin{proof}
 We mimic the setting of \cref{t:4.2}. Choose $X$ to be the set of all mappings from $[n]$ to $[k]$, and $A_i$ to be the set of all maps from $[n]$ to $[k]$ such that $i$ is not in the range. Notice how $|X|=k^n$, $|A_i|=(k-1)^n$, and $|A_I| = |A_{i_1}\cap A_{i_2}\cap \cdots \cap A_{i_j}|=(k-j)^n$. Now the claim follows. 
@@ -669,9 +668,6 @@ Notice how $\cap_{i\in I}A_i$ contains elements of $[n]$ which are not divisible
 Fill the details in the proof out.
 \end{comment}
 \end{proof}
-Now that we have counted the number of elements which are co-prime to $n$, we are interested in finding their sum. In this spirit consider the following claim.
-\begin{claim}
-\end{claim}
 We conclude this section by introducing derangements. 
 \begin{question}
 Suppose $n$ people go a party and each person is wearing a different hat. In how many ways can the $n$ people return from the party such that nobody is wearing their original hat?    
