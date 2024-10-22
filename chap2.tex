@@ -103,14 +103,6 @@ Once again, by \cref{r:1.2}, notice how \[
 We give a double counting argument. Notice how $3^n$ is the number of $n$-bit ternary strings. Each such string will have $n-k$-many $0$s in it where $0\leq k \leq n$. Such a string can be chosen in $\binom{n}{n-k}=\binom{n}{k}$ ways, and the remanining $k$ bits (which can now only either be $1$s or $2$s) can be chosen in $2^k$ ways. This completes the proof. 
 \end{proof}
 \section{Catalan Numbers}
-\textcolor{red}{
-[This section is a work in progress!!!] Note to scribe:
-\begin{enumerate}
-    \item Add more details to the proof of Claim 2.1.
-    \item Explain what rooted binary trees are before counting them.
-    \item Finish proof of Theorem 2.2.
-\end{enumerate}
-}
 This section introduces a set of problems which are seemingly distinct but share a common underlying sequence of numbers called the Catalan numbers. We shall show this commonality by setting up appropriate bijections between the said problems. 
 \begin{question}
 Recall how with \cref{q:1.8} we counted the number of lattice paths from $(0,0)$ to $(m,n)$. Count the number of lattice paths, $a_1(n)$, from $(0,0)$ to $(n,n)$ which never go below the $x=y$ diagonal.
@@ -158,7 +150,7 @@ Count the number of ways $a_5(n)$, of joining $n$ non-intersecting chords on a c
     \caption{All possible such configurations for cases $n=1,2,3$}
     \label{f:3.24}
 \end{figure}
-Once again, a bijection presents itself when \cref{f:3.22} and \cref{f:3.24} are compared. Namely, if $p_1,\cdots,p_{2n}$ are the marked points on the circle, then we join $p_i$ and $p_j$ if and only if $i$ occurs below $j$ in the arranged grid of numbers.     
+Once again, a bijection presents itself when \cref{f:3.22} and \cref{f:3.24} are compared. Namely, if $p_1,\cdots,p_{2n}$ are the marked points on the circle, then we join $p_i$ and $p_j$ if and only if $i$ occurs below $j$ in the arranged grid of numbers. 
 \end{solution}
 \begin{question}
 Count $a_6(n)$, the number of legal sequences of $2n$ parentheses. Where, by a legal sequence of parentheses we mean one in which the parentheses can be properly matched, i.e, each opening parenthesis should be matched to a closing one that lies further to its right. We count these for $n=1,2,3$.
@@ -179,7 +171,7 @@ Count $a_7(n)$, the number of non-crossing partitions on the set $[2n]:=\{1,2,3,
     \caption{All possible non-crossing partitions on $[2n]$ for $n=1,2,3$}
     \label{f:3.25}
 \end{figure}
-Once again, a bijection presents itself when \cref{f:3.22} and \cref{f:3.25} are compared. Namely, if $p_1,\cdots,p_{2n}$ are the marked points on the line, then we join $p_i$ and $p_j$ if and only if $i$ occurs below $j$ in the arranged grid of numbers.    
+Once again, a bijection presents itself when \cref{f:3.22} and \cref{f:3.25} are compared. Namely, if $p_1,\cdots,p_{2n}$ are the marked points on the line, then we join $p_i$ and $p_j$ if and only if $i$ occurs below $j$ in the arranged grid of numbers. 
 \end{solution}
 To summarize, by the many bijections we have set up, $C(n):=a_1(n)=a_2(n)=\cdots=a_7(n)$ for all $n\geq 0$. Additionally, we have also seen that $A(n)$ takes values $1,1,2$ and $5$ for when $n=0,1,2$ and $3$ respectively. Motivated readers may check why and how $C(4)=14$, $C(5)=42$, and so on, but this is not how we want to proceed. Consider the following definitions.
 \begin{definition}[Triangulation]
@@ -231,12 +223,23 @@ C(x) = \sum_{n=0}^{\infty}\dfrac{1}{n+1}\binom{2n}{n}x^n.
 \]
 \end{proof}
 \begin{remark}
-Catalan numbers come up in a huge class of counting problems. In fact, Richard Stanley, in his book, ``Catalan Numbers'' outlines $214$ such problems.  
+Catalan numbers come up in a huge class of counting problems. In fact, Richard Stanley, in his book, ``Catalan Numbers'' outlines $214$ such problems. That being said, the many bijections we have outlined in this section are not always as easy to find. In such cases the defining recurrence (\cref{t:segner}) we have obtained is particularly useful. Consider the following example for instance.
 \end{remark}
 \begin{question}
-    Count the number of rooted binary trees 
+Count the number of binary trees with $n$ vertices.
 \end{question}
-%Mention how this bijection is not easy to find. So we use the reccurence. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Images/Figure23.png}
+    \caption{The $5$ binary trees on $3$ vertices.}
+\end{figure}
+\begin{solution}
+Let $a_n$ denote the number of binary trees with $n$ vertices, where $n\geq 0$. Since the empty tree is the only binary tree with $0$ vertices, it is clear why $a_0 = 1$. Similarly, it is also clear why $a_1=1$. Consider a binary tree $T$ (say) with $n$ vertices. The root of $T$ has $n-1$ children. For a choice of $0\leq i\leq n-i-1$ let $T$ have $i$ children on the left sub-tree and $n-i-1$ children on the right. By our set-up, there are $a_i$ binary trees with $i$ vertices and $a_{n-i-1}$ binary trees with $n-i-1$ vertices. It follows that there are $a_i a_{n-i-1}$ binary trees with $i$ children on their left subtrees and $n-i-1$ children on their right. Thus, the total number of binary trees with $n$ vertices is given by
+\[
+a_n = \sum_{i=0}^{n-1}a_ia_{n-i-1}.
+\]
+Comparing with \cref{t:segner} we get that $a_n$ is counted by the Catalan numbers. 
+\end{solution}
 We are now interested in stating a recurrence for Catalan numbers which is different from the one we already stated. To this end consider the following theorem and it's corollary. 
 \begin{theorem}
     Let $T_n$ be the number of triangulations of an $n$-gon, then for $n\geq 4$,
@@ -244,12 +247,33 @@ We are now interested in stating a recurrence for Catalan numbers which is diffe
     (2n-6)T_n = n\sum_{k=3}^{n-1}T_kT_{n-k+2}
     \]
 \end{theorem}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\linewidth]{Images/Figure22.png}
+    \caption{}
+    \label{f:Segner2f}
+\end{figure}
 \begin{proof}
+Consider an $n$-gon with vertices $A_1,A_2,\ldots,A_n$. Conisder an arbitrary diagonal $\overline{A_1A_k}$ leaving $A_1$, where $2<k<n$. See \cref{f:Segner2f} and notice how this partitions the $n$-gon into the $k$-gon $A_1A_2\ldots A_k$ (marked red) and the $(n-k+2)$-gon $A_1A_kA_{k+1}\ldots A_n$ (marked blue). The $k$-gon can be triangulated in $T_k$ ways and the $(n-k+2)$-gon in $T_{n-k+2}$ ways. It follows that the $n$-gon can be triangulated in a total of $T_kT_{n-k+2}$ ways. Since $k$ is allowed to vary between $3$ and $n-1$, it also follows that the total number of triangulation based at $A_1$ are given by \[
+\sum_{k=3}^{n-1}T_kT_{n-k+2}.
+\]
+Our choice of $A_1$ is not special. Since there $n$ choices of vertices where the triangulation can be based one might think the count is
+\[
+n\sum_{k=3}^{n-1}T_kT_{n-k+2}.
+\]
+However, we have overcounted. More specifically, the diagonals $\overline{A_iA_j}$ are counted twice. This gives;
+\[
+n/2\sum_{k=3}^{n-1}T_kT_{n-k+2}.
+\]
+Finally, since the $n$-gon has $n-3$ diagonals at every vertex and every triangulation uses $n-3$ diagonals, it follows that
+\[
+(n-3)T_n = n/2\sum_{k=3}^{n-1}T_kT_{n-k+2}.
+\]
+as required.
 \end{proof}
+A corollary follows naturally.
 \begin{corollary}
 \[
 (2n-2)C_n = (n+2)\sum_{k=1}^{n-1}C_kC_{n-k}
 \]
 \end{corollary}
-
-\endinput

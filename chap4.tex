@@ -1,12 +1,6 @@
 \chapter{Partitions}
 A first course in combinatorics typically focuses on two types of partitions: set partitions and integer partitions. We will begin with a brief discussion of set partitions, followed by a more in-depth exploration of integer partitions. 
 \section{Set Partitions}
-\textcolor{red}{
-[This section is a work in progress!!!] Note to scribe:
-\begin{enumerate}
-    \item Finish proofs of Claim 1.1-1.6.
-\end{enumerate}
-}
 Notice how there are $6$ ways to partition the set $\{1,2,3,4\}$ into $3$ blocks. These are,
     \begin{enumerate}
         \item $[1],[2],[3,4]$
@@ -26,36 +20,47 @@ A set partition of a finite set $B$ into $k$ ``blocks'' is a collection of $k$ s
 \end{enumerate}
 \end{definition}
 \begin{definition}
-If $B=[n]=\{1,\cdots,n\}$ then a Stirling number of the $\nth{2}$ kind $S(n,k)$, is the number of set partitions of $B$ into $k$ blocks. 
+If $B=[n]=\{1,\cdots,n\}$ then a Stirling number of the $\nth{2}$ kind $S(n,k)$, is the number of set partitions of $B$ into $k$ blocks.
+\label{d:Str2}
 \end{definition}
 We take $S(0,0)$ to be $1$ by convention. Additionally, the fact that $S(n,n)=1$, $S(n,0)=0$, and $S(n,1)=1$ follow immediately. Per usual we state a few identities concerning these numbers.
 \begin{claim}
 For all $n,k\geq 0$, with $n\geq k$ we have $S(n,k)=S(n-1,k-1)+kS(n-1,k)$
 \end{claim}
-\begin{claim}
-For all $n,k\geq 0$, with $n\geq k$ we have $S(n+1,k)=\sum_{i=0}^{n}S(n-i,k-1)$
-\end{claim}
+\begin{proof}
+By the \cref{d:Str2}, the L.H.S of our claim counts the set of partitions of $[n]$ into $k$ blocks. 
+We give a double counting argument; 
+one, the partitions where $n$ is itself a block, two, the partitions where the block containing $n$ has size at least two. To count the partitions where $n$ is a block by itself, we can take $n$ out, choose a partition of $[n-1]$ into $k-1$ blocks in $(n-1,k-1)$ ways, and enlarge the chosen partition to obtain a partition of $[n]$ into $k$ blocks by adding $\{n\}$ as the $n$-th block. To count the partitions where the block containing $n$ has size at least two, choose a partition of $[n-1]$ into $k$ blocks in $S(n-1 1,k)$ different ways, and for each of such choices create a partition of $[n]$ into $k$ blocks in $k$ different ways by placing $n$ inside one of the $k$ blocks. Putting all together, we see that the number of partitions of $[n]$ into $k$ blocks is $S(n-1, k-1)+kS(n-1, k)$, as required.
+\end{proof}
 \begin{claim}
     $S(n,2)=2^{n-1}-1$
 \end{claim}
+\begin{proof}
+Each partition of $[n]$ into
+two blocks, say $\{B_1, B_2\}$, can be constructed by first choosing the subset $B_1$ in $2^n-2$ ways (since $B_1$ cannot be neither empty nor the whole set $[n]$), which forces
+$B_2$ to be equal to  $[n] \backslash B_1$. Next, we divide our number of choices, $2^n - 2$, by $2$ to account
+for the fact that the order of the blocks inside the partition is irrelevant to see why the claim is true. 
+\end{proof}
 \begin{claim}
     $S(n,n-1)=\binom{n}{2}$
 \end{claim}
+\begin{proof}
+Each partition of $[n]$ into $n-1$ blocks must contain exactly one block of size $2$, which completely determines the rest of the blocks, namely the remaining $n-2$ blocks of size $1$. Therefore the set of partitions of $[n]$ into two blocks is in bijection with the set of $2$ element subsets of $[n]$. Now the claim follows.
+\end{proof}
 \begin{claim}
     \[
     S(n,k) = \dfrac{1}{k!}\sum_{j=0}^{k}(-1)^{k-j}\binom{k}{j}j^n
     \]
 \end{claim}
-\begin{comment}
 \begin{proof}
-Recall how $\sum_{j=0}^{k}(-1)^{k-j}\binom{k}{j}j^n$ counts the number of surjections from $[n]$ to $[k]$. Hence, it suffices to show that the number of surjections from $[n]$ to $[k]$ is $k!S(n,k)$. 
+To count the number of surjective functions $f: [n] \to [k]$, we can first fix a set partition $\{B_1,\ldots,B_k\}$ of $[n]$ into $k$ blocks in $S(n,k)$ ways, then make a linear arrangement $w_1 w_2 \cdots w_k$ with the elements of $[k]$ in $k!$ ways, and then finally the set $f^{-1}(w_i) = B_i$ to see why there are $S(n, k)k!$ choices of $f$. By the virtue of \cref{c:SurjMap} we are done.
 \end{proof}
-\end{comment}
 \begin{definition}[Bell Numbers]
 The number of all partitions of $[n]$ is called a bell number and is denoted by $B(n)$. More specifically,
 \[
 B(n) = \sum_{k=1}^nS(n,k)
 \]
+\label{d:BellN}
 \end{definition}
 We are interested in coming up with a recurrence of $B(n)$ which is independent of any $S(n,k)$s. 
 \begin{claim}
@@ -63,6 +68,15 @@ We are interested in coming up with a recurrence of $B(n)$ which is independent 
     B(n+1) = \sum_{k=0}^{n}\binom{n}{n-k}B(k)
     \]
 \end{claim}
+\begin{proof}
+By \cref{d:BellN}, the L.H.S of our claim counts the set of partitions of $[n + 1]$. We give a double counting argument. For each $s$ in $[1,n+1]$, we can count the partitions of $[n+1]$ where the block $B$ containing $\{n + 1\}$ has size $s$; first we choose in $\binom{n}{s-1}$ ways the elements in $B$ that are different from $n+1$, and then create a partition of $[n + 1] \backslash B$ in $B(n + 1 - s)$ ways. It follows that 
+\begin{align*}
+    B(n+1) &= \sum_{s=1}^{n+1}B(n+1-s) \\
+    &= \sum_{j=0}^n\binom{n}{n-j}B(j) \\
+    &= \sum_{j=0}^n\binom{n}{j}B(j)
+\end{align*}
+as required. 
+\end{proof}
 \section{Integer Partitions}
 \textcolor{red}{
 [This section is a work in progress!!!] Note to scribe: Add the following topics
