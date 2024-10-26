@@ -1,18 +1,207 @@
 \chapter{\texorpdfstring{$q-$}-Combinatorics}
-
-
-
 %\section{Dyck Paths Revisited}
-
 %\section{Motzkin and Schr\"oder Paths}
-
-
 %\section{Non-intersecting lattice paths}
-
-
 \section{\texorpdfstring{$q-$}-analogs}
+The idea here to count objects with weights associated to them. For instance in a lattice path, one might be interested in assigning the number of blocks spanned below the said path and/or the number of east steps below the main diagonal. We shall start our discussion by counting all possible (what are called) inversions on the set $[n]$.
 
+\begin{definition}[Inversion]
+Let $\sigma$ be a bijection on $[n]$. An inversion of $\sigma$ is a tuple $(\sigma(i),\sigma(j))$ such that $1\leq i<j\leq n$ and $\sigma(i)>\sigma(j)$.
+\end{definition}
+As an example we count the number of inversion on the set $[3]$
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Permutation} & \textbf{Inversions} & \textbf{Remark} \\
+\hline
+$(123)$ & No Inversions & Trivial \\
+\hline
+$(132)$ & $(32)$ & $2<3$ but $3>2$ \\
+\hline 
+$(213)$ & $(21)$ & $1<2$ but $2>1$ \\
+\hline
+$(231)$ & $(21),(31)$ & Same As Above \\
+\hline
+$(312)$ & $(31),(32)$ & Same As Above \\
+\hline
+$(321)$ & $(32),(31),(21)$ & Notice a pattern here when the permutation is ``decreasing''\\\hline
+\end{tabular}
+\end{center}
+\begin{claim}
+    If $I_n$ denote the number of inversions on $[n]$, then $I_n = \binom{n}{2}\dfrac{n!}{2}$
+\end{claim}
+\begin{proof}
+We attempt to come up with a recursive formula first. Let $I_n$ be known. Now consider the addition of a new symbol (indexed by $n+1$). Notice how the symbol $n+1$ can be placed at a total of $n+1$ places. Placing $n+1$ at the $\nth{1}$ position grants $n$ new inversions. Similarly, placing $n+1$ at the $\nth{2}$ position grants $n-1$ new inversions, and so on. Adding all of these together grants 
+\begin{align*}
+I_{n+1}&=\underbrace{n!n + I_n}_{\substack{I_n \text{ previously counted inversions} \\ + n\text{ new ones for each one of the } n! \text{ permutations} }} + n!(n-1)+I_n + \cdots + n!(1)+I_n + n!(0)+I_n \\
+	       &=n!\left(n+(n-1)+(n-2)+\cdots+2+1+0\right)+(n+1)I_n \\
+	       &=n!\left(\dfrac{n(n+1)}{2}\right)+(n+1)I_n \\
+	       &=n! \left(\begin{array}{c}n+1\\ 2\end{array}\right) + (n+1)I_n
+\end{align*}
+From here on end, the proof can also be completed using the method of induction. However, this is not the way we want to go about the proof. Notice how the formula we've obtained is a recursion which can be solved using more than one techniques to arrive at an explicit expression. We start off by using the method of back-substituion and re-write the obtained recurrence as
+\begin{align*}
+	I_n = nI_{n-1}+(n-1)! \left(\begin{array}{c}n\\ 2\end{array}\right) = nI_{n-1}+n!\dfrac{n-1}{2}
+\end{align*}
+Next, we set $n\to n-1$ and $n\to n-2$ in the obtained equations to arrive at
+\begin{align*}
+	I_{n-1} = (n-1)I_{n-2} + (n-1)!\dfrac{n-2}{2} \\
+	I_{n-2} = (n-2)I_{n-3} + (n-2)!\dfrac{n-3}{2} 
+\end{align*}
+Making appropriate substitutions gives
+\begin{align*}
+	I_n &= n\left\{(n-1)I_{n-2}+(n-1)!\left(\dfrac{n-2}{2}\right)\right\}+n!\dfrac{n-1}{2} \\
+	    &= n(n-1)I_{n-2}+\dfrac{n!}{2}\left\{(n-2)+(n-1) \right\}.
+\end{align*}
+More specifically,
+\begin{align*}
+	I_n = n(n-1)(n-2)I_{n-3} + \dfrac{n!}{2}\left\{(n-3)+(n-2)+(n-1)\right\}.
+\end{align*}
+It is easy to notice a pattern, i.e, after $k$-many such back-substitutions we get
+\begin{align*}
+	I_n = n(n-1)(n-2)\cdots(n-k+1)I_{n-k} + \dfrac{n!}{2}\left\{(n-1)+(n-2)+\cdots+(n-k)\right\}.
+\end{align*}
+Setting $n\to n-k$ gives
+\begin{align*}
+	I_{n-k}=(n-k)I_{n-k-1} + (n-k)!\dfrac{n-k-1}{2}.
+\end{align*}
+Once again, making appropriate substitutions we get.
+\begin{align*}
+I_n = n(n-1)\cdots(n-k+1)(n-k)I_{n-k-1}+\dfrac{n!}{2}\left\{(n-k-1)+(n-1)+(n-2)+\cdots+(n-k)\right\}
+\end{align*}
+Finally, to the see why the claim is true it suffices to set $k\to n-1$ because then we would have 
+\begin{align*}
+	I_n = n(n-1)(n-2)\cdots (2)(1)I_{0} + \dfrac{n!}{2}\left\{ (n-1)+(n-2)+(n-3)+\cdots+1\right\}.
+\end{align*}
+Since $I_0=0$, we get
+\begin{align*}
+	I_n = \dfrac{n!}{2}\left(\begin{array}{c}n\\ 2\end{array}\right) 
+\end{align*}
+as required. 
+\end{proof}
+Next, we give a combinatorial proof. 
+\begin{proof}
+For an $n$ given to us, consider all the $n!$ possible permutations on the set $[n]$ arranged in pairs like $(\sigma(1)\sigma(2)\cdots\sigma(n)), \underbrace{(\sigma(n),\sigma(n-1),\cdots,\sigma(1))}_{\text{Called the mate of } \sigma}$. This arrangement separates the $n!$ permutations into $n!/2$ pairs. Now, by the following observations we are done.
+\begin{enumerate}
+	\item If $(\sigma(i),\sigma(j))$ is an inversion of $\sigma$, then it's not an inversion of $\sigma$'s mate.
+	\item Each one of the $\left(\begin{array}{c}n\\ 2\end{array}\right)$ pairs is an inversion exactly once in each couple.
+\end{enumerate}
+\end{proof}
+Corresponding to a given $n$ we know that there are $n!$ possible permutations on the set $[n]$. In the formal variable $q$, we define the inversion polynomial on $[n]$ as \[\sum_{\sigma\in \text{Bijections on }[n]}q^{\text{inv}(\sigma)}\] where $\text{inv}(\sigma)$ denotes the number of inversions of $\sigma$.  As an example we compute the inversion polynomial on the set $[3]$.
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Permutation} & \textbf{Inversions} & $q^{\text{inv}(\sigma)}$ \\
+\hline
+$(123)$ & No Inversions & $q^0$ \\
+\hline
+$(132)$ & $(32)$ & $q^1$ \\
+\hline 
+$(213)$ & $(21)$ & $q^1$ \\
+\hline
+$(231)$ & $(21),(31)$ & $q^2$ \\
+\hline
+$(312)$ & $(31),(32)$ & $q^2$\\
+\hline
+$(321)$ & $(32),(31),(21)$ & $q^3$\\
+\hline
+\end{tabular}
+\label{tab:S3Example}
+\end{center}
+It is clear that the inversion polynomial corresponding to $[3]$ is given by $1+q+q+q^2+q^2+q^3=(1+q)(1+q+q^2)$.
+\begin{question}
+What is the inversion polynomial corresponding to $[n]$ for an arbitrary choice of $n$?
+\end{question}
+\begin{solution}
+We know that the inversion polynomial for $[1]$ is $q^0=1$, for $[2]$ is $q^0+q^1=1+q$, for $[3]$ as shown above is $(1+q)(1+q+q^2)$. One might be tempted to (correctly) assume that the inversion polynomial for $[n]$ is $(1+q)(1+q+q^2)\cdots(1+q+q^2+\cdots+q^{n-1})$. Notice how the addition of a symbol indexed by $4$ at the first place raises the degree by $3$.
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Permutation} & \textbf{Inversions} & $q^{\text{inv}(\sigma)}$ \\
+\hline
+$(4123)$ &$(41),(42),(43)$ & $q^{0+3}$ \\
+\hline
+$(4132)$ & $(41),(43),(42),(32)$ & $q^{1+3}$ \\
+\hline 
+$(4213)$ & $(42),(41),(43),(21)$ & $q^{1+3}$ \\
+\hline
+$(4231)$ & $(42),(43),(41),(21),(31)$ & $q^{2+3}$ \\
+\hline
+$(4312)$ & $(43),(41),(42),(31),(32)$ & $q^{2+3}$\\
+\hline
+$(4321)$ & $(43),(42),(41),(32),(31),(21)$ & $q^{3+3}$\\
+\hline
+\end{tabular}
+\end{center}
+Hence, the sum corresponding to the addition of a symbol indexed by $4$ at the first position becomes \[q^3\underbrace{((1+q)(1+q+q^2))}_{\text{Inversion polynomial of } S_3}.\] Similarly, the addition of this symbol at the second place raises the degree by $2$, the addition of this symbol at the third raises the degree by $1$, and so on. Finally we get 
+\begin{align*}
+	\sum_{\sigma\in \text{Bijections on }[4]} q^{\text{inv}(\sigma)}&=q^3((1+q)(1+q+q^2))+ q^2((1+q)(1+q+q^2))+q^1((1+q)(1+q+q^2))+q^0((1+q)(1+q+q^2)) \\
+						   &=(1+q)(1+q+q^2)(1+q+q^2+q^3)
+\end{align*}
+This allows us to conclude that \[
+\sum_{\sigma\in \text{Bijections on }[n]}q^{\text{inv}(\sigma)} = (1+q)(1+q^2)\cdots (1+q^{n-1})
+\]
+\end{solution}
+Polynomials of the form involved in our solution keep coming up in the study of $q$-combinatorics. For this reason, we introduce some notation for succinct writing (amongst other reasons which will be explained soon).
+\begin{definition}[$q$-analogue of numbers]
+For a real number $n$, we denote it's $q$-analogue by \[[n]_q:=\begin{cases}\dfrac{1-q^n}{1-q} \ &\text{ if } q\neq 1 \\ n \ &\text{ if } q=1 \end{cases}.\]
+\end{definition}
+The following definition now follows quite naturally.
+\begin{definition}[$q$-analogue of factorials]
+For a real number $n$, we denote the $q$-analogue of it's factorial by 
+\[n!_q=[1]_q[2]_q\cdots [n]_q\].
+\label{d:q_fact}
+\end{definition}
+\begin{remark}
+The introduction of \cref{d:q_fact} allows us to conclude that the inversion polynomial corresponding to $[n]$ is $n!_q$. 
+\end{remark}
+Infact, yet another definition follows quite naturally.
+\begin{definition}[$q$-analogue of binomial coefficients]
+    For appropriate choices of $n$ and $k$, we denote the $q$-analogue of $\binom{n}{k}$ by 
+    \[
+    \binom{n}{k}_q = \dfrac{n!_q}{(n-k)!_q k!_q}.
+    \]
+    \label{d:qBin}
+\end{definition}
+However, a combinatorial interpretation of \cref{d:qBin} is not immediately clear. To this end, conisder the following problem.
+\begin{question}
+Let $S(k,n-k)$ denote the set of all $n$-bit sequences with $k$ zeros and $n-k$ ones. What is the inversion polynomial corresponding to $S(k,n-k)$?
+\end{question}
+The following table lists all the possible $4$-bit sequences with $2$-zeros along with their contributions to the inversion polynomial.
+\begin{center}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		$(0011)$ & $0$ inversions & $q^0$ \\
+		\hline
+		$(0101)$ & $(10)$ once & $q^1$ \\
+		\hline
+		$(0110)$ & $(10)$ twice & $q^2$ \\
+		\hline
+		$(1001)$ & $(10)$ twice & $q^2$ \\
+		\hline
+		$(1010)$ & $(10)$ thrice & $q^3$ \\
+		\hline
+		$(1100)$ & $(10)$ four times & $q^4$ \\
+		\hline
+	\end{tabular}
+\end{center}
+\raggedbottom
+From the table it is clear that the inversion polynomial corresponding to $S(k,n-k)$ is given by
+\begin{align*}
+	\sum_{\sigma}q^{\text{inv}(\sigma)} &= 1+q+2q^2+q^3+q^4 \\
+					    &= (1+q+q^2)(1+q^2) \\
+					    &= [3]_q (1+q^2) \\
+					    &= [3]_q (1+q^2)\dfrac{1+q}{1+q} \\
+					    &= [3]_q \dfrac{(1+q+q^2+q^3)}{1+q} \\
+					    &= [3]_q \dfrac{[4]_q}{[2]_q} \\
+					    &= \dfrac{[4]_q[3]_q[2]_q[1]_q}{[2]_q[1]_q[2]_q[1]_q} \\
+					    &= \dfrac{4!_q}{2!_q2!_q}\\
+					    &= \dfrac{4!_q}{2!_q(4-2)!_q}.
+\end{align*}
+More generally, we have the following theorem.
+\begin{theorem}
+Let $S(k,n-k)$ denote the set of all $n$-bit sequences of $k$ zeros and $n-k$ ones. Then the inversion polynomial corresponding to $S(k,n-k)$ is \[\sum_{\sigma\in S(k,n-k)} q^{\text{inv}(\sigma)}=\left(\begin{array}{c}n \\ k \end{array}\right)_q = \sum_{j=0}^{k(n-k)}c_j(k,n-k)q^j\] where $c_j(k,n-k)$ counts the number of $n$-bit string with exactly $k$ zeros and $j$ inversions.
+\end{theorem}
+\begin{proof}
+\end{proof}
 \section{\texorpdfstring{$q-$}-Counting of lattice paths}
-
-
 \endinput
