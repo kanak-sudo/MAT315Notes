@@ -81,9 +81,11 @@ as required.
 \textcolor{red}{
 [This section is a work in progress!!!] Note to scribe: Add the following topics
 \begin{enumerate}
-    \item Finish details of the proof of EPT
     \item JTP
     \item EPT as a consequence of JTP
+    \item Sylvester's Identity
+    \item EPT as a consequence of SI
+    \item Guessing a RR idenitty
 \end{enumerate}
 }
 Recall how with \cref{d:1.5} we defined integer partitions. The study of these partitions dates back to the work of Leonard Euler in the \nth{18} century, who introduced generating functions to analyze them. Their study was then developed further through the work of mathematicians like Srinivasa Ramanujan and Major MacMachon, who revealed deep arithmetic and combinatorial properties. For instance, if $p(n)$ denotes the number of partitions of $n$, then the celebrated Ramanujan congruences state that
@@ -269,10 +271,28 @@ p_{e}(n)-p_{o}(n) = \begin{cases}
 \label{t:EPT_Aux}
 \end{claim}
 \begin{proof}
+Let $\lambda$ be a partition of $n$. Let $s(\lambda)$ and $\sigma(\lambda)$ denote the smallest part of $\lambda$ and the part obtained by considering elements on the rightmost diagonal respectively. If $s(\lambda)\leq \sigma(\lambda)$, we add one to each of the $s(\lambda)$ largest parts of $\lambda$ and we delete the smallest part. Consider the following example for instance.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Images/Figure24.png}
+    \caption{The partition $\lambda=7+6+4+3+2$ with $s(\lambda)=2$ (marked blue) and $\sigma(\lambda)=2$ (marked red) admits the partition $\lambda'=8+7+4+3$.}
+\end{figure}
+On the other hand, if $s(\lambda)>\sigma(\lambda)$ then we subtract one from each of the $\sigma(\lambda)$ largest parts of $\lambda$ and insert a new smallest part of size $\sigma(\lambda)$. Consider the following example for instance.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Images/Figure25.png}
+    \caption{The partition $\lambda=8+7+4+3$ with $s(\lambda)=3$ (marked blue) and $\sigma(\lambda)=2$ (marked red) admits the partition $\lambda'=7+6+4+3+2$.}
+\end{figure}
+In summary, our map changes the parity of the number of parts of the partition, and noting that exactly one case is applicable to any partition, it is clear why our map is a bijection. However, we are done yet! Our map fails in two cases. One, where $s(\lambda)=m+1$ is exactly one more than $\sigma(\lambda)=m$, i.e, the case where the number being partitioned is \[
+(m+1)+(m+2)+\cdots+2m = m(3m+1)/2.
+\]
+Two, where $s(\lambda)=\sigma(\lambda)$, i.e, the case where the number being partitioned is \[
+m+(m+1)+\cdots+(2m-1) = m(3m-1)/2.
+\]
+This completes the proof. 
 \end{proof}
-Now, \cref{t:EPT} follows as a direct consequence of \cref{t:EPT_Aux}.
-\begin{proof}
-\end{proof}
+Now, \cref{t:EPT} follows as a direct consequence of \cref{t:EPT_Aux}. 
+\par
 To see the usefulness of \cref{t:EPT} consider the following remark.
 \begin{remark}
 Putting \cref{t:EPT} and \cref{c:2.1P} together gives us \[
