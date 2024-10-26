@@ -84,7 +84,6 @@ as required.
     \item Finish details of the proof of EPT
     \item JTP
     \item EPT as a consequence of JTP
-    \item $q$-Pochammer symbols and a few re-statements
 \end{enumerate}
 }
 Recall how with \cref{d:1.5} we defined integer partitions. The study of these partitions dates back to the work of Leonard Euler in the \nth{18} century, who introduced generating functions to analyze them. Their study was then developed further through the work of mathematicians like Srinivasa Ramanujan and Major MacMachon, who revealed deep arithmetic and combinatorial properties. For instance, if $p(n)$ denotes the number of partitions of $n$, then the celebrated Ramanujan congruences state that
@@ -233,6 +232,7 @@ With these three observations at hand, an identity presents itself almost immedi
     \[
     \prod_{i=1}^{\infty}\dfrac{1}{1-q^i} = \sum_{i=0}^{\infty}\dfrac{q^{i^2}}{(1-q)^2(1-q^2)^2\cdots(1-q^i)^2}
     \]
+    \label{c:DurfeeId1}
 \end{claim}
 Next, we state a remarkable result first proved by Euler in the year 1785.
 \begin{theorem}[Euler's Pentagonal Number Theorem]
@@ -257,18 +257,22 @@ Notice how the vertices (marked in red) in \cref{f:PNT} admits a natural partiti
     \includegraphics[width=0.8\linewidth]{Images/Figure21.png}
     \caption{The first $3$ pentagonal numbers and the natural partitions they admit, i.e, $1=1, 5=3+2$ and $12=5+4+3$.}
 \end{figure}
-It is clear that these partitions of pentagonal numbers we have obtained are partitions into distinct parts. To this end, we will try and set up a bijection between partitions of $n$ into an odd number of distinct parts and the partitions of $n$ into an even number of distinct parts. To this end, it suffices to set-up a bijection which changes the number of partitions by exactly $1$ whilst keeping the distinctness intact. \textcolor{red}{[ADD THE MAP (Franklin's Bijection) HERE.]} In summary, if $p_{ED}(n)$ and $p_{OD}(n)$ denote
-the number of partitions into an even number of distinct parts and an odd number of distinct parts respectively, then we have shown that
-\begin{align*}
-    p_{ED}(n)-p_{OD}(n) &= 
-    \begin{cases}
-        (-1)^j & \quad \text{if } n \text{ is a pentagonal number} \\
-        0 & \quad \text{otherwise}
-    \end{cases}.
-\end{align*}
-This proves \cref{t:EPT} (\textcolor{red}{[EXPLAIN HOW]}). 
-
-\par
+It is clear that these partitions of pentagonal numbers we have obtained are partitions into distinct parts. To this end, we will try and set up a bijection between partitions of $n$ into an odd number of distinct parts and the partitions of $n$ into an even number of distinct parts. Consider the following auxillarly claim.
+\begin{claim}
+Let $p_{e}(n)$ and $p_{o}(n)$ denote the number of partitions of $n$ into an even and odd number of distinct parts respectively. Then
+\[
+p_{e}(n)-p_{o}(n) = \begin{cases}
+    (-1)^m \quad &\text{if } n = \dfrac{m(3m\pm 1)}{2} \\
+    0 \quad &\text{otherwise}
+\end{cases}
+\]
+\label{t:EPT_Aux}
+\end{claim}
+\begin{proof}
+\end{proof}
+Now, \cref{t:EPT} follows as a direct consequence of \cref{t:EPT_Aux}.
+\begin{proof}
+\end{proof}
 To see the usefulness of \cref{t:EPT} consider the following remark.
 \begin{remark}
 Putting \cref{t:EPT} and \cref{c:2.1P} together gives us \[
@@ -286,4 +290,25 @@ The symbol $(x;q)_n$ is referred to as the $q$-shifted factorial. We extend our 
 \[
 (x;q)_\infty := \lim_{n\to \infty}\left(\prod_{i=0}^{n-1}(1-xq^i)\right) = \prod_{i=0}^{\infty}(1-xq^i) = (1-x)(1-xq)(1-xq^2)\cdots.
 \]
+It follows (by setting $x$ to $q$) that
+\begin{align*}
+    &(q;q)_n = (1-q)(1-q^2)\cdots(1-q^n) = \prod_{i\geq 1}^n (1-q^i)\\
+    &(q;q)_\infty = (1-q)(1-q^2)\cdots = \prod_{i\geq 1}(1-q^i)
+\end{align*}
+\raggedbottom
+In the spirit of getting comfortable with the newly introduce notation it is a good exercise to verify the following re-statements of the claims we have made so far;
+\begin{align*}
+    &\sum_{n \geq 0} p(n) q^n = \dfrac{1}{(q;q)_\infty} \quad (\text{Refer to } \cref{c:2.1P}) \\
+    &\sum_{n \geq 0} p_D(n) q^n = (-q;q)_\infty \quad (\text{Refer to } \cref{t:Euler'sGem}) \\
+    &\sum_{n \geq 0} \dfrac{q^{n^2}}{(q;q)_n^2} =\dfrac{1}{(q;q)_\infty}\quad (\text{Refer to } \cref{c:DurfeeId1})
+\end{align*}
+To see the usefulness of our notation, we introduce ourselves to a bi-variate generating function. Consider the expansion of $1/(xq;q)_\infty$ in which the coefficient of $x^k$ is $1/(q;q)_k$. More succinctly put we get;
+\begin{claim}
+\[\sum_{n\geq 0}^\infty\dfrac{x^n}{(q;q)_n} = \dfrac{1}{(x;q)_\infty}.\]
+\end{claim}
+A more natural interpretation of the identity comes from setting $x\to xq$ to arrive at
+\[
+\sum_{n\geq 0}^\infty \dfrac{x^kq^k}{(q;q)_k} = \dfrac{1}{(xq;q)_\infty}.
+\]
+Now the coefficent of $x^k$ is the generating function for partitions with exactly $k$ parts. 
 \endinput
