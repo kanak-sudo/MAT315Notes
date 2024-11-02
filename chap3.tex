@@ -8,7 +8,7 @@ Corresponding to the constant sequence of $1$s, the generating function is $1+x+
 \begin{example}
 Corresponding to the sequence $1,2,3,\cdots$, the generating function is $1+2x+3x^2+4x^3+\cdots = 1/(1-x)^2$. Notice how equality follows from the fact that $1+2x+3x^2+4x^3+\cdots$ is the formal derivative of the generating function we obtained in the previous example.
 \end{example}
-More often than not generating functions are used to solve recurrences. For instance consider the following question.
+More often than not generating functions are used to solve recurrences. For instance, consider the following question.
 \begin{question}
 Find a closed form expression for the recurrence given by $a_{n+1}=2a_n+1$ where $a_0=0$. 
 \end{question}
@@ -39,7 +39,7 @@ Let $r_1,r_2 = (-1\pm\sqrt{5})/2$ be the roots of the polynomial $1-x-x^2$ and n
 \end{align*}
 Now, the $n$-th Fibbonaci number is just the coefficient of $x^n$ in $F(x)$. 
 \end{solution}
-Often-times we are interested in computing the product of two generating functions. To this end,consider the following result due to Cauchy. 
+Oftentimes we are interested in computing the product of two generating functions. To this end, consider the following result due to Cauchy. 
 \begin{claim}[Cauchy Product]
 Let $A(x) = \sum_{n\geq 0}a_nx^n$ and $B(x)=\sum_{n\geq 0}b_nx^n$ be two ordinary generating functions. Their product $C(x)$, is then given by $A(x)B(x)=\sum_{n\geq 0}c_nx^n$ where \[
 c_n = \sum_{k=0}^{n}a_kb_{n-k}

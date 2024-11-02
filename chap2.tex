@@ -1,6 +1,6 @@
 \chapter{The Art of Combinatorial Thinking}
 \section{Binomial Coefficients}
-This section aims to push-forward our familiarity with binomial coefficients which we have gained from the previous chapter. We do so by outlining proofs of a few standard combinatorial identities.
+This section aims to push forward our familiarity with binomial coefficients which we have gained from the previous chapter. We do so by outlining proofs of a few standard combinatorial identities.
 \begin{comment}
 Three numbers out of the $n+1$ choices say $a_{1}<a_{2}<a_{3}$. Now argue for the first three sums based on which one of these is chosen first. 
 
@@ -15,7 +15,7 @@ The first sum corresponds to choosing $a_2$. The second sum corresponds to choos
 Give a proof using lattice paths. 
 RHS is the number of lattice paths from $(0,0)\to (r+1,n-r)$. For the LHS what happens before the last E step.
 
-The idea is not always to prove equalities. Infact more often than not we will be interested in proving inequalities
+The idea is not always to prove equalities. In fact more often than not we will be interested in proving inequalities
  \begin{question}
 	 \binom{2n}{n}<4^n
 \end{question}
@@ -32,7 +32,7 @@ Convert binary to lattice: 0 to N, 1 to E and so on.
 		2\binom{2n-1}{n} = \binom{2n}{n}
 	.\] 
 \end{question}
-Give two proofs. One using Pascals identity. The other by choosing sets.
+Give two proofs. One using Pascal's identity. The other by choosing sets.
 \end{comment}
 
 \begin{claim}
@@ -76,7 +76,7 @@ For all $n\geq r\geq 0$ we have
 .\] 
 \end{claim}
 \begin{proof}
-We give a double counting argument. Noitce how $\binom{n+1}{r+1}$ counts the number of ways to choose $(r+1)$-element subsets of $[n+1]=\{1,\ldots,n+1\}$. A choice of the said subsets can also be made by first fixing the largest of the $r+1$ numbers. This is given by $\binom{r}{r}+\cdots+\binom{n}{r}$. 
+We give a double-counting argument. Noitce how $\binom{n+1}{r+1}$ counts the number of ways to choose $(r+1)$-element subsets of $[n+1]=\{1,\ldots,n+1\}$. A choice of the said subsets can also be made by first fixing the largest of the $r+1$ numbers. This is given by $\binom{r}{r}+\cdots+\binom{n}{r}$. 
 \end{proof}
 \begin{claim}
 $\binom{2n}{n}<4^n$
@@ -100,10 +100,10 @@ Once again, by \cref{r:1.2}, notice how \[
 	\]
 \end{claim}
 \begin{proof}
-We give a double counting argument. Notice how $3^n$ is the number of $n$-bit ternary strings. Each such string will have $n-k$-many $0$s in it where $0\leq k \leq n$. Such a string can be chosen in $\binom{n}{n-k}=\binom{n}{k}$ ways, and the remanining $k$ bits (which can now only either be $1$s or $2$s) can be chosen in $2^k$ ways. This completes the proof. 
+We give a double-counting argument. Notice how $3^n$ is the number of $n$-bit ternary strings. Each such string will have $n-k$-many $0$s in it where $0\leq k \leq n$. Such a string can be chosen in $\binom{n}{n-k}=\binom{n}{k}$ ways, and the remaining $k$ bits (which can now only either be $1$s or $2$s) can be chosen in $2^k$ ways. This completes the proof. 
 \end{proof}
 \section{Catalan Numbers}
-This section introduces a set of problems which are seemingly distinct but share a common underlying sequence of numbers called the Catalan numbers. We shall show this commonality by setting up appropriate bijections between the said problems. 
+This section introduces a set of problems that are seemingly distinct but share a common underlying sequence of numbers called the Catalan numbers. We shall show this commonality by setting up appropriate bijections between the said problems. 
 \begin{question}
 Recall how with \cref{q:1.8} we counted the number of lattice paths from $(0,0)$ to $(m,n)$. Count the number of lattice paths, $a_1(n)$, from $(0,0)$ to $(n,n)$ which never go below the $x=y$ diagonal.
 \end{question}
@@ -153,13 +153,13 @@ Count the number of ways $a_5(n)$, of joining $n$ non-intersecting chords on a c
 Once again, a bijection presents itself when \cref{f:3.22} and \cref{f:3.24} are compared. Namely, if $p_1,\cdots,p_{2n}$ are the marked points on the circle, then we join $p_i$ and $p_j$ if and only if $i$ occurs below $j$ in the arranged grid of numbers. 
 \end{solution}
 \begin{question}
-Count $a_6(n)$, the number of legal sequences of $2n$ parentheses. Where, by a legal sequence of parentheses we mean one in which the parentheses can be properly matched, i.e, each opening parenthesis should be matched to a closing one that lies further to its right. We count these for $n=1,2,3$.
+Count $a_6(n)$, the number of legal sequences of $2n$ parentheses. Where, by a legal sequence of parentheses we mean one in which the parentheses can be properly matched, i.e., each opening parenthesis should be matched to a closing one that lies further to its right. We count these for $n=1,2,3$.
 \begin{align*}
     & n=1: \quad \left(\right) \\
     & n=2: \quad \left(\left(\right)\right), \left(\right)\left(\right) \\
     & n=3: \quad \left(\left(\left(\right)\right)\right), \left(\right)\left(\left(\right)\right), \left(\left(\right)\right)\left(\right), \left(\right)\left(\right)\left(\right)
 \end{align*}
-Once again, notice how corresponding to each grid in \cref{f:3.22} there is a legal sequence of parentheses. Namely, for each entry in the first row we open a parenthesis, and close it for each entry in the second row.    
+Once again, notice how corresponding to each grid in \cref{f:3.22} there is a legal sequence of parentheses. Namely, for each entry in the first row, we open a parenthesis, and close it for each entry in the second row.    
 \end{question}
 \begin{question}
 Count $a_7(n)$, the number of non-crossing partitions on the set $[2n]:=\{1,2,3,\cdots,2n\}$. Where by a non-crossing partition on $[2n]$ we refer to an arrangement of $2n$ points on a line, with $n$ non-intersecting arcs joining them.    
@@ -175,7 +175,7 @@ Once again, a bijection presents itself when \cref{f:3.22} and \cref{f:3.25} are
 \end{solution}
 To summarize, by the many bijections we have set up, $C(n):=a_1(n)=a_2(n)=\cdots=a_7(n)$ for all $n\geq 0$. Additionally, we have also seen that $A(n)$ takes values $1,1,2$ and $5$ for when $n=0,1,2$ and $3$ respectively. Motivated readers may check why and how $C(4)=14$, $C(5)=42$, and so on, but this is not how we want to proceed. Consider the following definitions.
 \begin{definition}[Triangulation]
-A triangulation of a convex polygon with $n+2$ vertices $\mathcal{P}_{n+2}$, is a set of $n-1$ diagonals which do not cross each other in the interior of $\mathcal{P}_{n+2}$. 
+A triangulation of a convex polygon with $n+2$ vertices $\mathcal{P}_{n+2}$, is a set of $n-1$ diagonals that do not cross each other in the interior of $\mathcal{P}_{n+2}$. 
 \end{definition}
 \begin{remark}
 For instance, the $3$-gon (triangle) has no triangulations, but the $4$-gon (square/rectangle) has $2$.    
@@ -208,7 +208,7 @@ C(n) = \dfrac{1}{n+1}\binom{2n}{n}
 \begin{proof}
 Let \[f(x) = \sum_{n=0}^{\infty}C(n)x^n\] be the generating function corresponding to the Catalan numbers. By \cref{t:segner},
 \begin{align*}
-    f(x)^2 &= C(0)^2 + (C(0)C(1)+C(1)C(0))x + \cdots + (C(0)C(n)+C(1)C(n-1)+\cdots+C(n)C(0))x^n + \cdots \\
+    f(x)^2 &= C(0)^2 + (C(0)C(1)+C(1)C(0))x + \cdots + (C(0)C(n)\\ &\quad +C(1)C(n-1)+\cdots+C(n)C(0))x^n + \cdots \\
     &= C(1)+C(2)x+\cdots+C(n+1)x^n+\cdots \\
     &= \dfrac{C(x)-C(0)}{x}.
 \end{align*}
@@ -223,7 +223,7 @@ C(x) = \sum_{n=0}^{\infty}\dfrac{1}{n+1}\binom{2n}{n}x^n.
 \]
 \end{proof}
 \begin{remark}
-Catalan numbers come up in a huge class of counting problems. In fact, Richard Stanley, in his book, ``Catalan Numbers'' outlines $214$ such problems. That being said, the many bijections we have outlined in this section are not always as easy to find. In such cases the defining recurrence (\cref{t:segner}) we have obtained is particularly useful. Consider the following example for instance.
+Catalan numbers come up in a huge class of counting problems. Richard Stanley, in his book, ``Catalan Numbers'' outlines $214$ such problems. That being said, the many bijections we have outlined in this section are not always as easy to find. In such cases, the defining recurrence (\cref{t:segner}) we have obtained is particularly useful. Consider the following example for instance.
 \end{remark}
 \begin{question}
 Count the number of binary trees with $n$ vertices.
@@ -240,7 +240,7 @@ a_n = \sum_{i=0}^{n-1}a_ia_{n-i-1}.
 \]
 Comparing with \cref{t:segner} we get that $a_n$ is counted by the Catalan numbers. 
 \end{solution}
-We are now interested in stating a recurrence for Catalan numbers which is different from the one we already stated. To this end consider the following theorem and it's corollary. 
+We are now interested in stating a recurrence for Catalan numbers which is different from the one we already stated. To this end consider the following theorem and its corollary. 
 \begin{theorem}
     Let $T_n$ be the number of triangulations of an $n$-gon, then for $n\geq 4$,
     \[
@@ -254,7 +254,7 @@ We are now interested in stating a recurrence for Catalan numbers which is diffe
     \label{f:Segner2f}
 \end{figure}
 \begin{proof}
-Consider an $n$-gon with vertices $A_1,A_2,\ldots,A_n$. Conisder an arbitrary diagonal $\overline{A_1A_k}$ leaving $A_1$, where $2<k<n$. See \cref{f:Segner2f} and notice how this partitions the $n$-gon into the $k$-gon $A_1A_2\ldots A_k$ (marked red) and the $(n-k+2)$-gon $A_1A_kA_{k+1}\ldots A_n$ (marked blue). The $k$-gon can be triangulated in $T_k$ ways and the $(n-k+2)$-gon in $T_{n-k+2}$ ways. It follows that the $n$-gon can be triangulated in a total of $T_kT_{n-k+2}$ ways. Since $k$ is allowed to vary between $3$ and $n-1$, it also follows that the total number of triangulation based at $A_1$ are given by \[
+Consider an $n$-gon with vertices $A_1,A_2,\ldots,A_n$. Conisder an arbitrary diagonal $\overline{A_1A_k}$ leaving $A_1$, where $2<k<n$. See \cref{f:Segner2f} and notice how this partitions the $n$-gon into the $k$-gon $A_1A_2\ldots A_k$ (marked red) and the $(n-k+2)$-gon $A_1A_kA_{k+1}\ldots A_n$ (marked blue). The $k$-gon can be triangulated in $T_k$ ways and the $(n-k+2)$-gon in $T_{n-k+2}$ ways. It follows that the $n$-gon can be triangulated in a total of $T_kT_{n-k+2}$ ways. Since $k$ is allowed to vary between $3$ and $n-1$, it also follows that the total number of triangulations based at $A_1$ are given by \[
 \sum_{k=3}^{n-1}T_kT_{n-k+2}.
 \]
 Our choice of $A_1$ is not special. Since there $n$ choices of vertices where the triangulation can be based one might think the count is
