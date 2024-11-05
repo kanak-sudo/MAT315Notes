@@ -207,15 +207,48 @@ It is clear that a proof of \cref{t:FQB} follows directly as a consequence of th
 \[
     \binom{n+1}{k}_q = \binom{n}{k}_q + q^{n-k+1}\binom{n}{k-1}_q
 \]
+\label{c:q_Pascal}
 \end{claim}
 \begin{proof}
+We give a double counting argument. 
 \end{proof}
 Given our introduction to $q$-binomial coefficients, it is natural to ask if there is such a thing as $q$-multinomial coefficients as well. To this end, consider,
 \begin{definition}
+The multinomial coefficient corresponding to non-negative $k_1,\ldots,k_m$ adding up to $n$ is denoted by
+\[
+\binom{n}{k_1,\ldots,k_m} := \dfrac{n!_q}{k_1!_q\cdots k_m!_q}.
+\]
 \end{definition}
-It is also natural to ask if there is such a thing as the $q$-binomial theorem. Indeed there is.
+As one might expect $\binom{n}{k_1,\ldots,k_m}$ is the inversion polynomial corresponding to $S_n(k_1,\ldots,k_m)$, the set of all $n$-length permutations with $k_i$-many $i$s ($i=1,\ldots,m$). We shall omit the proof, however a proof by induction is not too difficult to work out. Once again, it is also natural to ask if there is such a thing as the $q$-binomial theorem. Indeed there is.
 \begin{theorem}
 \end{theorem}
 \section{\texorpdfstring{$q-$}-Counting of lattice paths}
-We are interested, once again, in counting the number of lattice paths, but with weights this time.
+We are interested, once again, in the counting of lattice paths, but with weights this time. More specifically to each step in a lattice path we assign the number of unit blocks right below it as it's weight. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\linewidth]{Images/Figure27.png}
+    \caption{A lattice path with weight $q^0q^1q^1q^3=q^5$.}
+    \label{f:F2L}
+\end{figure}
+We want to give a $q$-analogue of the double counting argument we used in \cref{q:1.8} to come up with a useful reccurence. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\linewidth]{Images/Figure28.png}
+    \caption{}
+    \label{fig:Cayley_Rec}
+\end{figure}
+Refer to \cref{fig:Cayley_Rec} and notice how if a lattice path starts with an $E$-step then we only have to care about the weights due the ``smaller'' path over the remaining blocks (colored blue). On the other hand, if a lattice path starts with an $N$-step then we first row (colored white) always adds a weight of $1$ block and we only have to take care of the ``smaller'' lattice path over the remaining blocks (colored red). By \cref{c:q_Pascal} our observation allows us to deduce the following result due to George Polya.
+\begin{theorem}
+Let $A_{n,k}(r)$ denote the number of $n$-step lattice paths from $(0,0)$ to $(k,n-k)$ which span $r$ unit blocks under them. Then 
+\[
+\binom{n}{k}_q = \sum_{r=0}^{k(n-k)}A_{n,k}(r)q^r
+\]
+\end{theorem}
+It is not difficult to see that every lattice path corresponds to a Ferrer's diagram and hence a partition. For instance, the lattice path in \cref{f:F2L} corresponds to the partition $3+1+1$ of $5$. To this end, consider the following theorem due to Cayley.
+\begin{theorem}
+Let $p_{i,j}\left( n \right)$ denote the number of partitions of $n$ into atmost $i$ parts each of which is atmost $j$. Then \[
+	\sum_{n=0}^{ij}p_{i,j}\left( n \right) q^n = \binom{i+j}{i}_q 
+\]     
+\end{theorem}
+
 \endinput
