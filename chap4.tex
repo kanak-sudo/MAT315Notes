@@ -315,6 +315,7 @@ In the spirit of getting comfortable with the newly introduced notation it is a 
 To see the usefulness of our notation, we introduce ourselves to a bi-variate generating function. Consider the expansion of $1/(xq;q)_\infty$ in which the coefficient of $x^k$ is $1/(q;q)_k$. More succinctly put we get;
 \begin{claim}
 \[\sum_{n\geq 0}^\infty\dfrac{x^n}{(q;q)_n} = \dfrac{1}{(x;q)_\infty}.\]
+\label{c:JPT_Aux1}
 \end{claim}
 A more natural interpretation of the identity comes from setting $x\to xq$ to arrive at
 \[
@@ -331,7 +332,20 @@ For $|q|<1$ and $z\neq 0$ we have
 \end{theorem}
 Before giving a proof of the identity, we remark that by setting $q\to q^{3/2}$ and $z\to -\sqrt{q}$ we retrieve Euler's pentagonal number theorem back. 
 \begin{proof}
-\textcolor{red}{[Note to scribe: Finish the proof(s)!]}
+From \cref{c:JPT_Aux1} it is clear why \[
+\dfrac{1}{(-x;q)_\infty} = \sum_{n\geq 0}\dfrac{(-1)^nx^n}{(q;q)_n}. 
+\] Additionally, since $q^{\binom{k}{2}}/(q;q)_k$ is the generating function for partitions into exactly $k$-many distinct parts, it is also true that \[
+\sum_{k=0}^{\infty}\dfrac{q^{\binom{k}{2}}x^k}{(q;q)_k} = (-x;q)_\infty.
+\]
+Keeping these two identities at hand, notice how
+\begin{align*}
+    (-xq;q^2)_\infty &= \sum_{k=0}^\infty \dfrac{q^{k^2}x^k}{(q^2;q^2)_k} \\
+    &= \dfrac{1}{(q^2;q^2)_\infty}\sum_{k=-\infty}^{\infty}q^{k^2}x^k(q^{2n+2};q^2)_\infty. \\
+    &= \dfrac{1}{(q^2;q^2)_\infty}\sum_{k=-\infty}^{\infty}q^{k^2}x^k\sum_{m=0}^{\infty}\dfrac{(-1)^mq^{m^2+m+2mn}}{(q^2;q^2)_m} \\
+    &=\dfrac{1}{(q^2;q^2)_\infty}\sum_{m=0}^{\infty}\dfrac{(-1)^m(q/x)^m}{(q^2;q^2)_m}\sum_{n=-\infty}^{\infty}q^{(n+m)^2}x^{n+m} \\
+    &= \dfrac{1}{(q^2;q^2)_\infty}\dfrac{1}{(-q/x;q^2)_\infty}\sum_{n=-\infty}^{\infty}q^{n^2}x^n
+\end{align*}
+as required. 
 \end{proof}
 Next, we turn our attention to an identity due to Sylvester. One reason why this identity is important is because Euler's pentagonal theorem presents itself as a corollary of Sylvester's identity. 
 \begin{theorem}[Sylvester's Identity]

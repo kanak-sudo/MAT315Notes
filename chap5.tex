@@ -202,7 +202,6 @@ More generally, we have the following theorem.
 Let $S(k,n-k)$ denote the set of all $n$-bit sequences of $k$ zeros and $n-k$ ones. Then the inversion polynomial corresponding to $S(k,n-k)$ is \[\sum_{\sigma\in S(k,n-k)} q^{\text{inv}(\sigma)}=\left(\begin{array}{c}n \\ k \end{array}\right)_q = \sum_{j=0}^{k(n-k)}c_j(k,n-k)q^j\] where $c_j(k,n-k)$ counts the number of $n$-bit string with exactly $k$ zeros and $j$ inversions.
 \label{t:FQB}
 \end{theorem}
-It is clear that a proof of \cref{t:FQB} follows directly as a consequence of the following identity.
 \begin{claim}[A $q$-analogue of Pascal's identity]
 \[
     \binom{n+1}{k}_q = \binom{n}{k}_q + q^{n-k+1}\binom{n}{k-1}_q
@@ -210,7 +209,7 @@ It is clear that a proof of \cref{t:FQB} follows directly as a consequence of th
 \label{c:q_Pascal}
 \end{claim}
 \begin{proof}
-We give a double counting argument. 
+We give a double counting argument. Notice how the L.H.S is the inversion polynomial corresponding to $S(k,n+1-k)$. It is also true that every $n+1$-bit sequence in $S(k,n+1-k)$ either ends with a $1$ in which case it is not inverted with any of the preceding symbols - this explains the first term of the R.H.S, or ends with a $0$ in which case it is inverted with all the $n-k+1$-many $1$s - this explains the second term of the R.H.S. 
 \end{proof}
 Given our introduction to $q$-binomial coefficients, it is natural to ask if there is such a thing as $q$-multinomial coefficients as well. To this end, consider,
 \begin{definition}
@@ -219,9 +218,25 @@ The multinomial coefficient corresponding to non-negative $k_1,\ldots,k_m$ addin
 \binom{n}{k_1,\ldots,k_m} := \dfrac{n!_q}{k_1!_q\cdots k_m!_q}.
 \]
 \end{definition}
-As one might expect $\binom{n}{k_1,\ldots,k_m}$ is the inversion polynomial corresponding to $S_n(k_1,\ldots,k_m)$, the set of all $n$-length permutations with $k_i$-many $i$s ($i=1,\ldots,m$). We shall omit the proof, however a proof by induction is not too difficult to work out. Once again, it is also natural to ask if there is such a thing as the $q$-binomial theorem. Indeed there is.
+As one might expect $\binom{n}{k_1,\ldots,k_m}$ is the inversion polynomial corresponding to $S_n(k_1,\ldots,k_m)$, the set of all $n$-length permutations with $k_i$-many $i$s ($i=1,\ldots,m$). We shall omit the proof, however a proof by induction is not too difficult to work out. Once again, it is also natural to ask if there is such a thing as the $q$-binomial theorem. Infact there are several of them. We state one of them here. 
 \begin{theorem}
+\[
+\prod_{i=1}^{n}(1+xq^i) = \sum_{i=0}^{n}\binom{n}{i}_q q^{i(i+1)/2}x^i
+\]
 \end{theorem}
+\begin{proof}
+Notice how $\prod_{i=1}^{n}(1+xq^i)$ can be written as \[
+\sum_{i=0}^{n}a_i(q)x^i
+\]
+where $a_i(q)$ is the generating function of partitions into distinct parts with exactly $i$ part, where each part is $\leq n$. With this observation at hand it suffices to show that $a_i(q)$ is 
+\[
+\binom{n}{i}_q q^{i(i+1)/2}=\binom{n}{i}q^{1+2+3+\cdots+i}.
+\]
+To this end let $\lambda=\lambda_1+\cdots+\lambda_i$ be a partition into distinct parts and consider the partition into exactly $i$ parts where each part is $\leq n-i$ which is constructed by removing $i$ from the first part, $i-1$ from the the second part, and so on. More specifically consider $\lambda' = (\lambda_1-i)+(\lambda_2-(i-1)+\cdots+\lambda_i-1)$. The generating function for such partitions, as we know, is \[
+\binom{n-i+1}{i}_q = \binom{n}{i}_q.
+\]
+This completes the proof.
+\end{proof}
 \section{\texorpdfstring{$q-$}-Counting of lattice paths}
 We are interested, once again, in the counting of lattice paths, but with weights this time. More specifically to each step in a lattice path we assign the number of unit blocks right below it as it's weight. 
 \begin{figure}[H]
@@ -237,7 +252,7 @@ We want to give a $q$-analogue of the double counting argument we used in \cref{
     \caption{}
     \label{fig:Cayley_Rec}
 \end{figure}
-Refer to \cref{fig:Cayley_Rec} and notice how if a lattice path starts with an $E$-step then we only have to care about the weights due the ``smaller'' path over the remaining blocks (colored blue). On the other hand, if a lattice path starts with an $N$-step then we first row (colored white) always adds a weight of $1$ block and we only have to take care of the ``smaller'' lattice path over the remaining blocks (colored red). By \cref{c:q_Pascal} our observation allows us to deduce the following result due to George Polya.
+Refer to \cref{fig:Cayley_Rec} and notice how if a lattice path starts with an $E$-step then we only have to care about the weights due the ``smaller'' path over the remaining blocks (colored blue). On the other hand, if a lattice path starts with an $N$-step then we first row (colored white) always adds a weight of $1$ block and we only have to take care of the ``smaller'' lattice path over the remaining blocks (colored red). Putting \cref{c:q_Pascal} and our observation together allows us to deduce the following result due to George Polya.
 \begin{theorem}
 Let $A_{n,k}(r)$ denote the number of $n$-step lattice paths from $(0,0)$ to $(k,n-k)$ which span $r$ unit blocks under them. Then 
 \[
@@ -250,5 +265,31 @@ Let $p_{i,j}\left( n \right)$ denote the number of partitions of $n$ into atmost
 	\sum_{n=0}^{ij}p_{i,j}\left( n \right) q^n = \binom{i+j}{i}_q 
 \]     
 \end{theorem}
-
+\begin{proof}
+Let $c_{i,j}\left( n \right)$ denote the number of sequences with $i$-many $0$s and $j$-many $1$s having exactly $n$-many inversions. We know that
+\begin{align*}
+	\binom{i+j}{i}_q = \sum_{n=0}^{ij}c_{i,j}\left( n \right)q^n.
+\end{align*}
+Also, if $A_{i,j}\left( n \right)$ denotes the number of lattice paths from $\left( 0,0 \right)$ to $\left( i,j \right)$ we also know that
+\begin{align*}
+	\binom{i+j}{i}_{q} = \sum_{n=0}^{ij}A_{i,j}\left( n \right)q^n.
+\end{align*}
+Hence, to prove our claim it suffices to construct a bijection between $p_{i,j}\left( n \right)$ and $A_{i,j}\left( n \right)$ and/or $c_{i,j}\left( n \right)$. To this end, consider the following partition \[
+	n = \pi_{1}+\pi_{2}+\cdots+\pi_{i}
+\]
+where $\pi_{k}\leq j$ for all possible choices of $k$. For every such partition, it is possible to construct a sequence of $j$-many $0$s and $i$-many $1$s, say $\sigma$, which has exactly $\pi_{1}$-many $0$s followed by the first occurrence of $1$ in $\sigma$, $\pi_{2}$-many $0$s followed by the second occurrence of $1$ in $\sigma$, and so on, all the way up to $\pi_{i}$-many $0$s followed by the last occurrence of $1$ in $\sigma$. This gives a bijection between $p_{i,j}\left( n \right)$ and $c_{j,i}\left( n \right)$. Next, we give a bijection between $p_{i,j}\left( n \right)$ and $A_{i,j}\left( n \right)$. Let $\sigma \in S\left(j,i\right)$ be the sequence of $j$-many $0$s and  $i$-many $1$s corresponding to the partition of $n$ considered above. Now, setting the occurrence of a $1$ in $\sigma$, and the occurrence of a $0$ in $\sigma$ to an $N$ move, and an $E$ move respectively in the Ferrers diagram of $\pi_{1}+\cdots+\pi_{i}$ gives a path from $\left( 0,0 \right)$ to $\left( i,j \right)$ which spans exactly $n$ blocks under it.
+\end{proof}
+We conclude this section by introducing two different $q$-analogues of Catalan numbers. Before doing so we introduce a new statistic on permutations. 
+\begin{definition}
+Let $\sigma$ be a permutation on $[n]$. An integer $1\leq i\leq n-1$ is called a descent of $\sigma$ if $\sigma(i)>\sigma(i+1)$. 
+\end{definition}
+The set of all descents of a permutation is called it's descent set. For instance the descent set of $(613524)$ is $\{1,4\}$. Finally, the major index of a permutation is the sum of all the elements in the descent set. These definition might seem unmotivated. However, consider the following result which we state without a proof. 
+\begin{comment}
+\begin{theorem}
+Let $S_n$ denote the set of all permutations on $[n]$. Let $\text{maj}(\sigma)$ denote the major index of a permutation $\sigma$ in $S_n$. Then
+\[
+    \sum_{\sigma\in S_n} q^{\text{maj}(\sigma)}.
+\]
+\end{theorem}
+\end{comment}
 \endinput
