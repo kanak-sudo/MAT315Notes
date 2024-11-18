@@ -10,6 +10,11 @@
 \section{Perfect Matchings and Pfaffian Orientations}
 Refer to \href{https://youtu.be/ydCWu6aiAxE?si=v91XmPDjM3qkfGKw}{https://youtu.be/ydCWu6aiAxE?si=v91XmPDjM3qkfGKw}. 
 \section{Graphs and Trees}
+\textcolor{red}{[This section is a work in progress. Note to scribe:]
+\begin{enumerate}
+    \item Finish a proof of Theorem 2.3.
+\end{enumerate}
+}
 We start with a standard result on graphs.
 \begin{theorem}
     Let $G$ be a simple, connected graph on $n$ vertices. Then the following are equivalent.
@@ -41,6 +46,25 @@ If $T_n$ denotes the number of labeled trees on $n$ vertices, then
     \label{t:Cayley's Formula}
 \end{theorem}
 \begin{proof}
+Let $A=[k]$ be a set of vertices. Let $T_{n,k}$ count the number of labeled forests on $[n]$ consisting of $k$ trees where the vertices of $A$ appear in different trees. Let $F$ be a forest in this setting.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Images/Figure30.png}
+    \caption{}
+    \label{f:CTProof}
+\end{figure}
+As is clear by \cref{f:CTProof}, if $1$ is adjacent to $i$ vertices, deleting it, the $i$ neighbors together with $2,\ldots,k$ yield one vertex each in the components of a forest that consists of $k-1+i$ trees. Since $F$ can also be constructed by fixing $i$, then choosing the $i$ neighbors of $1$ and then the forest $F\backslash \{1\}$ gives \[
+T_{n,k} = \sum_{i=0}^{n-k}\binom{n-k}{i}T_{n-1,k-1+i}
+\]
+for all choices of $n\geq k\geq 1$ where $T_{0,0}=1$ and $T_{n,0}=0$ as expected. By induction and the expression for $T_{n,k}$ which we have found, it follows that
+\begin{align*}
+    T_{n,k}&= \sum_{i=0}^{n-k}\binom{n-k}{i}(k-1+i)(n-1)^{n-1-k-i} \\
+    &= \sum_{i=0}^{n-k}(n-1)^i-\sum_{i=1}^{n-k}\binom{n-k}{i}i(n-1)^{i-1} \\
+    &= n^{n-k}-(n-k)\sum_{i=0}^{n-1-k}\binom{n-1-k}{i}(n-1)^i \\
+    &= n^{n-k}-(n-k)n^{n-1-k} \\
+    &= kn^{n-1-k}.
+\end{align*}
+Setting $k\to 1$ gives us the required result.
 \end{proof}
 \begin{theorem}
 The number of rooted forests on $[n]$ is $(n+1)^{n-1}$.
@@ -60,7 +84,12 @@ We conclude this section with a result whose proof we shall omit but see \cref{t
 \end{theorem}
 Notice how setting $k\to 1$ and multiplying the result by $n$ (to account for the $n$ choices of roots) gives \cref{t:Cayley's Formula} back. 
 \section{Permutations Revisited}
-
+\textcolor{red}{[This section is a work in progress. Note to scribe:]
+\begin{enumerate}
+    \item Add a short section on Japanese ladders.
+    \item Add a short section on Stack-Sortable-Permutations.
+\end{enumerate}
+}
 %\section{Symmetric Functions}
 
 
