@@ -238,11 +238,6 @@ To this end let $\lambda=\lambda_1+\cdots+\lambda_i$ be a partition into distinc
 This completes the proof.
 \end{proof}
 \section{\texorpdfstring{$q-$}-Counting of lattice paths}
-\textcolor{red}{[This section is a work in progress. Note to scribe:]
-\begin{enumerate}
-    \item Add two $q$-analogues of Catalan numbers.
-\end{enumerate}
-}
 We are interested, once again, in the counting of lattice paths, but with weights this time. More specifically to each step in a lattice path we assign the number of unit blocks right below it as it's weight. 
 \begin{figure}[H]
     \centering
@@ -288,13 +283,39 @@ We conclude this section by introducing two different $q$-analogues of Catalan n
 \begin{definition}
 Let $\sigma$ be a permutation on $[n]$. An integer $1\leq i\leq n-1$ is called a descent of $\sigma$ if $\sigma(i)>\sigma(i+1)$. 
 \end{definition}
-The set of all descents of a permutation is called it's descent set. For instance the descent set of $(613524)$ is $\{1,4\}$. Finally, the major index of a permutation is the sum of all the elements in the descent set. These definition might seem unmotivated. However, consider the following result which we state without a proof. 
-\begin{comment}
+The set of all descents of a permutation is called it's descent set. For instance the descent set of $(613524)$ is $\{1,4\}$. Finally, the major index of a permutation is the sum of all the elements in the descent set. These definitions might seem unmotivated. However, consider the following result which we state without a proof (one proof is outlined as an exercise in Assignment 3). 
 \begin{theorem}
 Let $S_n$ denote the set of all permutations on $[n]$. Let $\text{maj}(\sigma)$ denote the major index of a permutation $\sigma$ in $S_n$. Then
 \[
-    \sum_{\sigma\in S_n} q^{\text{maj}(\sigma)}.
+    \sum_{\sigma\in S_n} q^{\text{maj}(\sigma)} = n!_q.
 \]
 \end{theorem}
-\end{comment}
+With this background at hand, we are ready to introduce a $q$-analogue of Catalan numbers first given by MacMahon.
+\begin{theorem}
+Let $L^+$ denote the set of all lattice paths from $(0,0)$ to $(n,n)$ which never go below the main diagonal. For an arbitrary choice of $\pi\in L^+$, let $\sigma(\pi)$ denote the $2n$-length sequence obtained by replacing each occurrence of an $N$ with $0$ and each occurrence of an $E$ with a $1$. Then 
+    \[
+    \sum_{\pi\in L^+} q^{\text{maj}(\sigma(\pi))} = \dfrac{1}{[n+1]_q}\binom{2n}{n}_q
+    \]
+\label{t:qCat1}
+\end{theorem}
+\begin{proof}
+\end{proof}
+We present yet another natural $q$-analogue of Catalan numbers, one which satisfies a recurrence relation similar to \cref{t:segner}. Per usual, we start with a definition.
+\begin{definition}
+    Let $L^+$, $\pi$ and $\sigma(\pi)$ be as defined in the setting of \cref{t:qCat1}. By $\text{area}(\pi)$ we refer to sum of the components of the vector obtained by counting the number of complete unit squares to the right at the occurrence of each $N$ step in $\pi$.
+\end{definition}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Images/Figure31.png}
+    \caption{An example of a path in $L^+$ with area vector $(1,1,2,1,2)$ and area $1+1+2+1+2=7$.}
+    \label{fig:enter-label}
+\end{figure}
+Now, by a result due to Carlitz and Riordan we have.
+\begin{theorem}
+    If we set $C_n(q)=\sum_{\pi\in L^+}q^{\text{area}(\pi)}$, then \[
+    C_n(q) = \sum_{k=1}^n q^{k-1} C_k(q) C_{n-k}(q).
+    \]
+\end{theorem}
+\begin{proof}
+\end{proof}
 \endinput
