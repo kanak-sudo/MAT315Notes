@@ -10,11 +10,6 @@
 \section{Perfect Matchings and Pfaffian Orientations}
 Refer to \href{https://youtu.be/ydCWu6aiAxE?si=v91XmPDjM3qkfGKw}{https://youtu.be/ydCWu6aiAxE?si=v91XmPDjM3qkfGKw}. 
 \section{Graphs and Trees}
-\textcolor{red}{[This section is a work in progress. Note to scribe:]
-\begin{enumerate}
-    \item Finish a proof of Theorem 2.3.
-\end{enumerate}
-}
 We start with a standard result on graphs.
 \begin{theorem}
     Let $G$ be a simple, connected graph on $n$ vertices. Then the following are equivalent.
@@ -70,11 +65,7 @@ Setting $k\to 1$ gives us the required result.
 The number of rooted forests on $[n]$ is $(n+1)^{n-1}$.
 \end{theorem}
 \begin{proof}
-\begin{comment}
-Let $F(n)$ be the set of all rooted forests on $[n]$. Let $T(n)$ be the set of all labeled trees on $[n]$. We claim that \[
-|F(n)|=|T(n+1)|=(n+1)^{n-1} \quad \text{(the second equality follows from } \cref{t:Cayley's Formula}\text{)}
-\]
-\end{comment}
+The proof follows from the following observation. For any rooted forest with \( n \) vertices, add a new vertex \( v \) and connect it to all the roots as their parent. This forms a tree with \( n + 1 \) vertices. Conversely, for any tree with \( n + 1 \) vertices, where one vertex is labeled \( v \), remove \( v \) along with its edges. The resulting structure is a rooted forest, with the former children of \( v \) serving as the roots.
 \end{proof}
 We conclude this section with a result whose proof we shall omit but see \cref{t:Cayley's Formula} as a consequence of. 
 \begin{theorem}
@@ -84,18 +75,16 @@ We conclude this section with a result whose proof we shall omit but see \cref{t
 \end{theorem}
 Notice how setting $k\to 1$ and multiplying the result by $n$ (to account for the $n$ choices of roots) gives \cref{t:Cayley's Formula} back. 
 \section{Permutations Revisited}
-\textcolor{red}{[This section is a work in progress. Note to scribe:]
-\begin{enumerate}
-    \item Add a short section on Japanese ladders.
-    \item Add a short section on Stack-Sortable-Permutations.
-\end{enumerate}
-}
-%\section{Symmetric Functions}
-
-
-
-
-
-
-
+We are interested in counting \( P_n \), the number of permutations on \([n]\) that can be generated using a single stack. We start by computing $P_n$ by hand for $n=1,2$ and $3$. When $n=1$, we can push $1$ on to the empty stack and pop it immediately. The stack is now empty, and there are no more input values. So we are done and the output is the permutation $(1)$. Next, when $n=2$, we have two possible permutations, $(12)$ and $(21)$. To obtain the permutation $(12)$, first push $1$ onto the stack, then pop it, then push $2$ onto the stack and then pop it. To obtain the permutation $(21)$, first push $1$ onto the stack, then push $2$, then pop $2$, and then pop $1$. Similarly, the permutations $(123),(132),(213),(231)$ and $(321)$ are obtainable. One might (correctly) guess from here one that this is the sequence of Catalan numbers. What follows is a proof of the same.
+\begin{proof}
+To this end, let \( i \) denote the position of the element \( 1 \) in a valid permutation produced by the stack, where \( 1 \leq i \leq n \). Then, \( P_{i-1} \) counts the number of valid permutations with \( i-1 \) elements to the left of \( 1 \), and \( P_{n-i-1} \) counts the number of valid permutations with \( n-i-1 \) elements to the right of \( 1 \). If we set \( P_0 = 1 \), then by the multiplication and addition principles, we obtain the recurrence
+\[
+P_n = \sum_{i=1}^n P_{i-1} P_{n-i-1},
+\]
+which, more explicitly is written as 
+\[
+P_n = P_0 P_{n-1} + P_1 P_{n-2} + \cdots + P_{n-1} P_0.
+\]
+Recall how this is precisely the recurrence relation we derived in \cref{t:segner}. Therefore, \( P_n = C_n \) for all \( n \geq 0 \), where \( C_n \) denotes the \( n \)-th Catalan number.
+\end{proof}
 \endinput
