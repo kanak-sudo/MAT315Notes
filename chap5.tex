@@ -298,9 +298,7 @@ Let $L^+$ denote the set of all lattice paths from $(0,0)$ to $(n,n)$ which neve
     \]
 \label{t:qCat1}
 \end{theorem}
-\begin{proof}
-\end{proof}
-We present yet another natural $q$-analogue of Catalan numbers, one which satisfies a recurrence relation similar to \cref{t:segner}. Per usual, we start with a definition.
+We omit the proof and present yet another natural $q$-analogue of Catalan numbers, one which satisfies a recurrence relation similar to \cref{t:segner}. Per usual, we start with a definition.
 \begin{definition}
     Let $L^+$, $\pi$ and $\sigma(\pi)$ be as defined in the setting of \cref{t:qCat1}. By $\text{area}(\pi)$ we refer to sum of the components of the vector obtained by counting the number of complete unit squares to the right at the occurrence of each $N$ step in $\pi$.
 \end{definition}
@@ -317,5 +315,6 @@ Now, by a result due to Carlitz and Riordan we have.
     \]
 \end{theorem}
 \begin{proof}
+The proof follows from the following trick. We decompose the path \( \pi \) by identifying the point of first return to the main diagonal. Suppose the said point is \( (k, k) \). Then, the segment of \( \pi \) from \( (0, 1) \) to \( (k-1, k) \), when treated as an element of the set of all lattice paths from $(0,0)$ to $(k-1,k-1)$ which remain above the main diagonal, has an area that is \( k - 1 \) less than when the same segment is treated as part of $L^+$.
 \end{proof}
 \endinput
